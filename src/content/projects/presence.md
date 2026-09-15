@@ -14,7 +14,7 @@ galleryImages:
   - "project-presence/5.webp"
   - "project-presence/6.webp"
   - "project-presence/7.webp"
-  - "project-presence/7&#39;.webp"
+  - "project-presence/7'.webp"
   - "project-presence/8.webp"
   - "project-presence/9.webp"
   - "project-presence/10.webp"

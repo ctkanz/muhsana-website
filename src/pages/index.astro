@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import ProjectsSection from '../components/ProjectsSection.astro';
+import ArtworksSection from '../components/ArtworksSection.astro';
+import InteractiveMap from '../components/InteractiveMap.astro';
+---
+
+<BaseLayout title="Muhsana Ali | Artiste Multidisciplinaire" description="Site officiel de l'artiste Muhsana Ali.">
+  <main>
+    <Hero />
+    <About />
+    <ProjectsSection />
+    <ArtworksSection />
+    <InteractiveMap />
+  </main>
+
+  <footer class="footer" style="padding: 3rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem;">
+    <p>© Muhsana Ali. Tous droits réservés.</p>
+  </footer>
+</BaseLayout>

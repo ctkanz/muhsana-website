@@ -1,0 +1,57 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Lightbox from '../components/Lightbox.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  isProjectPage?: boolean;
+}
+
+const {
+  title = "Muhsana Ali | Artiste Multidisciplinaire",
+  description = "Site officiel de l'artiste Muhsana Ali.",
+  isProjectPage = false,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- OpenFreeMap Vector Map Setup (Leaflet + MapLibre GL) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <link href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" rel="stylesheet" />
+  <script is:inline src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+  <script is:inline src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+  <Navbar isProjectPage={isProjectPage} />
+
+  <slot />
+
+  <Lightbox />
+
+  <!-- Main Interactive Client Script -->
+  <script is:inline src="/script.js"></script>
+</body>
+
+</html>

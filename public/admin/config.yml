@@ -1,0 +1,81 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "astro web site/public/oeuvre"
+public_folder: "/oeuvre"
+
+collections:
+  - name: "projects"
+    label: "Projets Communautaires"
+    folder: "astro web site/src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre du Projet", name: "title", widget: "string" }
+      - { label: "Sous-titre / Description Courte", name: "subtitle", widget: "string" }
+      - { label: "Badge / Catégorie", name: "badge", widget: "string" }
+      - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
+      - { label: "Image de Couverture Hero", name: "heroImage", widget: "image" }
+      - { label: "Titre Meta (SEO)", name: "metaTitle", widget: "string" }
+      - { label: "Description Meta (SEO)", name: "metaDescription", widget: "text" }
+      - { label: "Galerie d'images (6 premières visibles sur la grille)", name: "galleryImages", widget: "list", field: { label: "Image", name: "image", widget: "image" } }
+      - { label: "Titre de la Section Principale", name: "mainHeading", widget: "string" }
+      - { label: "Paragraphe d'accroche (Lead)", name: "leadParagraph", widget: "text" }
+      - { label: "Paragraphes détaillés", name: "paragraphs", widget: "list", field: { label: "Paragraphe", name: "paragraph", widget: "text" } }
+      - { label: "Citation de l'Artiste", name: "quote", widget: "string", required: false }
+      - label: "Articles & Liens Externes"
+        name: "externalLinks"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Icône Emoji", name: "icon", widget: "string" }
+          - { label: "Tag / Source", name: "tag", widget: "string" }
+          - { label: "Titre de l'article", name: "title", widget: "string" }
+          - { label: "Description", name: "desc", widget: "text" }
+          - { label: "URL du lien", name: "url", widget: "string" }
+          - { label: "Texte du bouton", name: "btnText", widget: "string" }
+      - label: "Fiche Technique (Sidebar)"
+        name: "sidebarMeta"
+        widget: "list"
+        fields:
+          - { label: "Libellé (ex: Année)", name: "label", widget: "string" }
+          - { label: "Valeur (ex: 2023)", name: "value", widget: "string" }
+      - { label: "URL Vidéo YouTube Intégrée", name: "embeddedVideoYoutubeUrl", widget: "string", required: false }
+      - label: "Projet Précédent"
+        name: "prevProject"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "Slug du projet", name: "slug", widget: "string" }
+          - { label: "Titre du projet", name: "title", widget: "string" }
+      - label: "Projet Suivant"
+        name: "nextProject"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "Slug du projet", name: "slug", widget: "string" }
+          - { label: "Titre du projet", name: "title", widget: "string" }
+
+  - name: "artworks"
+    label: "Œuvres & Galeries"
+    folder: "astro web site/src/content/artworks"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre Complet de la Série", name: "title", widget: "string" }
+      - { label: "Titre d'Affichage", name: "displayTitle", widget: "string" }
+      - label: "Catégorie de Filtre"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Sculpture & Installation", value: "sculpture" }
+          - { label: "Alternative Mosaic", value: "mosaic" }
+          - { label: "Photography", value: "photography" }
+          - { label: "Peinture", value: "peinture" }
+      - { label: "Badge d'Affichage", name: "badge", widget: "string" }
+      - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
+      - { label: "Description Courte", name: "desc", widget: "string" }
+      - { label: "Description de la Carte", name: "cardDesc", widget: "text" }
+      - { label: "Image de Couverture", name: "coverImage", widget: "image" }
+      - { label: "Galerie d'images (Diaporama Lightbox)", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" } }

@@ -1,0 +1,57 @@
+---
+interface Props {
+  isProjectPage?: boolean;
+}
+
+const { isProjectPage = false } = Astro.props;
+
+const prefix = isProjectPage ? '/#' : '#';
+const pagePrefix = isProjectPage ? '/' : '';
+---
+
+<nav class={`navbar ${isProjectPage ? 'scrolled' : ''}`}>
+  <a href={`${pagePrefix}#hero`} class="brand-logo">Muhsana <span>Ali</span></a>
+
+  <ul class="nav-menu" id="navMenu">
+    <li class="nav-item"><a href={`${pagePrefix}#hero`} class="nav-link active">Accueil</a></li>
+    <li class="nav-item"><a href={`${pagePrefix}#about`} class="nav-link">À Propos</a></li>
+
+    <!-- Dropdown: Projets -->
+    <li class="nav-item">
+      <a href={`${pagePrefix}#projects`} class="nav-link">Projets ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="/projects/east-bayside" class="dropdown-link">East Bayside Community Mosaic</a></li>
+        <li><a href="/projects/mart" class="dropdown-link">Mart Community Project</a></li>
+        <li><a href="/projects/jen-rekk" class="dropdown-link">Série Jën Rekk</a></li>
+        <li><a href="/projects/bethel" class="dropdown-link">Bethel Burying Ground</a></li>
+        <li><a href="/projects/presence" class="dropdown-link">Presence of a Fundamental Absence</a></li>
+        <li><a href="/projects/doors" class="dropdown-link">Doors & Passageways of Return</a></li>
+        <li><a href="/projects/association" class="dropdown-link">Association Portes & Passages</a></li>
+      </ul>
+    </li>
+
+    <!-- Dropdown: Œuvres -->
+    <li class="nav-item">
+      <a href={`${pagePrefix}#artwork`} class="nav-link">Œuvres ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href={`${pagePrefix}#artwork`} class="dropdown-link" data-art-nav="sculpture">Sculpture & Installation</a></li>
+        <li><a href={`${pagePrefix}#artwork`} class="dropdown-link" data-art-nav="mosaic">Alternative Mosaic</a></li>
+        <li><a href={`${pagePrefix}#artwork`} class="dropdown-link" data-art-nav="photography">Photography</a></li>
+      </ul>
+    </li>
+
+    <li class="nav-item"><a href={`${pagePrefix}#interactive-map`} class="nav-link">Parcours (Carte)</a></li>
+  </ul>
+
+  <div style="display: flex; align-items: center; gap: 1rem;">
+    {isProjectPage ? (
+      <a href="/#projects" class="project-back-btn">← Retour aux projets</a>
+    ) : (
+      <button class="sound-btn" id="soundBtn" title="Activer / Désactiver le son de la vidéo">
+        <span id="soundIcon">🔇</span>
+        <span id="soundText">Activer le son</span>
+      </button>
+    )}
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu Mobile">☰</button>
+  </div>
+</nav>

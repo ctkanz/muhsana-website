@@ -1,0 +1,37 @@
+---
+title: "Africain in Mart — Muhsana 2011"
+displayTitle: "Africain in Mart"
+category: "photography"
+categoryLabel: "Muhsana 2011"
+badge: "Muhsana 2011"
+order: 5
+desc: "Photography : Série de portraits et photographies documentaires (2011)."
+cardDesc: "Photography : Série de portraits et photographies documentaires sur la vie à Mart, Texas."
+coverImage: "/oeuvre/Africain in Mart/Mart Sept photos sessions 009_edited.webp"
+images:
+  - "oeuvre/Africain in Mart/130.webp"
+  - "oeuvre/Africain in Mart/131.webp"
+  - "oeuvre/Africain in Mart/157.webp"
+  - "oeuvre/Africain in Mart/DSC_6574.webp"
+  - "oeuvre/Africain in Mart/DSC_6579.webp"
+  - "oeuvre/Africain in Mart/DSC_6593.webp"
+  - "oeuvre/Africain in Mart/DSC_6604.webp"
+  - "oeuvre/Africain in Mart/DSC_6616.webp"
+  - "oeuvre/Africain in Mart/DSC_6622.webp"
+  - "oeuvre/Africain in Mart/DSC_6641.webp"
+  - "oeuvre/Africain in Mart/DSC_6644.webp"
+  - "oeuvre/Africain in Mart/DSC_6647.webp"
+  - "oeuvre/Africain in Mart/DSC_9473.webp"
+  - "oeuvre/Africain in Mart/DSC_9526.webp"
+  - "oeuvre/Africain in Mart/DSC_9550.webp"
+  - "oeuvre/Africain in Mart/Mart Sept photos sessions 006.webp"
+  - "oeuvre/Africain in Mart/Mart Sept photos sessions 008.webp"
+  - "oeuvre/Africain in Mart/Mart Sept photos sessions 009.webp"
+  - "oeuvre/Africain in Mart/Mart Sept photos sessions 030.webp"
+  - "oeuvre/Africain in Mart/Mart Sept photos sessions 039.webp"
+  - "oeuvre/Africain in Mart/Mart Sept photos sessions 068.webp"
+  - "oeuvre/Africain in Mart/Mart Sept photos sessions 081.webp"
+  - "oeuvre/Africain in Mart/Mart Sept photos sessions 092.webp"
+---
+
+Africain in Mart par Muhsana Ali.

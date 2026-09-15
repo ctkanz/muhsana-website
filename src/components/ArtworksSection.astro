@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+
+const rawArtworks = await getCollection('artworks');
+const sortedArtworks = rawArtworks.sort((a, b) => a.data.order - b.data.order);
+
+const artworks = sortedArtworks.map((item) => ({
+  category: item.data.category,
+  title: item.data.title,
+  displayTitle: item.data.displayTitle,
+  badge: item.data.badge,
+  desc: item.data.desc,
+  cardDesc: item.data.cardDesc,
+  coverImage: item.data.coverImage.startsWith('/') ? item.data.coverImage : '/' + item.data.coverImage,
+  imagesJson: JSON.stringify(item.data.images.map(img => img.startsWith('/') ? img : '/' + img)),
+}));
+---
+
+<section class="section" id="artwork">
+  <div class="section-header">
+    <p class="section-subtitle">Exploration Visuelle & Sculpturale</p>
+    <h2 class="section-title">Œuvres</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- Artwork Category Filters -->
+  <div class="map-filters" id="artworkFilters" style="margin-bottom: 2.5rem;">
+    <button class="filter-btn active" data-artwork-filter="all">Toutes les Œuvres</button>
+    <button class="filter-btn" data-artwork-filter="sculpture">Sculpture & Installation</button>
+    <button class="filter-btn" data-artwork-filter="mosaic">Alternative Mosaic</button>
+    <button class="filter-btn" data-artwork-filter="photography">Photography</button>
+    <button class="filter-btn" data-artwork-filter="peinture">Peinture</button>
+  </div>
+
+  <!-- Artwork Cards Grid -->
+  <div class="projects-cards-grid" id="artworkGrid">
+    {artworks.map((art) => (
+      <article
+        class="project-card artwork-card"
+        data-category={art.category}
+        data-title={art.title}
+        data-badge={art.badge}
+        data-desc={art.cardDesc}
+        data-images={art.imagesJson}
+      >
+        <div class="project-card-image-wrapper">
+          <img src={art.coverImage} alt={art.title} class="project-card-image" />
+          <span class="project-card-badge">{art.badge}</span>
+        </div>
+        <div class="project-card-content">
+          <h3 class="project-card-title">{art.displayTitle}</h3>
+          <p class="project-card-desc">{art.desc}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

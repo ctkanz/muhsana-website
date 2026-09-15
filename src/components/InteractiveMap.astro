@@ -1,0 +1,44 @@
+---
+---
+
+<section class="section" id="interactive-map">
+  <div class="section-header">
+    <p class="section-subtitle">Géographie & Parcours International</p>
+    <h2 class="section-title">Parcours Artistique de Muhsana Ali</h2>
+    <p class="map-section-desc">Explorez les villes, résidences, expositions et projets communautaires à travers l'Afrique, l'Europe et les États-Unis.</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- Map Filter Buttons -->
+  <div class="map-filters" id="mapFilters">
+    <button class="filter-btn active" data-filter="all">Tous</button>
+    <button class="filter-btn" data-filter="education">Formation</button>
+    <button class="filter-btn" data-filter="exhibition">Expositions</button>
+    <button class="filter-btn" data-filter="residency">Résidences</button>
+    <button class="filter-btn" data-filter="project">Projets</button>
+    <button class="filter-btn" data-filter="conference">Conférences</button>
+    <button class="filter-btn" data-filter="collection">Collections</button>
+    <button class="filter-btn timeline-btn" id="btnPlayTimeline"><span class="timeline-icon">▶</span> Chronologie</button>
+  </div>
+
+  <!-- Map Container & Details Panel Layout -->
+  <div class="map-layout">
+    <div class="map-container-wrapper">
+      <div id="map"></div>
+    </div>
+
+    <!-- Info Details Drawer / Panel -->
+    <aside class="map-info-panel" id="mapInfoPanel">
+      <div class="info-panel-header">
+        <h3 id="panelLocationTitle">Sélectionnez un point</h3>
+        <p id="panelLocationSubtitle" class="panel-subtitle">Cliquez sur un marqueur de la carte pour afficher les détails du parcours.</p>
+      </div>
+      <div class="info-panel-content" id="panelLocationEvents">
+        <div class="info-empty-state">
+          <span class="empty-icon">📍</span>
+          <p>Découvrez les événements, expositions et projets communautaires organisés dans chaque ville.</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>

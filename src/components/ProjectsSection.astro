@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+
+const rawProjects = await getCollection('projects');
+const sortedProjects = rawProjects.sort((a, b) => a.data.order - b.data.order);
+
+const projects = sortedProjects.map((item) => ({
+  id: item.slug,
+  slug: item.slug,
+  title: item.data.title,
+  desc: item.data.subtitle,
+  image: item.data.heroImage.startsWith('/') ? item.data.heroImage : '/' + item.data.heroImage,
+  badge: item.data.badge,
+}));
+---
+
+<section class="section" id="projects">
+  <div class="section-header">
+    <p class="section-subtitle">Engagement Communautaire & Œuvres Majeures</p>
+    <h2 class="section-title">Projets</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="projects-cards-grid">
+    {projects.map((project) => (
+      <article class="project-card" id={project.id}>
+        <a href={`/projects/${project.slug}`} class="project-card-link-wrapper">
+          <div class="project-card-image-wrapper">
+            <img src={project.image} alt={project.title} class="project-card-image" />
+            <span class="project-card-badge">{project.badge}</span>
+          </div>
+          <div class="project-card-content">
+            <h3 class="project-card-title">{project.title}</h3>
+            <p class="project-card-desc">{project.desc}</p>
+            <span class="project-card-cta">Découvrir le projet →</span>
+          </div>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>

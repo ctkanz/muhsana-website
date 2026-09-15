@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { project: entry.data },
+  }));
+}
+
+const { project } = Astro.props;
+
+if (!project) {
+  return Astro.redirect('/404');
+}
+
+const galleryVisible = project.galleryImages.slice(0, 6);
+const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.startsWith('/') ? img : '/' + img));
+---
+
+<BaseLayout title={project.metaTitle} description={project.metaDescription} isProjectPage={true}>
+  <!-- Project Detail Hero Banner -->
+  <header
+    class="project-hero"
+    style={`background-image: linear-gradient(to bottom, rgba(10,10,12,0.5), var(--bg-primary)), url('/${project.heroImage}');`}
+  >
+    <div class="project-hero-content">
+      <span class="project-badge">{project.badge}</span>
+      <h1 class="project-hero-title">{project.title}</h1>
+      <p class="project-hero-subtitle">{project.subtitle}</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="section project-detail-container">
+    <div class="project-layout">
+      <!-- Main Text -->
+      <article class="project-main-text">
+
+        <!-- Project Gallery Grid -->
+        <div
+          class="project-gallery-grid"
+          style="grid-template-columns: repeat(3, 1fr); margin-bottom: 2.5rem;"
+          data-all-images={allImagesJson}
+        >
+          {galleryVisible.map((imgSrc, idx) => (
+            <div class="project-gallery-item">
+              <img src={imgSrc.startsWith('/') ? imgSrc : '/' + imgSrc} alt={`${project.title} image ${idx + 1}`} />
+            </div>
+          ))}
+        </div>
+
+        <h2 class="project-section-heading">{project.mainHeading}</h2>
+        <div class="section-divider" style="margin-left: 0;"></div>
+
+        <p class="project-lead">{project.leadParagraph}</p>
+
+        {project.paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+
+        {project.quote && (
+          <blockquote class="project-quote">
+            {project.quote}
+          </blockquote>
+        )}
+
+        {project.externalLinks && project.externalLinks.map((link) => (
+          <div class="external-article-card" style="margin-top: 1.5rem;">
+            <div class="article-card-icon">{link.icon}</div>
+            <div class="article-card-info">
+              <span class="article-card-tag">{link.tag}</span>
+              <h4 class="article-card-title">{link.title}</h4>
+              <p class="article-card-desc">{link.desc}</p>
+            </div>
+            <a href={link.url} target="_blank" rel="noopener noreferrer" class="article-card-btn">
+              <span>{link.btnText}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        ))}
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="project-sidebar">
+        <div class="project-meta-card">
+          <h3 class="meta-card-title">Fiche Technique</h3>
+          
+          {project.sidebarMeta.map((item) => (
+            <div class="meta-item">
+              <span class="meta-label">{item.label}</span>
+              <span class="meta-value">{item.value}</span>
+            </div>
+          ))}
+        </div>
+
+        <div class="project-nav-card">
+          <h4>Navigation</h4>
+          {project.prevProject && (
+            <a href={`/projects/${project.prevProject.slug}`} class="next-project-link" style="margin-bottom: 0.8rem;">
+              <span>← Projet précédent</span>
+              <strong>{project.prevProject.title}</strong>
+            </a>
+          )}
+          {project.nextProject && (
+            <a href={`/projects/${project.nextProject.slug}`} class="next-project-link">
+              <span>Projet suivant →</span>
+              <strong>{project.nextProject.title}</strong>
+            </a>
+          )}
+        </div>
+      </aside>
+    </div>
+
+    <!-- Embedded Youtube Video if available -->
+    {project.embeddedVideoYoutubeUrl && (
+      <div class="embedded-video-fullwidth" style="margin-top: 3.5rem; width: 100%;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 1.2rem; color: var(--text-main); text-align: center;">
+          Présentation Vidéo Officielle : A Symbolic Up and Away
+        </h3>
+        <div style="position: relative; padding-bottom: 52%; height: 0; overflow: hidden; border-radius: var(--radius-md); border: 1px solid var(--border-hover); box-shadow: 0 20px 50px rgba(0,0,0,0.8); background: #000;">
+          <iframe 
+            src={project.embeddedVideoYoutubeUrl} 
+            title="Présentation vidéo officielle" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    )}
+  </main>
+
+  <footer class="footer" style="padding: 2rem 3rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.85rem;">
+    <p>© Muhsana Ali. Tous droits réservés. <a href="/#projects" style="color: var(--accent-gold); margin-left: 1rem;">← Retour au site principal</a></p>
+  </footer>
+</BaseLayout>

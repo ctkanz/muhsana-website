@@ -1,0 +1,63 @@
+---
+title: "Association Portes & Passages du Retour"
+subtitle: "Un espace vivant d'innovation artistique, d'architecture alternative et d'échange interculturel à Mbodiène (Sénégal)"
+badge: "Centre Culturel & Développement Holistique"
+order: 7
+heroImage: "project-association/Architecture Alternative.webp"
+metaTitle: "Association Portes & Passages du Retour | Muhsana Ali"
+metaDescription: "Découvrez l'Association Portes & Passages du Retour co-fondée par Muhsana Ali - Centre d'art et de développement holistique à Mbodiène, Sénégal."
+galleryImages:
+  - "project-association/Architecture Alternative.webp"
+  - "project-association/AGROCAMP.webp"
+  - "project-association/Artiste en residence.webp"
+  - "project-association/DSC00933.webp"
+  - "project-association/DSCF5076.webp"
+  - "project-association/DSC_1185.webp"
+  - "project-association/FP43.webp"
+  - "project-association/FP59.webp"
+  - "project-association/Femmes Potières.webp"
+  - "project-association/IMG_0764.webp"
+  - "project-association/RSP_0376.webp"
+  - "project-association/Volontaire.webp"
+  - "project-association/Volontaires.webp"
+  - "project-association/Volontaires_edited.webp"
+  - "project-association/kPeO3.webp"
+  - "project-association/omar andhis fish.webp"
+  - "project-association/portes et passages du retour.webp"
+  - "project-association/projet Jën Rekk_edited.webp"
+  - "project-association/10.webp"
+mainHeading: "Portes et Passages du Retour Association"
+leadParagraph: "Portes et Passages du Retour is an association placing emphasis on art and creativity to insure the vital, necessary relationship between man and nature for holistic well-being and intellectual and creative sovereignty within the society. Founded in 2004, it is led by visual artists who have initiated a CENTER FOR ART AND HOLISTIC DEVELOPMENT in the rural region along the “Petite Côte” of Senegal, which generates community-centered programs revolving around alternative engagement in art, education, health, environmental consciousness, agriculture and eco-building and all areas of the holistic development of man and his environment."
+paragraphs:
+  - "Portes et Passages is situated between the villages of Mbodiene and the town of Joal-Fadiouth, which houses the largest fishing port in Senegal. The association is committed to the raising the awareness of creative values and to improving the manner in which such values are manifested in the everyday lives of inhabitants throughout the region. Intercultural exchange is encouraged through our engagement with artists, institutions and volunteers, in order to increase the dynamic manner in which African development may be enhanced."
+externalLinks:
+  - icon: "🌐"
+    tag: "Site Web Officiel de l'Association"
+    title: "Portes et Passages du Retour"
+    desc: "Visitez le site officiel de l'association pour découvrir tous les programmes et actualités du centre."
+    url: "https://www.portesetpassagesduretour.com/"
+    btnText: "Visiter le site web"
+  - icon: "🎬"
+    tag: "Vidéo de Présentation"
+    title: "Portes et Passages du Retour Video"
+    desc: "Visionnez la vidéo de présentation du centre et de ses actions à Mbodiène."
+    url: "https://vimeo.com/44733858"
+    btnText: "Regarder sur Vimeo"
+sidebarMeta:
+  - label: "Année de création"
+    value: "2007 (Toujours actif)"
+  - label: "Localisation"
+    value: "Mbodiène, Région de Thiès, Sénégal"
+  - label: "Fondatrice"
+    value: "Muhsana Ali"
+  - label: "Partenaires Majeurs"
+    value: "DOEN Foundation, Arts Collaboratory, University of Michigan, AIA"
+prevProject:
+  slug: "doors"
+  title: "Doors & Passageways of Return"
+nextProject:
+  slug: "east-bayside"
+  title: "East Bayside Community Mosaic"
+---
+
+Association Portes & Passages du Retour par Muhsana Ali.

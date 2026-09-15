@@ -7,12 +7,12 @@ badge: "Muhsana 2012"
 order: 4
 desc: "Alternative Mosaic : Fresque murale participative en mosaïque (2012)."
 cardDesc: "Alternative Mosaic : Fresque murale participative réalisée à Kër Thiossane à Dakar."
-coverImage: "/oeuvre/Kër Thiossane/1.webp"
+coverImage: "/oeuvre/ker-thiossane/1.webp"
 images:
-  - "oeuvre/Kër Thiossane/1.webp"
-  - "oeuvre/Kër Thiossane/2.webp"
-  - "oeuvre/Kër Thiossane/3.webp"
-  - "oeuvre/Kër Thiossane/4.webp"
+  - "oeuvre/ker-thiossane/1.webp"
+  - "oeuvre/ker-thiossane/2.webp"
+  - "oeuvre/ker-thiossane/3.webp"
+  - "oeuvre/ker-thiossane/4.webp"
 ---
 
 Kër Thiossane par Muhsana Ali.

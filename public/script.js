@@ -166,93 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. About Section Scroll Box Logic
-  const aboutScrollBox = document.getElementById('aboutScrollBox');
-  const aboutContent = document.querySelector('.about-content');
 
-  if (aboutScrollBox && aboutContent) {
-    let focusTimeout = null;
 
-    const setFocusedState = (focused, delay = 0) => {
-      if (focusTimeout) {
-        clearTimeout(focusTimeout);
-        focusTimeout = null;
-      }
+  // Smooth Scroll pour liens d'ancres et boutons
 
-      if (focused) {
-        aboutContent.classList.add('is-focused');
-      } else if (delay > 0) {
-        focusTimeout = setTimeout(() => {
-          aboutContent.classList.remove('is-focused');
-        }, delay);
-      } else {
-        aboutContent.classList.remove('is-focused');
-      }
-    };
-
-    aboutScrollBox.addEventListener('mouseenter', () => setFocusedState(true));
-    aboutScrollBox.addEventListener('mouseleave', () => setFocusedState(false, 300));
-    aboutScrollBox.addEventListener('focus', () => setFocusedState(true));
-    aboutScrollBox.addEventListener('blur', () => setFocusedState(false, 300));
-  }
-
-  // Smooth Scroll Engine
-  let currentScrollY = window.scrollY;
-  let targetScrollY = window.scrollY;
-  let isSmoothScrolling = false;
-  const easeFactor = 0.08;
-
-  function smoothScrollLoop() {
-    if (!isSmoothScrolling) return;
-
-    const diff = targetScrollY - currentScrollY;
-    if (Math.abs(diff) < 0.3) {
-      currentScrollY = targetScrollY;
-      window.scrollTo(0, currentScrollY);
-      isSmoothScrolling = false;
-      return;
-    }
-
-    currentScrollY += diff * easeFactor;
-    window.scrollTo(0, currentScrollY);
-    requestAnimationFrame(smoothScrollLoop);
-  }
-
-  window.addEventListener('wheel', (e) => {
-    const scrollableBox = e.target.closest('#aboutScrollBox, .about-scroll-box');
-    if (scrollableBox) {
-      const isDeltaDown = e.deltaY > 0;
-      const isDeltaUp = e.deltaY < 0;
-      const canScrollDown = scrollableBox.scrollTop + scrollableBox.clientHeight < scrollableBox.scrollHeight - 1.5;
-      const canScrollUp = scrollableBox.scrollTop > 1.5;
-
-      if ((isDeltaDown && canScrollDown) || (isDeltaUp && canScrollUp)) {
-        return; // Permet le défilement interne à l'intérieur du texte
-      }
-      // Une fois la limite atteinte, on enchaîne avec le défilement de la page principale
-    } else if (e.target.closest('.map-container-wrapper, .info-panel-content, .artwork-lightbox, .nav-menu')) {
-      return;
-    }
-
-    e.preventDefault();
-
-    const scrollDelta = e.deltaY * 0.65;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-
-    if (Math.abs(currentScrollY - window.scrollY) > 50) {
-      currentScrollY = window.scrollY;
-      targetScrollY = window.scrollY;
-    }
-
-    targetScrollY = Math.min(Math.max(0, targetScrollY + scrollDelta), maxScroll);
-
-    if (!isSmoothScrolling) {
-      isSmoothScrolling = true;
-      requestAnimationFrame(smoothScrollLoop);
-    }
-  }, { passive: false });
-
-  const smoothScrollToTarget = (targetY, duration = 1200) => {
+  const smoothScrollToTarget = (targetY, duration = 700, callback) => {
     const startY = window.scrollY;
     const distance = targetY - startY;
     let startTime = null;
@@ -272,15 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const nextY = startY + distance * easeProgress;
       window.scrollTo(0, nextY);
 
-      currentScrollY = nextY;
-      targetScrollY = nextY;
-
       if (timeElapsed < duration) {
         requestAnimationFrame(animation);
       } else {
         window.scrollTo(0, targetY);
-        currentScrollY = targetY;
-        targetScrollY = targetY;
+        if (typeof callback === 'function') callback();
       }
     };
 
@@ -307,7 +221,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
         const finalTarget = Math.min(Math.max(0, targetTop), maxScroll);
 
-        smoothScrollToTarget(finalTarget, 800);
+        smoothScrollToTarget(finalTarget, 700, () => {
+          if (targetId === '#interactive-map') {
+            const mapEl = document.getElementById('map');
+            if (mapEl && mapEl._leaflet_map) {
+              mapEl._leaflet_map.invalidateSize();
+            }
+          }
+        });
       }
     });
   });
@@ -386,8 +307,10 @@ document.addEventListener('DOMContentLoaded', () => {
       center: [20, -20],
       zoom: 2.5,
       zoomControl: true,
-      scrollWheelZoom: false
+      scrollWheelZoom: false,
+      tap: false
     });
+    mapElement._leaflet_map = map;
 
     if (typeof L.maplibreGL === 'function') {
       try {
@@ -432,17 +355,18 @@ document.addEventListener('DOMContentLoaded', () => {
           if (glMap.isStyleLoaded()) {
             cleanMapLayers();
           } else {
-            glMap.on('styledata', cleanMapLayers);
+            glMap.once('load', cleanMapLayers);
+            glMap.once('idle', cleanMapLayers);
           }
         }
       } catch (e) {
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png', {
           attribution: '&copy; OpenStreetMap',
           maxZoom: 19
         }).addTo(map);
       }
     } else {
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap',
         maxZoom: 19
       }).addTo(map);
@@ -695,10 +619,10 @@ document.addEventListener('DOMContentLoaded', () => {
             mapSectionEl.dataset.timelineTriggered = 'true';
             setTimeout(() => {
               playChronologicalAnimation();
-            }, 600);
+            }, 1100);
           }
         });
-      }, { threshold: 0.2 });
+      }, { threshold: 0.3 });
       mapObserver.observe(mapSectionEl);
     }
   }

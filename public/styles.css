@@ -47,7 +47,7 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
   font-size: 16px;
   background-color: var(--bg-primary);
   color: var(--text-main);
@@ -387,6 +387,10 @@ img {
   background: rgba(255, 255, 255, 0.05);
 }
 
+.hero-bottom-actions {
+  display: contents;
+}
+
 .hero-memorial-btn {
   position: absolute;
   bottom: 2.2rem;
@@ -407,6 +411,7 @@ img {
   -webkit-backdrop-filter: blur(10px);
   transition: var(--transition-smooth);
   animation: memorialFadePulse 3.5s ease-in-out infinite;
+  white-space: nowrap;
 }
 
 @keyframes memorialFadePulse {
@@ -436,15 +441,6 @@ img {
 
 .hero-memorial-btn:hover .memorial-arrow {
   transform: translateX(3px);
-}
-
-@media (max-width: 768px) {
-  .hero-memorial-btn {
-    bottom: 1.5rem;
-    right: 1.2rem;
-    padding: 0.45rem 0.9rem;
-    font-size: 0.7rem;
-  }
 }
 
 .scroll-indicator {
@@ -698,9 +694,8 @@ article[id] {
 
 /* Mode 2: Boîte de défilement interne */
 .about-scroll-box {
-  max-height: 450px;
+  max-height: 520px;
   overflow-y: auto;
-  scroll-behavior: smooth;
   padding-right: 1.2rem;
   border-left: 3px solid rgba(255, 255, 255, 0.15);
   padding-left: 1.5rem;
@@ -723,10 +718,8 @@ article[id] {
   border-radius: 10px;
 }
 
-/* Quand le survol ou le focus est actif (ligne jaune/or allumée) */
-.about-content.is-focused .about-scroll-box,
-.about-scroll-box:hover,
-.about-scroll-box:focus {
+/* Quand le survol est actif (ligne or allumée) */
+.about-scroll-box:hover {
   border-left-color: var(--accent-gold);
   box-shadow: -4px 0 15px -3px rgba(212, 175, 55, 0.3);
 }
@@ -1044,6 +1037,35 @@ textarea.form-control {
     padding: 1rem 1.5rem;
   }
 
+  /* Stack memorial button 15px above Explorer when burger menu is active */
+  .hero-bottom-actions {
+    display: flex;
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: max-content;
+  }
+
+  .hero-memorial-btn {
+    position: static;
+    bottom: auto;
+    right: auto;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.7rem;
+  }
+
+  .scroll-indicator {
+    position: static;
+    bottom: auto;
+    left: auto;
+    transform: none;
+  }
+
   .nav-menu {
     position: fixed;
     top: 0;
@@ -1287,12 +1309,16 @@ textarea.form-control {
   height: 100%;
   background: #14171d;
   z-index: 1;
+  transform: translateZ(0);
+  contain: layout paint;
+  touch-action: pan-y;
 }
 
 /* Custom Marker Styling & Pop-In Animation */
 .custom-map-pin {
   background: none;
   border: none;
+  will-change: transform;
 }
 
 .pin-inner {
@@ -1302,12 +1328,14 @@ textarea.form-control {
   border: 3px solid #0a0a0c;
   border-radius: 50%;
   box-shadow: 0 0 12px rgba(212, 175, 55, 0.8);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .custom-map-pin:hover .pin-inner,
 .custom-map-pin.active-pin .pin-inner {
-  transform: scale(1.4);
+  transform: scale(1.35) translateZ(0);
   background-color: #ffffff;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 10px var(--accent-gold);
 }

@@ -177,6 +177,7 @@ img {
   list-style: none;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transform: translateY(10px);
   transition: var(--transition-smooth);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
@@ -185,6 +186,7 @@ img {
 .nav-item:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
   transform: translateY(0);
 }
 
@@ -261,7 +263,8 @@ img {
   }
 }
 
-.mobile-toggle {
+.mobile-toggle,
+.mobile-close-btn {
   display: none;
   background: none;
   border: none;
@@ -1035,8 +1038,8 @@ textarea.form-control {
   font-size: 0.9rem;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 992px) {
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 1150px) {
   .navbar {
     padding: 1rem 1.5rem;
   }
@@ -1045,16 +1048,22 @@ textarea.form-control {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 85%;
+    width: 320px;
+    max-width: 85vw;
     height: 100vh;
+    height: 100dvh;
     background: var(--bg-secondary);
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
-    padding: 3rem;
+    padding: 5rem 2rem 3rem;
+    gap: 1.2rem;
     transition: var(--transition-smooth);
     border-left: 1px solid var(--border-color);
     overflow-y: auto;
+    overscroll-behavior: contain;
+    z-index: 1001;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
   }
 
   .nav-menu.active {
@@ -1074,6 +1083,25 @@ textarea.form-control {
 
   .mobile-toggle {
     display: block;
+  }
+
+  .mobile-close-btn {
+    display: block;
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--accent-gold);
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    padding: 0.2rem 0.5rem;
+  }
+
+  .mobile-close-btn:hover {
+    color: #ffffff;
+    transform: scale(1.15);
   }
 
   .about-grid,

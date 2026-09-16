@@ -141,19 +141,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. Mobile Navigation Menu Toggle
   const mobileToggle = document.getElementById('mobileToggle');
+  const mobileCloseBtn = document.getElementById('mobileCloseBtn');
   const navMenu = document.getElementById('navMenu');
 
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      mobileToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
-    });
+  const closeMobileMenu = () => {
+    if (navMenu) navMenu.classList.remove('active');
+    if (mobileToggle) mobileToggle.textContent = '☰';
+  };
+
+  if (navMenu) {
+    if (mobileToggle) {
+      mobileToggle.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('active');
+        mobileToggle.textContent = isOpen ? '✕' : '☰';
+      });
+    }
+
+    if (mobileCloseBtn) {
+      mobileCloseBtn.addEventListener('click', closeMobileMenu);
+    }
 
     document.querySelectorAll('.dropdown-link, .nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        if (mobileToggle) mobileToggle.textContent = '☰';
-      });
+      link.addEventListener('click', closeMobileMenu);
     });
   }
 
@@ -182,31 +191,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     aboutScrollBox.addEventListener('mouseenter', () => setFocusedState(true));
-    aboutScrollBox.addEventListener('mouseleave', () => setFocusedState(false, 600));
+    aboutScrollBox.addEventListener('mouseleave', () => setFocusedState(false, 300));
     aboutScrollBox.addEventListener('focus', () => setFocusedState(true));
-    aboutScrollBox.addEventListener('blur', () => setFocusedState(false, 600));
-
-    aboutScrollBox.addEventListener('scroll', () => {
-      const scrollTop = aboutScrollBox.scrollTop;
-      const scrollHeight = aboutScrollBox.scrollHeight;
-      const clientHeight = aboutScrollBox.clientHeight;
-
-      const isAtTop = scrollTop <= 0;
-      const isAtBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight - 2;
-
-      if (isAtTop || isAtBottom) {
-        setFocusedState(false, 0);
-      } else {
-        setFocusedState(true);
-      }
-    });
+    aboutScrollBox.addEventListener('blur', () => setFocusedState(false, 300));
   }
 
-  // 5. Moteur de Défilement Fluide & Amorti (Ralentissement de la page)
+  // Smooth Scroll Engine
   let currentScrollY = window.scrollY;
   let targetScrollY = window.scrollY;
   let isSmoothScrolling = false;
-  const easeFactor = 0.075;
+  const easeFactor = 0.08;
 
   function smoothScrollLoop() {
     if (!isSmoothScrolling) return;
@@ -225,7 +219,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   window.addEventListener('wheel', (e) => {
-    if (e.target.closest('#aboutScrollBox, .about-scroll-box, .map-container-wrapper, .info-panel-content, .artwork-lightbox')) {
+    const scrollableBox = e.target.closest('#aboutScrollBox, .about-scroll-box');
+    if (scrollableBox) {
+      const isDeltaDown = e.deltaY > 0;
+      const isDeltaUp = e.deltaY < 0;
+      const canScrollDown = scrollableBox.scrollTop + scrollableBox.clientHeight < scrollableBox.scrollHeight - 1.5;
+      const canScrollUp = scrollableBox.scrollTop > 1.5;
+
+      if ((isDeltaDown && canScrollDown) || (isDeltaUp && canScrollUp)) {
+        return; // Permet le défilement interne à l'intérieur du texte
+      }
+      // Une fois la limite atteinte, on enchaîne avec le défilement de la page principale
+    } else if (e.target.closest('.map-container-wrapper, .info-panel-content, .artwork-lightbox, .nav-menu')) {
       return;
     }
 

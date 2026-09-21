@@ -4,6 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  NETLIFY_USE_BUILD_BOT_PLUGINS = "false"
 
 [[redirects]]
   from = "/admin/*"

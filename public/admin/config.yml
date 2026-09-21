@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/oeuvre"
-public_folder: "/oeuvre"
+media_folder: "public"
+public_folder: ""
 
 collections:
   - name: "projects"

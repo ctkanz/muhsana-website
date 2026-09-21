@@ -6,6 +6,8 @@ order: 1
 heroImage: australia.png
 metaTitle: reihfperhf
 metaDescription: feribflerbn
+galleryImages:
+  - australia.png
 mainHeading: frefnbrlf
 leadParagraph: frjkbfrfirhf
 prevProject:

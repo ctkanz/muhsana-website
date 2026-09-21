@@ -5,21 +5,21 @@ const stringList = z.array(
     z.string(),
     z.record(z.string())
   ])
-).transform(arr => arr.map(item => typeof item === 'string' ? item : (Object.values(item)[0] || '')));
+).optional().default([]).transform(arr => (arr || []).map(item => typeof item === 'string' ? item : (Object.values(item)[0] || '')));
 
 const projectsCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    subtitle: z.string(),
-    badge: z.string(),
+    title: z.string().default('Nouveau Projet'),
+    subtitle: z.string().optional().default(''),
+    badge: z.string().optional().default('Projet'),
     order: z.number().default(0),
-    heroImage: z.string(),
-    metaTitle: z.string(),
-    metaDescription: z.string(),
+    heroImage: z.string().optional().default('/oeuvre/muhsana-ali.webp'),
+    metaTitle: z.string().optional().default('Muhsana Ali'),
+    metaDescription: z.string().optional().default('Projet par Muhsana Ali'),
     galleryImages: stringList,
-    mainHeading: z.string(),
-    leadParagraph: z.string(),
+    mainHeading: z.string().optional().default(''),
+    leadParagraph: z.string().optional().default(''),
     paragraphs: stringList,
     quote: z.string().optional(),
     externalLinks: z.array(z.object({
@@ -29,11 +29,11 @@ const projectsCollection = defineCollection({
       desc: z.string(),
       url: z.string(),
       btnText: z.string(),
-    })).optional(),
+    })).optional().default([]),
     sidebarMeta: z.array(z.object({
       label: z.string(),
       value: z.string(),
-    })),
+    })).optional().default([]),
     embeddedVideoYoutubeUrl: z.string().optional(),
     prevProject: z.object({
       slug: z.string(),
@@ -49,15 +49,15 @@ const projectsCollection = defineCollection({
 const artworksCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string(),
-    displayTitle: z.string(),
-    category: z.string(),
+    title: z.string().default('Nouvelle Œuvre'),
+    displayTitle: z.string().optional().default(''),
+    category: z.string().default('sculpture'),
     categoryLabel: z.string().optional(),
-    badge: z.string(),
+    badge: z.string().optional().default('Œuvre'),
     order: z.number().default(0),
-    desc: z.string(),
-    cardDesc: z.string(),
-    coverImage: z.string(),
+    desc: z.string().optional().default(''),
+    cardDesc: z.string().optional().default(''),
+    coverImage: z.string().optional().default('/oeuvre/muhsana-ali.webp'),
     images: stringList,
   }),
 });

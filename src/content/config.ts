@@ -1,5 +1,12 @@
 import { defineCollection, z } from 'astro:content';
 
+const stringList = z.array(
+  z.union([
+    z.string(),
+    z.record(z.string())
+  ])
+).transform(arr => arr.map(item => typeof item === 'string' ? item : (Object.values(item)[0] || '')));
+
 const projectsCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -10,10 +17,10 @@ const projectsCollection = defineCollection({
     heroImage: z.string(),
     metaTitle: z.string(),
     metaDescription: z.string(),
-    galleryImages: z.array(z.string()),
+    galleryImages: stringList,
     mainHeading: z.string(),
     leadParagraph: z.string(),
-    paragraphs: z.array(z.string()),
+    paragraphs: stringList,
     quote: z.string().optional(),
     externalLinks: z.array(z.object({
       icon: z.string(),
@@ -51,7 +58,7 @@ const artworksCollection = defineCollection({
     desc: z.string(),
     cardDesc: z.string(),
     coverImage: z.string(),
-    images: z.array(z.string()),
+    images: stringList,
   }),
 });
 

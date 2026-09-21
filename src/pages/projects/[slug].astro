@@ -17,6 +17,7 @@ if (!project) {
 }
 
 const galleryVisible = project.galleryImages.slice(0, 6);
+const heroImgSrc = project.heroImage.startsWith('/') ? project.heroImage : '/' + project.heroImage;
 const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.startsWith('/') ? img : '/' + img));
 ---
 
@@ -24,7 +25,7 @@ const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.starts
   <!-- Project Detail Hero Banner -->
   <header
     class="project-hero"
-    style={`background-image: linear-gradient(to bottom, rgba(10,10,12,0.5), var(--bg-primary)), url('/${project.heroImage}');`}
+    style={`background-image: linear-gradient(to bottom, rgba(10,10,12,0.5), var(--bg-primary)), url('${heroImgSrc}');`}
   >
     <div class="project-hero-content">
       <span class="project-badge">{project.badge}</span>

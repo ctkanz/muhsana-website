@@ -19,10 +19,10 @@ collections:
       - { label: "Image de Couverture Hero", name: "heroImage", widget: "image" }
       - { label: "Titre Meta (SEO)", name: "metaTitle", widget: "string" }
       - { label: "Description Meta (SEO)", name: "metaDescription", widget: "text" }
-      - { label: "Galerie d'images (6 premières visibles sur la grille)", name: "galleryImages", widget: "list", field: { label: "Image", name: "image", widget: "image" } }
+      - { label: "Galerie d'images (6 premières visibles sur la grille)", name: "galleryImages", widget: "list", field: { label: "Image", widget: "image" } }
       - { label: "Titre de la Section Principale", name: "mainHeading", widget: "string" }
       - { label: "Paragraphe d'accroche (Lead)", name: "leadParagraph", widget: "text" }
-      - { label: "Paragraphes détaillés", name: "paragraphs", widget: "list", field: { label: "Paragraphe", name: "paragraph", widget: "text" } }
+      - { label: "Paragraphes détaillés", name: "paragraphs", widget: "list", field: { label: "Paragraphe", widget: "text" } }
       - { label: "Citation de l'Artiste", name: "quote", widget: "string", required: false }
       - label: "Articles & Liens Externes"
         name: "externalLinks"
@@ -73,9 +73,10 @@ collections:
           - { label: "Alternative Mosaic", value: "mosaic" }
           - { label: "Photography", value: "photography" }
           - { label: "Peinture", value: "peinture" }
+      - { label: "Sous-titre / Libellé Catégorie", name: "categoryLabel", widget: "string", required: false }
       - { label: "Badge d'Affichage", name: "badge", widget: "string" }
       - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
       - { label: "Description Courte", name: "desc", widget: "string" }
       - { label: "Description de la Carte", name: "cardDesc", widget: "text" }
       - { label: "Image de Couverture", name: "coverImage", widget: "image" }
-      - { label: "Galerie d'images (Diaporama Lightbox)", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" } }
+      - { label: "Galerie d'images (Diaporama Lightbox)", name: "images", widget: "list", field: { label: "Image", widget: "image" } }

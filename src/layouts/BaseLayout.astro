@@ -39,6 +39,9 @@ const {
   <script is:inline src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
 
 
+  <!-- Netlify Identity Widget -->
+  <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="/styles.css">
 </head>
@@ -53,6 +56,17 @@ const {
 
   <!-- Main Interactive Client Script -->
   <script is:inline src="/script.js"></script>
+  <script is:inline>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 
 </html>

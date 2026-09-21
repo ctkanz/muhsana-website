@@ -2,13 +2,13 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "astro web site/public/oeuvre"
+media_folder: "public/oeuvre"
 public_folder: "/oeuvre"
 
 collections:
   - name: "projects"
     label: "Projets Communautaires"
-    folder: "astro web site/src/content/projects"
+    folder: "src/content/projects"
     create: true
     slug: "{{slug}}"
     fields:
@@ -59,7 +59,7 @@ collections:
 
   - name: "artworks"
     label: "Œuvres & Galeries"
-    folder: "astro web site/src/content/artworks"
+    folder: "src/content/artworks"
     create: true
     slug: "{{slug}}"
     fields:

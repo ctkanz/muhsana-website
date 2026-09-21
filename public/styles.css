@@ -534,7 +534,7 @@ article[id] {
 /* About Section */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
 }
@@ -545,6 +545,8 @@ article[id] {
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   width: 100%;
+  height: 520px;
+  max-height: 70vh;
 }
 
 .about-image-wrapper::before {
@@ -559,8 +561,7 @@ article[id] {
 
 .about-image {
   width: 100%;
-  height: 520px;
-  max-height: 70vh;
+  height: 100%;
   object-fit: cover;
   transition: var(--transition-smooth);
 }
@@ -694,12 +695,14 @@ article[id] {
 
 /* Mode 2: Boîte de défilement interne */
 .about-scroll-box {
-  max-height: 520px;
+  height: 520px;
+  max-height: 70vh;
   overflow-y: auto;
   padding-right: 1.2rem;
   border-left: 3px solid rgba(255, 255, 255, 0.15);
   padding-left: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
+  box-sizing: border-box;
   outline: none;
   transition: border-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1135,11 +1138,19 @@ textarea.form-control {
   .about-image-wrapper {
     max-width: 100%;
     margin: 0 auto;
+    height: auto;
+    max-height: none;
   }
 
   .about-image {
     height: 380px;
     max-height: 50vh;
+  }
+
+  .about-scroll-box {
+    height: auto;
+    max-height: 450px;
+    margin-bottom: 1.5rem;
   }
 
   .section {
@@ -1150,6 +1161,10 @@ textarea.form-control {
 @media (max-width: 600px) {
   .about-image {
     height: 280px;
+  }
+
+  .about-scroll-box {
+    max-height: 350px;
   }
 }
 

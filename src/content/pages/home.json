@@ -17,11 +17,11 @@
       "sectionFilter": "principaux"
     },
     {
-      "type": "artworks_block",
+      "type": "map_block",
       "active": true
     },
     {
-      "type": "map_block",
+      "type": "artworks_block",
       "active": true
     }
   ]

@@ -13,6 +13,7 @@ const projectsCollection = defineCollection({
     title: z.string().default('Nouveau Projet'),
     subtitle: z.string().optional().default(''),
     badge: z.string().optional().default('Projet'),
+    section: z.string().optional().default('principaux'),
     order: z.number().default(0),
     heroImage: z.string().optional().default('/oeuvre/muhsana-ali.webp'),
     metaTitle: z.string().optional().default('Muhsana Ali'),
@@ -62,7 +63,17 @@ const artworksCollection = defineCollection({
   }),
 });
 
+const pagesCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string().optional(),
+    description: z.string().optional(),
+    blocks: z.array(z.record(z.any())).optional().default([]),
+  }),
+});
+
 export const collections = {
   projects: projectsCollection,
   artworks: artworksCollection,
+  pages: pagesCollection,
 };

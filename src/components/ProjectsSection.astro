@@ -1,8 +1,27 @@
 ---
 import { getCollection } from 'astro:content';
 
+interface Props {
+  sectionFilter?: string;
+  sectionTitle?: string;
+  sectionSubtitle?: string;
+}
+
+const {
+  sectionFilter = 'all',
+  sectionTitle = 'Projets',
+  sectionSubtitle = 'Engagement Communautaire & Œuvres Majeures',
+} = Astro.props;
+
 const rawProjects = await getCollection('projects');
-const sortedProjects = rawProjects.sort((a, b) => a.data.order - b.data.order);
+
+const filteredProjects = rawProjects.filter((item) => {
+  if (!sectionFilter || sectionFilter === 'all') return true;
+  const projectSection = item.data.section || 'principal';
+  return projectSection.toLowerCase().trim() === sectionFilter.toLowerCase().trim();
+});
+
+const sortedProjects = filteredProjects.sort((a, b) => a.data.order - b.data.order);
 
 const projects = sortedProjects.map((item) => ({
   id: item.slug,
@@ -14,10 +33,10 @@ const projects = sortedProjects.map((item) => ({
 }));
 ---
 
-<section class="section" id="projects">
+<section class="section" id={`projects-${sectionFilter}`}>
   <div class="section-header">
-    <p class="section-subtitle">Engagement Communautaire & Œuvres Majeures</p>
-    <h2 class="section-title">Projets</h2>
+    <p class="section-subtitle">{sectionSubtitle}</p>
+    <h2 class="section-title">{sectionTitle}</h2>
     <div class="section-divider"></div>
   </div>
 

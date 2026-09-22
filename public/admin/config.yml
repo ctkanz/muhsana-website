@@ -1,3 +1,4 @@
+local_backend: true
 backend:
   name: git-gateway
   branch: main
@@ -14,7 +15,16 @@ collections:
     fields:
       - { label: "Titre du Projet", name: "title", widget: "string" }
       - { label: "Sous-titre / Description Courte", name: "subtitle", widget: "string" }
-      - { label: "Badge / Catégorie", name: "badge", widget: "string" }
+      - { label: "Badge d'affichage (ex: Projet, Atelier, Installation...)", name: "badge", widget: "string", default: "Projet" }
+      - label: "Placer dans la Section (Sélectionner parmi vos sections de la Page d'Accueil)"
+        name: "section"
+        widget: "relation"
+        collection: "pages"
+        file: "home"
+        search_fields: ["blocks.*.title", "blocks.*.sectionFilter"]
+        value_field: "blocks.*.sectionFilter"
+        display_fields: ["blocks.*.title"]
+        required: false
       - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
       - { label: "Image de Couverture Hero", name: "heroImage", widget: "image" }
       - { label: "Titre Meta (SEO)", name: "metaTitle", widget: "string", required: false }
@@ -81,3 +91,51 @@ collections:
       - { label: "Description de la Carte", name: "cardDesc", widget: "text" }
       - { label: "Image de Couverture", name: "coverImage", widget: "image" }
       - { label: "Galerie d'images (Diaporama Lightbox)", name: "images", widget: "list", required: false, field: { label: "Image", name: "image", widget: "image" } }
+
+  - name: "pages"
+    label: "Pages du Site"
+    files:
+      - file: "src/content/pages/home.json"
+        label: "Page d'Accueil (Configuration & Blocs)"
+        name: "home"
+        fields:
+          - label: "Titre SEO Meta"
+            name: "title"
+            widget: "string"
+            default: "Muhsana Ali | Artiste Multidisciplinaire"
+          - label: "Description SEO Meta"
+            name: "description"
+            widget: "text"
+            default: "Site officiel de l'artiste Muhsana Ali."
+          - label: "Blocs & Sections de la Page d'Accueil"
+            name: "blocks"
+            widget: "list"
+            types:
+              - label: "Section Hero (Bannière d'en-tête)"
+                name: "hero_block"
+                widget: "object"
+                fields:
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+              - label: "Section À Propos"
+                name: "about_block"
+                widget: "object"
+                fields:
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+              - label: "Section Projets (Personnalisable)"
+                name: "projects_block"
+                widget: "object"
+                fields:
+                  - { label: "Titre de la Section", name: "title", widget: "string", default: "Projets" }
+                  - { label: "Identifiant Unique de la Section (ex: section1, section2, ateliers)", name: "sectionFilter", widget: "string", default: "section1" }
+                  - { label: "Sous-titre de la Section", name: "subtitle", widget: "string", default: "Engagement Communautaire & Œuvres Majeures" }
+              - label: "Section Œuvres & Galeries"
+                name: "artworks_block"
+                widget: "object"
+                fields:
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+              - label: "Section Carte Interactive"
+                name: "map_block"
+                widget: "object"
+                fields:
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+

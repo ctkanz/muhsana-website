@@ -1,19 +1,53 @@
 ---
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
 import ArtworksSection from '../components/ArtworksSection.astro';
 import InteractiveMap from '../components/InteractiveMap.astro';
+
+const homeEntry = await getEntry('pages', 'home');
+const homeData = homeEntry?.data || {
+  title: "Muhsana Ali | Artiste Multidisciplinaire",
+  description: "Site officiel de l'artiste Muhsana Ali.",
+  blocks: [
+    { type: 'hero_block', active: true },
+    { type: 'about_block', active: true },
+    { type: 'projects_block', title: 'Projets', sectionFilter: 'principaux' },
+    { type: 'artworks_block', active: true },
+    { type: 'map_block', active: true },
+  ]
+};
 ---
 
-<BaseLayout title="Muhsana Ali | Artiste Multidisciplinaire" description="Site officiel de l'artiste Muhsana Ali.">
+<BaseLayout title={homeData.title} description={homeData.description}>
   <main>
-    <Hero />
-    <About />
-    <ProjectsSection />
-    <ArtworksSection />
-    <InteractiveMap />
+    {homeData.blocks.map((block: any) => {
+      const type = block.type;
+      if (type === 'hero_block' && block.active !== false) {
+        return <Hero />;
+      }
+      if (type === 'about_block' && block.active !== false) {
+        return <About />;
+      }
+      if (type === 'projects_block') {
+        return (
+          <ProjectsSection 
+            sectionFilter={block.sectionFilter || 'principaux'} 
+            sectionTitle={block.title || 'Projets'} 
+            sectionSubtitle={block.subtitle || 'Engagement Communautaire & Œuvres Majeures'} 
+          />
+        );
+      }
+      if (type === 'artworks_block' && block.active !== false) {
+        return <ArtworksSection />;
+      }
+      if (type === 'map_block' && block.active !== false) {
+        return <InteractiveMap />;
+      }
+      return null;
+    })}
   </main>
 
   <footer class="footer" style="padding: 3rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem;">

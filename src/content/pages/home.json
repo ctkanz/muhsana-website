@@ -1,0 +1,28 @@
+{
+  "title": "Muhsana Ali | Artiste Multidisciplinaire",
+  "description": "Site officiel de l'artiste Muhsana Ali.",
+  "blocks": [
+    {
+      "type": "hero_block",
+      "active": true
+    },
+    {
+      "type": "about_block",
+      "active": true
+    },
+    {
+      "type": "projects_block",
+      "title": "Projets Principaux",
+      "subtitle": "Engagement Communautaire & Œuvres Majeures",
+      "sectionFilter": "principaux"
+    },
+    {
+      "type": "artworks_block",
+      "active": true
+    },
+    {
+      "type": "map_block",
+      "active": true
+    }
+  ]
+}

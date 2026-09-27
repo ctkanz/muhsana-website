@@ -51,6 +51,11 @@ prevProject:
 nextProject:
   slug: "jen-rekk"
   title: "Série Jën Rekk"
+showGallery: true
+showExternalLinks: true
+showSidebarMeta: true
+showNav: true
+showVideo: true
 ---
 
 Mart Community Project par Muhsana Ali.

@@ -65,12 +65,11 @@ sidebarMeta:
     value: Biennale de Dakar (Dak'Art), Expositions internationales
   - label: Thématique
     value: Écologie marine, tradition maritime wolof, mémoire
-prevProject:
-  slug: mart
-  title: Mart Community Project
-nextProject:
-  slug: bethel
-  title: Bethel Burying Ground
+showGallery: true
+showExternalLinks: true
+showSidebarMeta: true
+showNav: true
+showVideo: true
 ---
 
 Série Jën Rekk par Muhsana Ali.

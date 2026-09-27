@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -31,6 +31,16 @@ if (!project) {
   return Astro.redirect('/404');
 }
 
+const homePage = await getEntry('pages', 'home');
+const homeBlocks = homePage?.data?.blocks || [];
+
+const matchingBlock = homeBlocks.find(
+  (b: any) => b.type === 'projects_block' && (b.sectionFilter === project.section || !project.section)
+) || homeBlocks.find((b: any) => b.type === 'projects_block');
+
+const prevBtnText = matchingBlock?.prevBtnText || "← Projet précédent";
+const nextBtnText = matchingBlock?.nextBtnText || "Projet suivant →";
+
 const prevNav = prevProject || project.prevProject;
 const nextNav = nextProject || project.nextProject;
 
@@ -59,22 +69,24 @@ const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.starts
       <article class="project-main-text">
 
         <!-- Project Gallery Grid -->
-        <div
-          class="project-gallery-grid"
-          style="grid-template-columns: repeat(3, 1fr); margin-bottom: 2.5rem;"
-          data-all-images={allImagesJson}
-        >
-          {galleryVisible.map((imgSrc, idx) => (
-            <div class="project-gallery-item">
-              <img src={imgSrc.startsWith('/') ? imgSrc : '/' + imgSrc} alt={`${project.title} image ${idx + 1}`} />
-            </div>
-          ))}
-        </div>
+        {(project.showGallery ?? true) && galleryVisible.length > 0 && (
+          <div
+            class="project-gallery-grid"
+            style="grid-template-columns: repeat(3, 1fr); margin-bottom: 2.5rem;"
+            data-all-images={allImagesJson}
+          >
+            {galleryVisible.map((imgSrc, idx) => (
+              <div class="project-gallery-item">
+                <img src={imgSrc.startsWith('/') ? imgSrc : '/' + imgSrc} alt={`${project.title} image ${idx + 1}`} />
+              </div>
+            ))}
+          </div>
+        )}
 
-        <h2 class="project-section-heading">{project.mainHeading}</h2>
+        {project.mainHeading && <h2 class="project-section-heading">{project.mainHeading}</h2>}
         <div class="section-divider" style="margin-left: 0;"></div>
 
-        <p class="project-lead">{project.leadParagraph}</p>
+        {project.leadParagraph && <p class="project-lead">{project.leadParagraph}</p>}
 
         {project.paragraphs.map((paragraph) => (
           <p>{paragraph}</p>
@@ -86,7 +98,7 @@ const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.starts
           </blockquote>
         )}
 
-        {project.externalLinks && project.externalLinks.map((link) => (
+        {(project.showExternalLinks ?? true) && project.externalLinks && project.externalLinks.map((link) => (
           <div class="external-article-card" style="margin-top: 1.5rem;">
             <div class="article-card-icon">{link.icon}</div>
             <div class="article-card-info">
@@ -107,40 +119,44 @@ const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.starts
 
       <!-- Sidebar -->
       <aside class="project-sidebar">
-        <div class="project-meta-card">
-          <h3 class="meta-card-title">Fiche Technique</h3>
-          
-          {project.sidebarMeta.map((item) => (
-            <div class="meta-item">
-              <span class="meta-label">{item.label}</span>
-              <span class="meta-value">{item.value}</span>
-            </div>
-          ))}
-        </div>
+        {(project.showSidebarMeta ?? true) && project.sidebarMeta && project.sidebarMeta.length > 0 && (
+          <div class="project-meta-card">
+            <h3 class="meta-card-title">Fiche Technique</h3>
+            
+            {project.sidebarMeta.map((item) => (
+              <div class="meta-item">
+                <span class="meta-label">{item.label}</span>
+                <span class="meta-value">{item.value}</span>
+              </div>
+            ))}
+          </div>
+        )}
 
-        <div class="project-nav-card">
-          <h4>Navigation</h4>
-          {prevNav && (
-            <a href={`/projects/${prevNav.slug}`} class="next-project-link" style="margin-bottom: 0.8rem;">
-              <span>← Projet précédent</span>
-              <strong>{prevNav.title}</strong>
-            </a>
-          )}
-          {nextNav && (
-            <a href={`/projects/${nextNav.slug}`} class="next-project-link">
-              <span>Projet suivant →</span>
-              <strong>{nextNav.title}</strong>
-            </a>
-          )}
-        </div>
+        {(project.showNav ?? true) && (prevNav || nextNav) && (
+          <div class="project-nav-card">
+            <h4>Navigation</h4>
+            {prevNav && (
+              <a href={`/projects/${prevNav.slug}`} class="next-project-link" style="margin-bottom: 0.8rem;">
+                <span>{prevBtnText}</span>
+                <strong>{prevNav.title}</strong>
+              </a>
+            )}
+            {nextNav && (
+              <a href={`/projects/${nextNav.slug}`} class="next-project-link">
+                <span>{nextBtnText}</span>
+                <strong>{nextNav.title}</strong>
+              </a>
+            )}
+          </div>
+        )}
       </aside>
     </div>
 
     <!-- Embedded Youtube Video if available -->
-    {project.embeddedVideoYoutubeUrl && (
+    {(project.showVideo ?? true) && project.embeddedVideoYoutubeUrl && (
       <div class="embedded-video-fullwidth" style="margin-top: 3.5rem; width: 100%;">
         <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 1.2rem; color: var(--text-main); text-align: center;">
-          Présentation Vidéo Officielle : A Symbolic Up and Away
+          Présentation Vidéo Officielle
         </h3>
         <div style="position: relative; padding-bottom: 52%; height: 0; overflow: hidden; border-radius: var(--radius-md); border: 1px solid var(--border-hover); box-shadow: 0 20px 50px rgba(0,0,0,0.8); background: #000;">
           <iframe 

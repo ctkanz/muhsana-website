@@ -58,6 +58,11 @@ prevProject:
 nextProject:
   slug: "east-bayside"
   title: "East Bayside Community Mosaic"
+showGallery: true
+showExternalLinks: true
+showSidebarMeta: true
+showNav: true
+showVideo: true
 ---
 
 Association Portes & Passages du Retour par Muhsana Ali.

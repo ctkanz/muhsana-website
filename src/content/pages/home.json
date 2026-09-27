@@ -39,13 +39,15 @@
       "navTitle": "À Propos"
     },
     {
-      "type": "projects_block",
       "active": true,
-      "title": "Projets Principaux",
       "navTitle": "Projets",
+      "nextBtnText": "Projet suivant →",
+      "prevBtnText": "← Projet précédent",
       "subtitle": "Engagement Communautaire & Œuvres Majeures",
-      "sectionFilter": "principaux",
-      "cardBtnText": "Découvrir le projet →"
+      "title": "Projets Principaux",
+      "cardBtnText": "Découvrir le projet →",
+      "type": "projects_block",
+      "sectionFilter": "principaux"
     },
     {
       "type": "artworks_block",

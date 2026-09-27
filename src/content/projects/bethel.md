@@ -41,6 +41,11 @@ prevProject:
 nextProject:
   slug: "presence"
   title: "Presence of a Fundamental Absence"
+showGallery: true
+showExternalLinks: true
+showSidebarMeta: true
+showNav: true
+showVideo: true
 ---
 
 Bethel Burying Ground par Muhsana Ali.

@@ -71,6 +71,11 @@ prevProject:
 nextProject:
   slug: doors
   title: Doors & Passageways of Return
+showGallery: true
+showExternalLinks: true
+showSidebarMeta: true
+showNav: true
+showVideo: true
 ---
 
 Presence of a Fundamental Absence par Muhsana Ali.

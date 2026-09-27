@@ -48,6 +48,11 @@ prevProject:
 nextProject:
   slug: "association"
   title: "Association Portes & Passages"
+showGallery: true
+showExternalLinks: true
+showSidebarMeta: true
+showNav: true
+showVideo: true
 ---
 
 Doors & Passageways of Return par Muhsana Ali.

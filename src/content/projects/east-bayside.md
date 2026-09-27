@@ -88,13 +88,11 @@ prevProject:
 nextProject:
   slug: mart
   title: Mart Community Project
-visibility:
-  showGallery: true
-  showQuote: true
-  showExternalLinks: true
-  showSidebarMeta: true
-  showVideo: true
-  showProjectNav: true
+showGallery: true
+showExternalLinks: true
+showSidebarMeta: true
+showNav: true
+showVideo: true
 ---
 
 East Bayside Community Mosaic par Muhsana Ali.

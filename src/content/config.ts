@@ -18,11 +18,13 @@ const projectsCollection = defineCollection({
     heroImage: z.string().optional().default('/oeuvre/muhsana-ali.webp'),
     metaTitle: z.string().optional().default('Muhsana Ali'),
     metaDescription: z.string().optional().default('Projet par Muhsana Ali'),
+    showGallery: z.boolean().default(true),
     galleryImages: stringList,
     mainHeading: z.string().optional().default(''),
     leadParagraph: z.string().optional().default(''),
     paragraphs: stringList,
     quote: z.string().optional(),
+    showExternalLinks: z.boolean().default(true),
     externalLinks: z.array(z.object({
       icon: z.string(),
       tag: z.string(),
@@ -31,10 +33,13 @@ const projectsCollection = defineCollection({
       url: z.string(),
       btnText: z.string(),
     })).optional().default([]),
+    showSidebarMeta: z.boolean().default(true),
     sidebarMeta: z.array(z.object({
       label: z.string(),
       value: z.string(),
     })).optional().default([]),
+    showNav: z.boolean().default(true),
+    showVideo: z.boolean().default(true),
     embeddedVideoYoutubeUrl: z.string().optional(),
     prevProject: z.object({
       slug: z.string(),

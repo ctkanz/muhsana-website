@@ -55,6 +55,11 @@ collections:
           - { label: "Libellé (ex: Année)", name: "label", widget: "string" }
           - { label: "Valeur (ex: 2023)", name: "value", widget: "string" }
       - { label: "URL Vidéo YouTube Intégrée", name: "embeddedVideoYoutubeUrl", widget: "string", required: false }
+      - { label: "👁️ AFFICHAGE : Galerie d'images", name: "showGallery", widget: "boolean", default: true, required: false }
+      - { label: "👁️ AFFICHAGE : Articles & Liens", name: "showExternalLinks", widget: "boolean", default: true, required: false }
+      - { label: "👁️ AFFICHAGE : Fiche Technique (Sidebar)", name: "showSidebarMeta", widget: "boolean", default: true, required: false }
+      - { label: "👁️ AFFICHAGE : Navigation Précédent / Suivant", name: "showNav", widget: "boolean", default: true, required: false }
+      - { label: "👁️ AFFICHAGE : Vidéo YouTube", name: "showVideo", widget: "boolean", default: true, required: false }
 
 
   - name: "artworks"
@@ -126,6 +131,8 @@ collections:
                   - { label: "Sous-titre de la Section", name: "subtitle", widget: "string", default: "Engagement Communautaire & Œuvres Majeures" }
                   - { label: "Identifiant Unique de la Section (ex: principaux, section1)", name: "sectionFilter", widget: "string", default: "principaux" }
                   - { label: "Texte des boutons des cartes de projet", name: "cardBtnText", widget: "string", default: "Découvrir le projet →" }
+                  - { label: "Texte du bouton 'Projet Précédent' (Pages de détails)", name: "prevBtnText", widget: "string", default: "← Projet précédent", required: false }
+                  - { label: "Texte du bouton 'Projet Suivant' (Pages de détails)", name: "nextBtnText", widget: "string", default: "Projet suivant →", required: false }
               - label: "Section Œuvres & Galeries"
                 name: "artworks_block"
                 widget: "object"

@@ -5,19 +5,21 @@ interface Props {
   sectionFilter?: string;
   sectionTitle?: string;
   sectionSubtitle?: string;
+  cardBtnText?: string;
 }
 
 const {
   sectionFilter = 'all',
   sectionTitle = 'Projets',
   sectionSubtitle = 'Engagement Communautaire & Œuvres Majeures',
+  cardBtnText = 'Découvrir le projet →',
 } = Astro.props;
 
 const rawProjects = await getCollection('projects');
 
 const filteredProjects = rawProjects.filter((item) => {
   if (!sectionFilter || sectionFilter === 'all') return true;
-  const projectSection = item.data.section || 'principal';
+  const projectSection = item.data.section || 'principaux';
   return projectSection.toLowerCase().trim() === sectionFilter.toLowerCase().trim();
 });
 
@@ -51,7 +53,7 @@ const projects = sortedProjects.map((item) => ({
           <div class="project-card-content">
             <h3 class="project-card-title">{project.title}</h3>
             <p class="project-card-desc">{project.desc}</p>
-            <span class="project-card-cta">Découvrir le projet →</span>
+            <span class="project-card-cta">{cardBtnText}</span>
           </div>
         </a>
       </article>

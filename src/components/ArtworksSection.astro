@@ -1,6 +1,31 @@
 ---
 import { getCollection } from 'astro:content';
 
+interface FilterItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  filters?: FilterItem[];
+}
+
+const defaultFilters: FilterItem[] = [
+  { label: 'Toutes les Œuvres', value: 'all' },
+  { label: 'Sculpture & Installation', value: 'sculpture' },
+  { label: 'Alternative Mosaic', value: 'mosaic' },
+  { label: 'Photography', value: 'photography' },
+  { label: 'Peinture', value: 'peinture' },
+];
+
+const {
+  title = 'Œuvres',
+  subtitle = 'Exploration Visuelle & Sculpturale',
+  filters = defaultFilters,
+} = Astro.props;
+
 const rawArtworks = await getCollection('artworks');
 const sortedArtworks = rawArtworks.sort((a, b) => a.data.order - b.data.order);
 
@@ -18,18 +43,21 @@ const artworks = sortedArtworks.map((item) => ({
 
 <section class="section" id="artwork">
   <div class="section-header">
-    <p class="section-subtitle">Exploration Visuelle & Sculpturale</p>
-    <h2 class="section-title">Œuvres</h2>
+    <p class="section-subtitle">{subtitle}</p>
+    <h2 class="section-title">{title}</h2>
     <div class="section-divider"></div>
   </div>
 
   <!-- Artwork Category Filters -->
   <div class="map-filters" id="artworkFilters" style="margin-bottom: 2.5rem;">
-    <button class="filter-btn active" data-artwork-filter="all">Toutes les Œuvres</button>
-    <button class="filter-btn" data-artwork-filter="sculpture">Sculpture & Installation</button>
-    <button class="filter-btn" data-artwork-filter="mosaic">Alternative Mosaic</button>
-    <button class="filter-btn" data-artwork-filter="photography">Photography</button>
-    <button class="filter-btn" data-artwork-filter="peinture">Peinture</button>
+    {filters.map((filter, idx) => (
+      <button 
+        class={`filter-btn ${idx === 0 ? 'active' : ''}`} 
+        data-artwork-filter={filter.value}
+      >
+        {filter.label}
+      </button>
+    ))}
   </div>
 
   <!-- Artwork Cards Grid -->

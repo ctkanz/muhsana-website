@@ -388,23 +388,29 @@ img {
 }
 
 .hero-bottom-actions {
-  display: contents;
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  width: max-content;
 }
 
 .hero-memorial-btn {
-  position: absolute;
-  bottom: 2.2rem;
-  right: 2.5rem;
-  z-index: 10;
+  position: static;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(12, 12, 16, 0.65);
+  background: rgba(12, 12, 16, 0.75);
   color: var(--text-main);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 0.55rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0.6rem 1.4rem;
   border-radius: 50px;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   backdrop-filter: blur(10px);
@@ -420,18 +426,18 @@ img {
     transform: scale(1);
   }
   50% {
-    opacity: 0.08;
-    transform: scale(0.95);
+    opacity: 0.85;
+    transform: scale(0.98);
   }
 }
 
 .hero-memorial-btn:hover {
   animation-play-state: paused;
   opacity: 1;
-  background: rgba(212, 175, 55, 0.2);
+  background: rgba(212, 175, 55, 0.25);
   border-color: var(--accent-gold);
   color: var(--accent-gold);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
   transform: translateY(-2px);
 }
 
@@ -444,10 +450,8 @@ img {
 }
 
 .scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static;
+  transform: none;
   z-index: 3;
   display: flex;
   flex-direction: column;

@@ -1,4 +1,5 @@
 local_backend: true
+publish_mode: editorial_workflow
 backend:
   name: git-gateway
   branch: main
@@ -24,6 +25,7 @@ collections:
         search_fields: ["blocks.*.title", "blocks.*.sectionFilter"]
         value_field: "blocks.*.sectionFilter"
         display_fields: ["blocks.*.title"]
+        hint: "💡 Choisissez la section de projets souhaitée (ex: Projets Principaux). Seules les sections de type 'Section Projets' possèdent un identifiant de filtre."
         required: false
       - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
       - { label: "Image de Couverture Hero", name: "heroImage", widget: "image" }
@@ -76,14 +78,14 @@ collections:
     fields:
       - { label: "Titre Complet de la Série", name: "title", widget: "string" }
       - { label: "Titre d'Affichage", name: "displayTitle", widget: "string" }
-      - label: "Catégorie de Filtre"
+      - label: "Catégorie de Filtre (Sélectionner parmi vos filtres de la Page d'Accueil)"
         name: "category"
-        widget: "select"
-        options:
-          - { label: "Sculpture & Installation", value: "sculpture" }
-          - { label: "Alternative Mosaic", value: "mosaic" }
-          - { label: "Photography", value: "photography" }
-          - { label: "Peinture", value: "peinture" }
+        widget: "relation"
+        collection: "pages"
+        file: "home"
+        search_fields: ["artworkFilters.*.label", "artworkFilters.*.value"]
+        value_field: "artworkFilters.*.value"
+        display_fields: ["artworkFilters.*.label"]
       - { label: "Sous-titre / Libellé Catégorie", name: "categoryLabel", widget: "string", required: false }
       - { label: "Badge d'Affichage", name: "badge", widget: "string" }
       - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
@@ -116,26 +118,48 @@ collections:
                 widget: "object"
                 fields:
                   - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+                  - { label: "Texte du bouton Mémorial", name: "memorialBtnText", widget: "string", default: "Voir le mémorial" }
+                  - { label: "Lien du bouton Mémorial", name: "memorialBtnUrl", widget: "string", default: "/projects/bethel" }
+                  - { label: "Texte du bouton Défiler / Explorer", name: "scrollBtnText", widget: "string", default: "Explorer" }
               - label: "Section À Propos"
                 name: "about_block"
                 widget: "object"
                 fields:
                   - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+                  - { label: "Titre de la Section sur la page", name: "title", widget: "string", default: "About Muhsana" }
+                  - { label: "Texte affiché dans le Menu de Navigation (optionnel)", name: "navTitle", widget: "string", default: "À Propos", required: false }
+                  - { label: "Sous-titre / En-tête", name: "subtitle", widget: "string", default: "Démarche & Vision" }
               - label: "Section Projets (Personnalisable)"
                 name: "projects_block"
                 widget: "object"
                 fields:
-                  - { label: "Titre de la Section", name: "title", widget: "string", default: "Projets" }
-                  - { label: "Identifiant Unique de la Section (ex: section1, section2, ateliers)", name: "sectionFilter", widget: "string", default: "section1" }
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+                  - { label: "Titre de la Section sur la page", name: "title", widget: "string", default: "Projets Principaux" }
+                  - { label: "Texte affiché dans le Menu de Navigation (optionnel)", name: "navTitle", widget: "string", default: "Projets", required: false }
                   - { label: "Sous-titre de la Section", name: "subtitle", widget: "string", default: "Engagement Communautaire & Œuvres Majeures" }
+                  - { label: "Identifiant Unique de la Section (ex: principaux, section1)", name: "sectionFilter", widget: "string", default: "principaux" }
+                  - { label: "Texte des boutons des cartes de projet", name: "cardBtnText", widget: "string", default: "Découvrir le projet →" }
               - label: "Section Œuvres & Galeries"
                 name: "artworks_block"
                 widget: "object"
                 fields:
                   - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+                  - { label: "Titre de la Section sur la page", name: "title", widget: "string", default: "Œuvres" }
+                  - { label: "Texte affiché dans le Menu de Navigation (optionnel)", name: "navTitle", widget: "string", default: "Œuvres", required: false }
+                  - { label: "Sous-titre de la Section", name: "subtitle", widget: "string", default: "Exploration Visuelle & Sculpturale", hint: "👇 Pour ajouter ou gérer les filtres de catégories (Sculpture, Peinture...), faites défiler vers le bas de la page jusqu'à 'Filtres de la Galerie d'Œuvres'." }
               - label: "Section Carte Interactive"
                 name: "map_block"
                 widget: "object"
                 fields:
                   - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
-
+                  - { label: "Titre de la Section sur la page", name: "title", widget: "string", default: "Parcours Artistique de Muhsana Ali" }
+                  - { label: "Texte affiché dans le Menu de Navigation (optionnel)", name: "navTitle", widget: "string", default: "Parcours (Carte)", required: false }
+                  - { label: "Sous-titre de la Section", name: "subtitle", widget: "string", default: "Géographie & Parcours International" }
+                  - { label: "Description de la Section", name: "description", widget: "text", default: "Explorez les villes, résidences, expositions et projets communautaires à travers l'Afrique, l'Europe et les États-Unis." }
+                  - { label: "Texte du bouton Chronologie", name: "timelineBtnText", widget: "string", default: "Chronologie" }
+          - label: "Filtres de la Galerie d'Œuvres (Boutons de catégorie)"
+            name: "artworkFilters"
+            widget: "list"
+            fields:
+              - { label: "Libellé du Filtre (ex: Sculpture & Installation)", name: "label", widget: "string" }
+              - { label: "Identifiant (ex: sculpture, mosaic, photography, peinture)", name: "value", widget: "string" }

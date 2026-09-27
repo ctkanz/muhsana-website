@@ -68,6 +68,10 @@ const pagesCollection = defineCollection({
   schema: z.object({
     title: z.string().optional(),
     description: z.string().optional(),
+    artworkFilters: z.array(z.object({
+      label: z.string(),
+      value: z.string(),
+    })).optional().default([]),
     blocks: z.array(z.record(z.any())).optional().default([]),
   }),
 });

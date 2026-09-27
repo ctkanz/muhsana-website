@@ -294,6 +294,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeFilter = 'all';
     let currentActiveMarker = null;
 
+    if (mapElement._leaflet_id) {
+      mapElement._leaflet_id = null;
+    }
+    if (mapElement._leaflet_map) {
+      try {
+        mapElement._leaflet_map.remove();
+      } catch (e) {}
+    }
+
     const typeLabels = {
       'education': 'Formation',
       'exhibition': 'Exposition',
@@ -312,11 +321,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     mapElement._leaflet_map = map;
 
+    let tileLayerAdded = false;
     if (typeof L.maplibreGL === 'function') {
       try {
         const maplibreLayer = L.maplibreGL({
           style: 'https://tiles.openfreemap.org/styles/dark',
         }).addTo(map);
+        tileLayerAdded = true;
 
         const glMap = maplibreLayer.getMaplibreMap();
         if (glMap) {
@@ -360,17 +371,22 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       } catch (e) {
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap',
-          maxZoom: 19
-        }).addTo(map);
+        tileLayerAdded = false;
       }
-    } else {
+    }
+
+    if (!tileLayerAdded) {
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap',
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
         maxZoom: 19
       }).addTo(map);
     }
+
+    setTimeout(() => {
+      try {
+        map.invalidateSize();
+      } catch (e) {}
+    }, 300);
 
     markersGroup = L.layerGroup().addTo(map);
 
@@ -615,14 +631,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mapSectionEl && 'IntersectionObserver' in window) {
       const mapObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !mapSectionEl.dataset.timelineTriggered) {
-            mapSectionEl.dataset.timelineTriggered = 'true';
-            setTimeout(() => {
-              playChronologicalAnimation();
-            }, 1100);
+          if (entry.isIntersecting) {
+            if (map) {
+              try { map.invalidateSize(); } catch(e) {}
+            }
+            if (!mapSectionEl.dataset.timelineTriggered) {
+              mapSectionEl.dataset.timelineTriggered = 'true';
+              setTimeout(() => {
+                playChronologicalAnimation();
+              }, 1100);
+            }
           }
         });
-      }, { threshold: 0.3 });
+      }, { threshold: 0.1 });
       mapObserver.observe(mapSectionEl);
     }
   }

@@ -1,11 +1,24 @@
 ---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  timelineBtnText?: string;
+}
+
+const {
+  title = "Parcours Artistique de Muhsana Ali",
+  subtitle = "Géographie & Parcours International",
+  description = "Explorez les villes, résidences, expositions et projets communautaires à travers l'Afrique, l'Europe et les États-Unis.",
+  timelineBtnText = "Chronologie",
+} = Astro.props;
 ---
 
 <section class="section" id="interactive-map">
   <div class="section-header">
-    <p class="section-subtitle">Géographie & Parcours International</p>
-    <h2 class="section-title">Parcours Artistique de Muhsana Ali</h2>
-    <p class="map-section-desc">Explorez les villes, résidences, expositions et projets communautaires à travers l'Afrique, l'Europe et les États-Unis.</p>
+    <p class="section-subtitle">{subtitle}</p>
+    <h2 class="section-title">{title}</h2>
+    <p class="map-section-desc">{description}</p>
     <div class="section-divider"></div>
   </div>
 
@@ -17,7 +30,7 @@
     <button class="filter-btn" data-filter="residency">Résidences</button>
     <button class="filter-btn" data-filter="project">Projets</button>
     <button class="filter-btn" data-filter="conference">Conférences</button>
-    <button class="filter-btn timeline-btn" id="btnPlayTimeline"><span class="timeline-icon">▶</span> Chronologie</button>
+    <button class="filter-btn timeline-btn" id="btnPlayTimeline"><span class="timeline-icon">▶</span> {timelineBtnText}</button>
   </div>
 
   <!-- Map Container & Details Panel Layout -->

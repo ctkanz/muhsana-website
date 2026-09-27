@@ -55,20 +55,7 @@ collections:
           - { label: "Libellé (ex: Année)", name: "label", widget: "string" }
           - { label: "Valeur (ex: 2023)", name: "value", widget: "string" }
       - { label: "URL Vidéo YouTube Intégrée", name: "embeddedVideoYoutubeUrl", widget: "string", required: false }
-      - label: "Projet Précédent"
-        name: "prevProject"
-        widget: "object"
-        required: false
-        fields:
-          - { label: "Slug du projet", name: "slug", widget: "string" }
-          - { label: "Titre du projet", name: "title", widget: "string" }
-      - label: "Projet Suivant"
-        name: "nextProject"
-        widget: "object"
-        required: false
-        fields:
-          - { label: "Slug du projet", name: "slug", widget: "string" }
-          - { label: "Titre du projet", name: "title", widget: "string" }
+
 
   - name: "artworks"
     label: "Œuvres & Galeries"

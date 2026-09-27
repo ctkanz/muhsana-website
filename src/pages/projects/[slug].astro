@@ -4,17 +4,35 @@ import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
-  return projects.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { project: entry.data },
-  }));
+  const sortedProjects = [...projects].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+  return sortedProjects.map((entry, index) => {
+    const prevEntry = sortedProjects.length > 1 
+      ? sortedProjects[(index - 1 + sortedProjects.length) % sortedProjects.length] 
+      : null;
+    const nextEntry = sortedProjects.length > 1 
+      ? sortedProjects[(index + 1) % sortedProjects.length] 
+      : null;
+
+    return {
+      params: { slug: entry.slug },
+      props: {
+        project: entry.data,
+        prevProject: prevEntry ? { slug: prevEntry.slug, title: prevEntry.data.title } : null,
+        nextProject: nextEntry ? { slug: nextEntry.slug, title: nextEntry.data.title } : null,
+      },
+    };
+  });
 }
 
-const { project } = Astro.props;
+const { project, prevProject, nextProject } = Astro.props;
 
 if (!project) {
   return Astro.redirect('/404');
 }
+
+const prevNav = prevProject || project.prevProject;
+const nextNav = nextProject || project.nextProject;
 
 const galleryVisible = project.galleryImages.slice(0, 6);
 const heroImgSrc = project.heroImage.startsWith('/') ? project.heroImage : '/' + project.heroImage;
@@ -102,16 +120,16 @@ const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.starts
 
         <div class="project-nav-card">
           <h4>Navigation</h4>
-          {project.prevProject && (
-            <a href={`/projects/${project.prevProject.slug}`} class="next-project-link" style="margin-bottom: 0.8rem;">
+          {prevNav && (
+            <a href={`/projects/${prevNav.slug}`} class="next-project-link" style="margin-bottom: 0.8rem;">
               <span>← Projet précédent</span>
-              <strong>{project.prevProject.title}</strong>
+              <strong>{prevNav.title}</strong>
             </a>
           )}
-          {project.nextProject && (
-            <a href={`/projects/${project.nextProject.slug}`} class="next-project-link">
+          {nextNav && (
+            <a href={`/projects/${nextNav.slug}`} class="next-project-link">
               <span>Projet suivant →</span>
-              <strong>{project.nextProject.title}</strong>
+              <strong>{nextNav.title}</strong>
             </a>
           )}
         </div>

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 
 interface Props {
+  lang?: string;
   sectionFilter?: string;
   sectionTitle?: string;
   sectionSubtitle?: string;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const {
+  lang = 'en',
   sectionFilter = 'all',
   sectionTitle = 'Projects',
   sectionSubtitle = 'Community Engagement & Major Works',
@@ -16,8 +18,9 @@ const {
 } = Astro.props;
 
 const rawProjects = await getCollection('projects');
+const langProjects = rawProjects.filter(p => p.slug.startsWith(`${lang}/`));
 
-const filteredProjects = rawProjects.filter((item) => {
+const filteredProjects = langProjects.filter((item) => {
   if (!sectionFilter || sectionFilter === 'all') return true;
   const projectSection = item.data.section || 'principaux';
   return projectSection.toLowerCase().trim() === sectionFilter.toLowerCase().trim();
@@ -26,8 +29,8 @@ const filteredProjects = rawProjects.filter((item) => {
 const sortedProjects = filteredProjects.sort((a, b) => a.data.order - b.data.order);
 
 const projects = sortedProjects.map((item) => ({
-  id: item.slug,
-  slug: item.slug,
+  id: item.slug.replace(new RegExp(`^${lang}/`), ''),
+  slug: item.slug.replace(new RegExp(`^${lang}/`), ''),
   title: item.data.title,
   desc: item.data.subtitle,
   image: item.data.heroImage.startsWith('/') ? item.data.heroImage : '/' + item.data.heroImage,

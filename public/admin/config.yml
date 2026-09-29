@@ -7,10 +7,15 @@ backend:
 media_folder: "public"
 public_folder: ""
 
+i18n:
+  structure: multiple_folders
+  locales: [en, fr]
+  default_locale: en
+
 collections:
   - name: "projects"
     label: "Community Projects"
-    folder: "src/content/projects"
+    folder: "src/content/projects/en"
     create: true
     slug: "{{slug}}"
     fields:
@@ -21,7 +26,7 @@ collections:
         name: "section"
         widget: "relation"
         collection: "pages"
-        file: "home"
+        file: "en/home"
         search_fields: ["blocks.*.title", "blocks.*.sectionFilter"]
         value_field: "blocks.*.sectionFilter"
         display_fields: ["blocks.*.title"]
@@ -64,7 +69,7 @@ collections:
 
   - name: "artworks"
     label: "Artworks & Galleries"
-    folder: "src/content/artworks"
+    folder: "src/content/artworks/en"
     create: true
     slug: "{{slug}}"
     fields:
@@ -74,7 +79,7 @@ collections:
         name: "category"
         widget: "relation"
         collection: "pages"
-        file: "home"
+        file: "en/home"
         search_fields: ["artworkFilters.*.label", "artworkFilters.*.value"]
         value_field: "artworkFilters.*.value"
         display_fields: ["artworkFilters.*.label"]
@@ -89,7 +94,7 @@ collections:
   - name: "pages"
     label: "Site Pages"
     files:
-      - file: "src/content/pages/home.json"
+      - file: "src/content/pages/en/home.json"
         label: "Home Page (Configuration & Blocks)"
         name: "home"
         fields:

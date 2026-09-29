@@ -6,17 +6,19 @@ interface Props {
   title?: string;
   description?: string;
   isProjectPage?: boolean;
+  lang?: string;
 }
 
 const {
   title = "Muhsana Ali | Multidisciplinary Artist",
   description = "Official website of artist Muhsana Ali.",
   isProjectPage = false,
+  lang = "en",
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={lang}>
 
 <head>
   <meta charset="UTF-8">
@@ -48,7 +50,7 @@ const {
 
 <body>
 
-  <Navbar isProjectPage={isProjectPage} />
+  <Navbar isProjectPage={isProjectPage} lang={lang} />
 
   <slot />
 

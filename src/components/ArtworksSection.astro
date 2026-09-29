@@ -7,6 +7,7 @@ interface FilterItem {
 }
 
 interface Props {
+  lang?: string;
   title?: string;
   subtitle?: string;
   filters?: FilterItem[];
@@ -21,13 +22,15 @@ const defaultFilters: FilterItem[] = [
 ];
 
 const {
+  lang = 'en',
   title = 'Artworks',
   subtitle = 'Visual & Sculptural Exploration',
   filters = defaultFilters,
 } = Astro.props;
 
 const rawArtworks = await getCollection('artworks');
-const sortedArtworks = rawArtworks.sort((a, b) => a.data.order - b.data.order);
+const langArtworks = rawArtworks.filter(a => a.slug.startsWith(`${lang}/`));
+const sortedArtworks = langArtworks.sort((a, b) => a.data.order - b.data.order);
 
 const artworks = sortedArtworks.map((item) => ({
   category: item.data.category,

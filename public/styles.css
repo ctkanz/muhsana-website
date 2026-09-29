@@ -204,6 +204,12 @@ img {
   padding-left: 1.5rem;
 }
 
+.dropdown-link.active-lang {
+  color: var(--accent-gold);
+  font-weight: 600;
+  border-left: 2px solid var(--accent-gold);
+}
+
 .sound-btn {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--border-color);

@@ -3,29 +3,28 @@ import { getCollection, getEntry } from 'astro:content';
 
 interface Props {
   isProjectPage?: boolean;
+  lang?: string;
 }
 
-const { isProjectPage = false } = Astro.props;
+const { isProjectPage = false, lang = 'en' } = Astro.props;
 
-const pagePrefix = isProjectPage ? '/' : '';
+const isFr = lang === 'fr';
+const homeSlug = isFr ? 'fr/home' : 'en/home';
+const pagePrefix = isProjectPage ? (isFr ? '/fr' : '/') : '';
 
 // 1. Fetch home page data for blocks and artwork filters
-const homeEntry = await getEntry('pages', 'home');
+const homeEntry = await getEntry('pages', homeSlug as any);
 const homeData = homeEntry?.data || {};
 const blocks = homeData.blocks || [];
 
-// Artwork Filters (from home.json top-level artworkFilters)
-const rawArtworkFilters = homeData.artworkFilters || [
-  { label: "Sculpture & Installation", value: "sculpture" },
-  { label: "Alternative Mosaic", value: "mosaic" },
-  { label: "Photography", value: "photography" },
-  { label: "Peinture", value: "peinture" },
-];
+// Artwork Filters
+const rawArtworkFilters = homeData.artworkFilters || [];
 const artworkCategories = rawArtworkFilters.filter((f: any) => f.value && f.value !== 'all');
 
-// 2. Fetch all projects from content collection
+// 2. Fetch all projects from content collection filtered by lang
 const rawProjects = await getCollection('projects');
-const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+const langProjects = rawProjects.filter(p => p.slug.startsWith(`${lang}/`));
+const sortedProjects = langProjects.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 ---
 
 <nav class={`navbar ${isProjectPage ? 'scrolled' : ''}`}>
@@ -33,7 +32,7 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
 
   <ul class="nav-menu" id="navMenu">
     <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close menu">✕</button>
-    <li class="nav-item"><a href={`${pagePrefix}#hero`} class="nav-link active">Home</a></li>
+    <li class="nav-item"><a href={`${pagePrefix}#hero`} class="nav-link active">{isFr ? 'Accueil' : 'Home'}</a></li>
 
     {blocks.map((block: any) => {
       if (block.active === false) return null;
@@ -42,7 +41,7 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
       if (type === 'about_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#about`} class="nav-link">{block.navTitle || block.title || 'About'}</a>
+            <a href={`${pagePrefix}#about`} class="nav-link">{block.navTitle || block.title || (isFr ? 'À Propos' : 'About')}</a>
           </li>
         );
       }
@@ -56,11 +55,11 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
 
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#projects-${filter}`} class="nav-link">{block.navTitle || 'Projects'} ▾</a>
+            <a href={`${pagePrefix}#projects-${filter}`} class="nav-link">{block.navTitle || (isFr ? 'Projets' : 'Projects')} ▾</a>
             <ul class="dropdown-menu">
               {(sectionProjects.length > 0 ? sectionProjects : sortedProjects).map((project) => (
                 <li>
-                  <a href={`/projects/${project.slug}`} class="dropdown-link">
+                  <a href={`${isFr ? '/fr' : ''}/projects/${project.slug.replace(new RegExp(`^${lang}/`), '')}`} class="dropdown-link">
                     {project.data.title}
                   </a>
                 </li>
@@ -73,7 +72,7 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
       if (type === 'artworks_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#artwork`} class="nav-link">{block.navTitle || block.title || 'Artworks'} ▾</a>
+            <a href={`${pagePrefix}#artwork`} class="nav-link">{block.navTitle || block.title || (isFr ? 'Œuvres' : 'Artworks')} ▾</a>
             <ul class="dropdown-menu">
               {artworkCategories.map((cat: any) => (
                 <li>
@@ -90,13 +89,22 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
       if (type === 'map_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#interactive-map`} class="nav-link">{block.navTitle || block.title || 'Journey (Map)'}</a>
+            <a href={`${pagePrefix}#interactive-map`} class="nav-link">{block.navTitle || block.title || (isFr ? 'Parcours (Carte)' : 'Journey (Map)')}</a>
           </li>
         );
       }
 
       return null;
     })}
+
+    <!-- Language Selector Dropdown -->
+    <li class="nav-item lang-dropdown-item">
+      <a href="#" class="nav-link lang-dropdown-btn">🌐 {lang.toUpperCase()} ▾</a>
+      <ul class="dropdown-menu lang-dropdown-menu">
+        <li><a href="/" class={`dropdown-link ${!isFr ? 'active-lang' : ''}`}>🇬🇧 English (EN)</a></li>
+        <li><a href="/fr" class={`dropdown-link ${isFr ? 'active-lang' : ''}`}>🇫🇷 Français (FR)</a></li>
+      </ul>
+    </li>
   </ul>
 
   <div style="display: flex; align-items: center; gap: 1rem;">

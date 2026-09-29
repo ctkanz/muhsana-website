@@ -3,7 +3,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
+  const allProjects = await getCollection('projects');
+  // Filter only projects located in the 'en/' subfolder (slug starts with 'en/')
+  const projects = allProjects.filter(p => p.slug.startsWith('en/'));
   const sortedProjects = [...projects].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
 
   return sortedProjects.map((entry, index) => {
@@ -14,12 +16,17 @@ export async function getStaticPaths() {
       ? sortedProjects[(index + 1) % sortedProjects.length] 
       : null;
 
+    // Remove 'en/' prefix from slug for the clean URL route
+    const cleanSlug = entry.slug.replace(/^en\//, '');
+    const cleanPrevSlug = prevEntry ? prevEntry.slug.replace(/^en\//, '') : '';
+    const cleanNextSlug = nextEntry ? nextEntry.slug.replace(/^en\//, '') : '';
+
     return {
-      params: { slug: entry.slug },
+      params: { slug: cleanSlug },
       props: {
         project: entry.data,
-        prevProject: prevEntry ? { slug: prevEntry.slug, title: prevEntry.data.title } : null,
-        nextProject: nextEntry ? { slug: nextEntry.slug, title: nextEntry.data.title } : null,
+        prevProject: prevEntry ? { slug: cleanPrevSlug, title: prevEntry.data.title } : null,
+        nextProject: nextEntry ? { slug: cleanNextSlug, title: nextEntry.data.title } : null,
       },
     };
   });
@@ -31,7 +38,7 @@ if (!project) {
   return Astro.redirect('/404');
 }
 
-const homePage = await getEntry('pages', 'home');
+const homePage = await getEntry('pages', 'en/home');
 const homeBlocks = homePage?.data?.blocks || [];
 
 const matchingBlock = homeBlocks.find(

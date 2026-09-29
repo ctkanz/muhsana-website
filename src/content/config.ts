@@ -10,14 +10,14 @@ const stringList = z.array(
 const projectsCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string().default('Nouveau Projet'),
+    title: z.string().default('New Project'),
     subtitle: z.string().optional().default(''),
-    badge: z.string().optional().default('Projet'),
+    badge: z.string().optional().default('Project'),
     section: z.string().optional().default('principaux'),
     order: z.number().default(0),
     heroImage: z.string().optional().default('/oeuvre/muhsana-ali.webp'),
     metaTitle: z.string().optional().default('Muhsana Ali'),
-    metaDescription: z.string().optional().default('Projet par Muhsana Ali'),
+    metaDescription: z.string().optional().default('Project by Muhsana Ali'),
     showGallery: z.boolean().default(true),
     galleryImages: stringList,
     mainHeading: z.string().optional().default(''),
@@ -55,11 +55,11 @@ const projectsCollection = defineCollection({
 const artworksCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string().default('Nouvelle Œuvre'),
+    title: z.string().default('New Artwork'),
     displayTitle: z.string().optional().default(''),
     category: z.string().default('sculpture'),
     categoryLabel: z.string().optional(),
-    badge: z.string().optional().default('Œuvre'),
+    badge: z.string().optional().default('Artwork'),
     order: z.number().default(0),
     desc: z.string().optional().default(''),
     cardDesc: z.string().optional().default(''),

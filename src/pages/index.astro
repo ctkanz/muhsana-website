@@ -7,23 +7,23 @@ import ProjectsSection from '../components/ProjectsSection.astro';
 import ArtworksSection from '../components/ArtworksSection.astro';
 import InteractiveMap from '../components/InteractiveMap.astro';
 
-const homeEntry = await getEntry('pages', 'home');
+const homeEntry = await getEntry('pages', 'en/home');
 const homeData = homeEntry?.data || {
-  title: "Muhsana Ali | Artiste Multidisciplinaire",
-  description: "Site officiel de l'artiste Muhsana Ali.",
+  title: "Muhsana Ali | Multidisciplinary Artist",
+  description: "Official website of artist Muhsana Ali.",
   artworkFilters: [
-    { label: "Toutes les Œuvres", value: "all" },
+    { label: "All Works", value: "all" },
     { label: "Sculpture & Installation", value: "sculpture" },
     { label: "Alternative Mosaic", value: "mosaic" },
     { label: "Photography", value: "photography" },
-    { label: "Peinture", value: "peinture" }
+    { label: "Painting", value: "peinture" }
   ],
   blocks: [
     { type: 'hero_block', active: true },
-    { type: 'about_block', active: true, title: "About Muhsana", navTitle: "À Propos" },
-    { type: 'projects_block', title: 'Projets Principaux', navTitle: "Projets", sectionFilter: 'principaux' },
-    { type: 'artworks_block', active: true, title: 'Œuvres', navTitle: "Œuvres" },
-    { type: 'map_block', active: true, title: 'Parcours Artistique de Muhsana Ali', navTitle: "Parcours (Carte)" },
+    { type: 'about_block', active: true, title: "About Muhsana", navTitle: "About" },
+    { type: 'projects_block', title: 'Featured Projects', navTitle: "Projects", sectionFilter: 'principaux' },
+    { type: 'artworks_block', active: true, title: 'Artworks', navTitle: "Artworks" },
+    { type: 'map_block', active: true, title: 'Artistic Journey of Muhsana Ali', navTitle: "Journey (Map)" },
   ]
 };
 ---
@@ -53,8 +53,8 @@ const homeData = homeEntry?.data || {
         return (
           <ProjectsSection 
             sectionFilter={block.sectionFilter || 'principaux'} 
-            sectionTitle={block.title || 'Projets Principaux'} 
-            sectionSubtitle={block.subtitle || 'Engagement Communautaire & Œuvres Majeures'} 
+            sectionTitle={block.title || 'Featured Projects'} 
+            sectionSubtitle={block.subtitle || 'Community Engagement & Major Works'} 
             cardBtnText={block.cardBtnText}
           />
         );
@@ -83,6 +83,6 @@ const homeData = homeEntry?.data || {
   </main>
 
   <footer class="footer" style="padding: 3rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem;">
-    <p>© Muhsana Ali. Tous droits réservés.</p>
+    <p>© Muhsana Ali. All rights reserved.</p>
   </footer>
 </BaseLayout>

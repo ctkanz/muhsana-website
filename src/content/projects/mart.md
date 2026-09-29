@@ -1,11 +1,11 @@
 ---
 title: "Mart Community Project"
-subtitle: "Créations collectives et fresques murales participatives avec la jeunesse"
-badge: "Urbain & Mosaïque"
+subtitle: "Collective creations and participatory community murals with local youth"
+badge: "Urban & Mosaic"
 order: 2
 heroImage: "/project-mart/1.webp"
 metaTitle: "Mart Community Project | Muhsana Ali"
-metaDescription: "Découvrez le Mart Community Project par Muhsana Ali - Créations collectives et fresques murales participatives avec la jeunesse."
+metaDescription: "Discover the Mart Community Project by Muhsana Ali — Collective creations and participatory murals with youth in Mart, Texas."
 galleryImages:
   - "/project-mart/1.webp"
   - "/project-mart/2.webp"
@@ -31,26 +31,26 @@ paragraphs:
   - "The experience was a major success in not only revitalizing the town of Mart, but in establishing positive interracial exchange and wide ranging participation and enthusiasm from the town’s residents. With the Sy family appearing weekly on the front page of the town’s newspaper, the community members deemed what they had achieved as something they called “Mart Magic”: a new love and appreciation for their community and the energy and enthusiasm to transform it into something better for everyone."
 externalLinks:
   - icon: "🎬"
-    tag: "Documentaire Vidéo Officiel"
+    tag: "Official Video Documentary"
     title: "Mart Community Project Video"
-    desc: "Découvrez l'histoire et les moments clés du projet communautaire à Mart, Texas en vidéo."
+    desc: "Discover the history and key moments of the community project in Mart, Texas on video."
     url: "https://vimeo.com/44746197"
-    btnText: "Regarder sur Vimeo"
+    btnText: "Watch on Vimeo"
 sidebarMeta:
   - label: "Type"
-    value: "Art Urbain Participatif & Mosaïque"
-  - label: "Public Cible"
-    value: "Jeunesse locale & Communauté urbaine"
-  - label: "Matériaux"
-    value: "Mosaïque de verre, céramique, mortier, pigments"
-  - label: "Directrice Artistique"
+    value: "Participatory Urban Art & Mosaic"
+  - label: "Target Audience"
+    value: "Local youth & urban community"
+  - label: "Materials"
+    value: "Glass mosaic, ceramic, mortar, pigments"
+  - label: "Artistic Director"
     value: "Muhsana Ali"
 prevProject:
   slug: "east-bayside"
   title: "East Bayside Community Mosaic"
 nextProject:
   slug: "jen-rekk"
-  title: "Série Jën Rekk"
+  title: "Jën Rekk Series"
 showGallery: true
 showExternalLinks: true
 showSidebarMeta: true
@@ -58,4 +58,4 @@ showNav: true
 showVideo: true
 ---
 
-Mart Community Project par Muhsana Ali.
+Mart Community Project by Muhsana Ali.

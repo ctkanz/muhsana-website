@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayLocationDetails(location, events) {
       if (!panelTitle || !panelSubtitle || !panelEvents) return;
       panelTitle.textContent = `${location.city}, ${location.country}`;
-      panelSubtitle.textContent = `${events.length} événement${events.length > 1 ? 's' : ''} répertorié${events.length > 1 ? 's' : ''}`;
+      panelSubtitle.textContent = `${events.length} event${events.length > 1 ? 's' : ''} listed`;
 
       const sortedEvents = [...events].sort((a, b) => b.year - a.year);
 
@@ -485,12 +485,12 @@ document.addEventListener('DOMContentLoaded', () => {
         map.flyTo([20, -20], 2.5, { duration: 2.2 });
 
         if (panelTitle && panelSubtitle && panelEvents) {
-          panelTitle.textContent = 'Sélectionnez un point';
-          panelSubtitle.textContent = 'Cliquez sur un marqueur de la carte pour afficher les détails du parcours.';
+          panelTitle.textContent = 'Select a location';
+          panelSubtitle.textContent = 'Click on a map marker to display journey details.';
           panelEvents.innerHTML = `
             <div class="info-empty-state">
               <span class="empty-icon">📍</span>
-              <p>Découvrez les événements, expositions et projets communautaires organisés dans chaque ville.</p>
+              <p>Discover events, exhibitions, and community projects organized in each city.</p>
             </div>
           `;
         }
@@ -512,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isTimelineAnimating = false;
       if (btnPlayTimeline) {
         btnPlayTimeline.classList.remove('is-playing');
-        btnPlayTimeline.innerHTML = `<span class="timeline-icon">▶</span> Chronologie`;
+        btnPlayTimeline.innerHTML = `<span class="timeline-icon">▶</span> Timeline`;
       }
     }
 
@@ -567,7 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (currentIdx >= validLocations.length) {
           if (tickerYearVal) tickerYearVal.textContent = '2026';
-          if (tickerLocationName) tickerLocationName.textContent = 'Parcours de Muhsana Ali';
+          if (tickerLocationName) tickerLocationName.textContent = "Muhsana Ali's Journey";
 
           map.flyTo([20, -20], 2.5, { duration: 2.5 });
 
@@ -592,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const marker = L.marker([loc.lat, loc.lng], { icon: customPinIcon });
-        const eventCountText = `${loc.matchingEvents.length} événement${loc.matchingEvents.length > 1 ? 's' : ''}`;
+        const eventCountText = `${loc.matchingEvents.length} event${loc.matchingEvents.length > 1 ? 's' : ''}`;
         const popupHTML = `
           <div style="text-align: center; padding: 0.3rem;">
             <div class="popup-custom-title">${loc.city}</div>

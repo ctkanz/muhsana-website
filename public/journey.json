@@ -1,8 +1,8 @@
 {
   "map": {
     "id": "muhsana-ali-artistic-journey",
-    "title": "Le parcours artistique de Muhsana Ali",
-    "subtitle": "Un parcours entre l'Afrique, l'Europe et les États-Unis",
+    "title": "Artistic Journey of Muhsana Ali",
+    "subtitle": "A journey across Africa, Europe, and the United States",
     "center": {
       "lat": 20,
       "lng": -20
@@ -13,23 +13,23 @@
   "filters": [
     {
       "id": "education",
-      "label": "Formation"
+      "label": "Education"
     },
     {
       "id": "exhibition",
-      "label": "Expositions"
+      "label": "Exhibitions"
     },
     {
       "id": "residency",
-      "label": "Résidences"
+      "label": "Residencies"
     },
     {
       "id": "project",
-      "label": "Projets"
+      "label": "Projects"
     },
     {
       "id": "conference",
-      "label": "Conférences"
+      "label": "Conferences"
     },
     {
       "id": "collection",
@@ -41,7 +41,7 @@
     {
       "id": "dakar",
       "city": "Dakar",
-      "country": "Sénégal",
+      "country": "Senegal",
       "lat": 14.7167,
       "lng": -17.4677,
       "types": [
@@ -54,55 +54,55 @@
           "year": 2026,
           "title": "Kersa",
           "type": "project",
-          "description": "Fresque murale en mosaïque publique au terrain de basketball de Sicap Mermoz."
+          "description": "Public mosaic mural at the Sicap Mermoz basketball court."
         },
         {
           "year": 2024,
           "title": "Convergence",
           "type": "exhibition",
-          "description": "Exposition au Radisson Blu."
+          "description": "Exhibition at Radisson Blu."
         },
         {
           "year": 2022,
           "title": "Galerie Nationale",
           "type": "exhibition",
-          "description": "Exposition dans le cadre de la Journée de la Femme."
+          "description": "Exhibition as part of Women's Day."
         },
         {
           "year": 2016,
           "title": "Pékin-Dakar",
           "type": "exhibition",
-          "description": "Projet présenté au Grand Théâtre de Dakar dans le cadre de Dak'Art."
+          "description": "Project presented at the Grand Théâtre de Dakar during Dak'Art."
         },
         {
           "year": 2014,
-          "title": "Mosaïque murale",
+          "title": "Mosaic Mural",
           "type": "project",
-          "description": "Mosaïque murale à Ker Thiossane."
+          "description": "Mosaic mural at Kër Thiossane."
         },
         {
           "year": 2014,
-          "title": "Fresque de l'Ambassade américaine",
+          "title": "US Embassy Mural",
           "type": "project",
-          "description": "Fresque murale de 125 mètres réalisée avec neuf artistes sénégalais."
+          "description": "125-meter mural created with nine Senegalese artists."
         },
         {
           "year": 2009,
-          "title": "De la Diaspora au Développement",
+          "title": "From Diaspora to Development",
           "type": "exhibition",
-          "description": "Exposition à deux artistes à la Galerie Nationale d'Art de Dakar."
+          "description": "Two-artist exhibition at the Galerie Nationale d'Art in Dakar."
         },
         {
           "year": 2004,
           "title": "Portes et passages du retour",
           "type": "conference",
-          "description": "Présentation au Centre de recherche ouest-africain."
+          "description": "Presentation at the West African Research Center."
         },
         {
           "year": 2002,
           "title": "Dak'Art",
           "type": "exhibition",
-          "description": "Sélection officielle de la Biennale de Dakar, section diaspora."
+          "description": "Official selection of the Dakar Biennale, diaspora section."
         }
       ]
     },
@@ -110,7 +110,7 @@
     {
       "id": "joal-fadiouth",
       "city": "Joal-Fadiouth",
-      "country": "Sénégal",
+      "country": "Senegal",
       "lat": 14.1646,
       "lng": -16.8231,
       "types": [
@@ -120,21 +120,21 @@
       "events": [
         {
           "year": 2019,
-          "title": "Citoyenne d'honneur",
+          "title": "Honorary Citizen",
           "type": "project",
-          "description": "Prix de citoyen d'honneur décerné par la mairie de Joal-Fadiouth."
+          "description": "Honorary citizenship award presented by the municipality of Joal-Fadiouth."
         },
         {
           "year": 2018,
-          "title": "Jen Rekk",
+          "title": "Jën Rekk",
           "type": "project",
-          "description": "Projet artistique communautaire autour de la surpêche illégale sur la côte ouest-africaine."
+          "description": "Community artistic project addressing illegal overfishing on the West African coast."
         },
         {
           "year": 2003,
-          "title": "Universel ? Dialogues Avec Senghor",
+          "title": "Universal? Dialogues With Senghor",
           "type": "residency",
-          "description": "Résidence internationale d'artistes de trois semaines."
+          "description": "Three-week international artist residency."
         }
       ]
     },
@@ -142,7 +142,7 @@
     {
       "id": "mbodiene",
       "city": "Mbodiène",
-      "country": "Sénégal",
+      "country": "Senegal",
       "lat": 14.211,
       "lng": -16.879,
       "types": [
@@ -151,9 +151,9 @@
       "events": [
         {
           "year": 2007,
-          "title": "Structure en adobe",
+          "title": "Adobe Structure",
           "type": "project",
-          "description": "Construction d'une structure en adobe avec l'Association Portes et Passages du Retour et l'Université du Michigan."
+          "description": "Construction of an adobe structure with Association Portes et Passages du Retour and the University of Michigan."
         }
       ]
     },
@@ -161,7 +161,7 @@
     {
       "id": "thionk-essyl",
       "city": "Thionk Essyl",
-      "country": "Sénégal",
+      "country": "Senegal",
       "lat": 12.745,
       "lng": -16.519,
       "types": [
@@ -171,9 +171,9 @@
       "events": [
         {
           "year": 2021,
-          "title": "Mosaïque communautaire",
+          "title": "Community Mosaic",
           "type": "project",
-          "description": "Projet de résidence artistique pour la création d'une mosaïque avec la communauté."
+          "description": "Artistic residency project creating a mosaic with the community."
         }
       ]
     },
@@ -191,29 +191,29 @@
       "events": [
         {
           "year": 2001,
-          "title": "Portes et passages du retour",
+          "title": "Doors and Passageways of Return",
           "type": "exhibition",
-          "description": "Exposition et projet solo au Château, ancien Hôpital Central du Plateau."
+          "description": "Solo exhibition and project at Le Château, former Central Hospital of Plateau."
         },
         {
           "year": 1999,
-          "title": "Portes et passages du retour",
+          "title": "Doors and Passageways of Return",
           "type": "exhibition",
-          "description": "Projet d'exposition de deux ans au Château."
+          "description": "Two-year exhibition project at Le Château."
         },
         {
           "year": 1997,
           "title": "Daro, Daro",
           "type": "residency",
-          "description": "Résidence internationale de groupe de deux semaines."
+          "description": "Two-week international group residency."
         }
       ]
     },
 
     {
       "id": "philadelphia",
-      "city": "Philadelphie",
-      "country": "États-Unis",
+      "city": "Philadelphia",
+      "country": "United States",
       "lat": 39.9526,
       "lng": -75.1652,
       "types": [
@@ -226,33 +226,33 @@
       "events": [
         {
           "year": 2004,
-          "title": "Formation auprès d'Isaiah Zagar",
+          "title": "Training with Isaiah Zagar",
           "type": "education",
-          "description": "Formation à la mosaïque auprès d'Isaiah Zagar."
+          "description": "Mosaic art training with Isaiah Zagar."
         },
         {
           "year": 1993,
-          "title": "Maîtrise en éducation artistique",
+          "title": "Master's Degree in Art Education",
           "type": "education",
-          "description": "Maîtrise en éducation artistique."
+          "description": "Master's degree in art education."
         },
         {
           "year": 1990,
-          "title": "Académie des beaux-arts de Pennsylvanie",
+          "title": "Pennsylvania Academy of the Fine Arts",
           "type": "education",
-          "description": "Études de spécialisation en peinture."
+          "description": "Advanced studies in painting."
         },
         {
           "year": 1992,
-          "title": "Le rêve est au cœur",
+          "title": "The Dream is at the Heart",
           "type": "exhibition",
-          "description": "Exposition collective à la Philadelphia Art Alliance."
+          "description": "Group exhibition at the Philadelphia Art Alliance."
         },
         {
           "year": 1992,
-          "title": "Première prise",
+          "title": "First Take",
           "type": "exhibition",
-          "description": "Exposition collective à la Galerie Levy pour les arts."
+          "description": "Group exhibition at Levy Gallery for the Arts."
         }
       ]
     },
@@ -260,7 +260,7 @@
     {
       "id": "new-york",
       "city": "New York",
-      "country": "États-Unis",
+      "country": "United States",
       "lat": 40.7128,
       "lng": -74.006,
       "types": [
@@ -272,25 +272,25 @@
           "year": 1987,
           "title": "Parsons School of Design",
           "type": "education",
-          "description": "Diplôme BFA en arts visuels."
+          "description": "BFA Degree in Visual Arts."
         },
         {
           "year": 1995,
-          "title": "Là où vit l'esprit",
+          "title": "Where the Spirit Lives",
           "type": "exhibition",
-          "description": "Exposition individuelle à la Galerie Moshood, Brooklyn."
+          "description": "Solo exhibition at Moshood Gallery, Brooklyn."
         },
         {
           "year": 1997,
-          "title": "Esprits en mouvement",
+          "title": "Spirits in Motion",
           "type": "exhibition",
-          "description": "Exposition collective à la galerie 17 W. 121."
+          "description": "Group exhibition at 17 W. 121 Gallery."
         },
         {
           "year": 1996,
           "title": "Muhsana Ali / Miriam Schaer",
           "type": "exhibition",
-          "description": "Exposition à deux artistes à la Galerie John Jay."
+          "description": "Two-artist exhibition at John Jay Gallery."
         }
       ]
     },
@@ -298,7 +298,7 @@
     {
       "id": "washington-dc",
       "city": "Washington D.C.",
-      "country": "États-Unis",
+      "country": "United States",
       "lat": 38.9072,
       "lng": -77.0369,
       "types": [
@@ -311,19 +311,19 @@
           "year": 2014,
           "title": "Phillips Collection",
           "type": "project",
-          "description": "Fresque murale de 13 mètres réalisée en collaboration avec des artistes sénégalais."
+          "description": "13-meter mural created in collaboration with Senegalese artists."
         },
         {
           "year": 2014,
-          "title": "Art et changement social",
+          "title": "Art and Social Change",
           "type": "conference",
-          "description": "Présentation à la Collection Phillips."
+          "description": "Presentation at the Phillips Collection."
         },
         {
           "year": 2002,
-          "title": "Bourse d'ambassadeur culturel",
+          "title": "Cultural Ambassador Fellowship",
           "type": "project",
-          "description": "Bourse décernée par la Division des programmes culturels du Département d'État américain."
+          "description": "Fellowship awarded by the Cultural Programs Division of the US State Department."
         }
       ]
     },
@@ -331,7 +331,7 @@
     {
       "id": "montclair",
       "city": "Montclair",
-      "country": "États-Unis",
+      "country": "United States",
       "lat": 40.8259,
       "lng": -74.209,
       "types": [
@@ -340,9 +340,9 @@
       "events": [
         {
           "year": 1993,
-          "title": "La figure en perspective",
+          "title": "The Figure in Perspective",
           "type": "exhibition",
-          "description": "Exposition individuelle à l'Université d'État de Montclair."
+          "description": "Solo exhibition at Montclair State University."
         }
       ]
     },
@@ -350,7 +350,7 @@
     {
       "id": "portland-maine",
       "city": "Portland",
-      "country": "États-Unis",
+      "country": "United States",
       "lat": 43.6591,
       "lng": -70.2568,
       "types": [
@@ -361,21 +361,21 @@
       "events": [
         {
           "year": 2016,
-          "title": "Artiste en résidence",
+          "title": "Artist in Residence",
           "type": "residency",
-          "description": "Résidence de trois mois à l'Université du Sud du Maine."
+          "description": "Three-month residency at the University of Southern Maine."
         },
         {
           "year": 2014,
           "title": "Mart Magic",
           "type": "exhibition",
-          "description": "Exposition de photos à l'Université du Sud du Maine."
+          "description": "Photo exhibition at the University of Southern Maine."
         },
         {
           "year": 2016,
-          "title": "Développement communautaire par l'art",
+          "title": "Community Development Through Art",
           "type": "conference",
-          "description": "Présentation à l'Université du Sud du Maine."
+          "description": "Presentation at the University of Southern Maine."
         }
       ]
     },
@@ -383,7 +383,7 @@
     {
       "id": "mart-texas",
       "city": "Mart",
-      "country": "États-Unis",
+      "country": "United States",
       "lat": 31.5424,
       "lng": -96.8344,
       "types": [
@@ -393,21 +393,21 @@
       "events": [
         {
           "year": 2010,
-          "title": "Projet communautaire Mart",
+          "title": "Mart Community Project",
           "type": "project",
-          "description": "Création d'une mosaïque murale de rue avec participation de la communauté."
+          "description": "Creation of a street mosaic mural with community participation."
         },
         {
           "year": 2011,
-          "title": "Projet communautaire Mart",
+          "title": "Mart Community Project",
           "type": "project",
-          "description": "Projet de revitalisation d'une petite ville rurale par l'art."
+          "description": "Rural town revitalization project through art."
         },
         {
           "year": 2012,
-          "title": "Projet communautaire Mart",
+          "title": "Mart Community Project",
           "type": "project",
-          "description": "Projet de sculpture publique et ateliers communautaires."
+          "description": "Public sculpture project and community workshops."
         }
       ]
     },
@@ -415,7 +415,7 @@
     {
       "id": "austin",
       "city": "Austin",
-      "country": "États-Unis",
+      "country": "United States",
       "lat": 30.2672,
       "lng": -97.7431,
       "types": [
@@ -424,15 +424,15 @@
       "events": [
         {
           "year": 2012,
-          "title": "Art et communauté",
+          "title": "Art and Community",
           "type": "conference",
-          "description": "Conférence universitaire au Département de travail social de l'Université du Texas à Austin."
+          "description": "Academic lecture at the School of Social Work, University of Texas at Austin."
         },
         {
           "year": 2011,
-          "title": "Purger les mémoires de l'Atlantique",
+          "title": "Purging Atlantic Memories",
           "type": "conference",
-          "description": "Conférence au Département d'art de l'Université du Texas à Austin."
+          "description": "Lecture at the Department of Art, University of Texas at Austin."
         }
       ]
     },
@@ -450,21 +450,21 @@
       "events": [
         {
           "year": 1991,
-          "title": "Université Paris 8",
+          "title": "University of Paris 8",
           "type": "education",
-          "description": "Diplôme de licence."
+          "description": "Bachelor's degree."
         },
         {
           "year": 2004,
-          "title": "Fenêtres sur l'âme",
+          "title": "Windows on the Soul",
           "type": "exhibition",
-          "description": "Présentation du projet photographique."
+          "description": "Presentation of the photographic project."
         },
         {
           "year": 2006,
-          "title": "Fenêtres sur l'âme",
+          "title": "Windows on the Soul",
           "type": "exhibition",
-          "description": "Présentation du projet photographique."
+          "description": "Presentation of the photographic project."
         }
       ]
     },
@@ -482,23 +482,23 @@
       "events": [
         {
           "year": 1995,
-          "title": "Œuvres Sacrées, Œuvres Profanes",
+          "title": "Sacred Works, Profane Works",
           "type": "exhibition",
-          "description": "Exposition individuelle à la Galerie L'Espace."
+          "description": "Solo exhibition at Galerie L'Espace."
         },
         {
           "year": 1995,
-          "title": "Résidence Galerie L'Espace",
+          "title": "Residency at Galerie L'Espace",
           "type": "residency",
-          "description": "Résidence de trois mois se concluant par une exposition personnelle."
+          "description": "Three-month residency concluding with a solo exhibition."
         }
       ]
     },
 
     {
       "id": "bremen",
-      "city": "Brême",
-      "country": "Allemagne",
+      "city": "Bremen",
+      "country": "Germany",
       "lat": 53.0793,
       "lng": 8.8017,
       "types": [
@@ -508,17 +508,17 @@
       "events": [
         {
           "year": 2009,
-          "title": "Visualiser le discernement des perspectives transnationales",
+          "title": "Visualizing Discernment in Transnational Perspectives",
           "type": "exhibition",
-          "description": "Projet présenté au Collège de recherche afro-américaine."
+          "description": "Project presented at the African American Research College."
         }
       ]
     },
 
     {
       "id": "hamburg",
-      "city": "Hambourg",
-      "country": "Allemagne",
+      "city": "Hamburg",
+      "country": "Germany",
       "lat": 53.5511,
       "lng": 9.9937,
       "types": [
@@ -527,16 +527,16 @@
       "events": [
         {
           "year": 2009,
-          "title": "Park Fiction présente Muhsana Ali",
+          "title": "Park Fiction presents Muhsana Ali",
           "type": "conference",
-          "description": "Présentation au siège de Park Fiction."
+          "description": "Presentation at Park Fiction headquarters."
         }
       ]
     },
 
     {
       "id": "lisbon",
-      "city": "Lisbonne",
+      "city": "Lisbon",
       "country": "Portugal",
       "lat": 38.7223,
       "lng": -9.1393,
@@ -546,17 +546,17 @@
       "events": [
         {
           "year": 2004,
-          "title": "Fenêtres sur l'âme",
+          "title": "Windows on the Soul",
           "type": "exhibition",
-          "description": "Présentation du projet photographique."
+          "description": "Presentation of the photographic project."
         }
       ]
     },
 
     {
       "id": "london",
-      "city": "Londres",
-      "country": "Royaume-Uni",
+      "city": "London",
+      "country": "United Kingdom",
       "lat": 51.5074,
       "lng": -0.1278,
       "types": [
@@ -565,9 +565,9 @@
       "events": [
         {
           "year": 2005,
-          "title": "Fenêtres sur l'âme",
+          "title": "Windows on the Soul",
           "type": "exhibition",
-          "description": "Présentation du projet photographique."
+          "description": "Presentation of the photographic project."
         }
       ]
     },
@@ -575,7 +575,7 @@
     {
       "id": "turin",
       "city": "Turin",
-      "country": "Italie",
+      "country": "Italy",
       "lat": 45.0703,
       "lng": 7.6869,
       "types": [
@@ -586,7 +586,7 @@
           "year": 2018,
           "title": "Terra Madre / Slow Food",
           "type": "conference",
-          "description": "Présentation sur l'activisme artistique dans le contexte de Slow Fish."
+          "description": "Presentation on artistic activism in the context of Slow Fish."
         }
       ]
     },
@@ -606,13 +606,13 @@
           "year": 2002,
           "title": "Ewole",
           "type": "exhibition",
-          "description": "Exposition collective internationale."
+          "description": "International group exhibition."
         },
         {
           "year": 2002,
           "title": "Ewole",
           "type": "residency",
-          "description": "Atelier international de deux semaines."
+          "description": "Two-week international workshop."
         }
       ]
     },
@@ -631,23 +631,23 @@
       "events": [
         {
           "year": 2007,
-          "title": "Femmes artistes",
+          "title": "Women Artists",
           "type": "residency",
-          "description": "Atelier international de deux semaines pour artistes africaines femmes."
+          "description": "Two-week international workshop for African women artists."
         },
         {
           "year": 2007,
-          "title": "Fleurs",
+          "title": "Flowers",
           "type": "project",
-          "description": "Production vidéo consacrée aux exploitations florales et à l'exploitation des travailleurs au Kenya."
+          "description": "Video production focusing on flower farms and worker exploitation in Kenya."
         }
       ]
     },
 
     {
       "id": "cape-town",
-      "city": "Le Cap",
-      "country": "Afrique du Sud",
+      "city": "Cape Town",
+      "country": "South Africa",
       "lat": -33.9249,
       "lng": 18.4241,
       "types": [
@@ -658,15 +658,15 @@
           "year": 2007,
           "title": "TransCape",
           "type": "exhibition",
-          "description": "Participation à l'exposition TransCape."
+          "description": "Participation in the TransCape exhibition."
         }
       ]
     },
 
     {
       "id": "addis-ababa",
-      "city": "Addis-Abeba",
-      "country": "Éthiopie",
+      "city": "Addis Ababa",
+      "country": "Ethiopia",
       "lat": 9.032,
       "lng": 38.7469,
       "types": [
@@ -675,9 +675,9 @@
       "events": [
         {
           "year": 2013,
-          "title": "Mémorial historique de l'Union africaine",
+          "title": "African Union Historical Memorial",
           "type": "conference",
-          "description": "Conférence sur les atrocités africaines en vue de la construction d'un mémorial historique."
+          "description": "Conference on African atrocities toward building a historical memorial."
         }
       ]
     }

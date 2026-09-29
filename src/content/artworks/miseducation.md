@@ -5,8 +5,8 @@ category: "photography"
 categoryLabel: "Muhsana 2019"
 badge: "Muhsana 2019"
 order: 6
-desc: "Photography : Série photographique & conceptuelle (2019)."
-cardDesc: "Photography : Série photographique & conceptuelle sur l'éducation et la transmission."
+desc: "Photography: Photographic & conceptual series (2019)."
+cardDesc: "Photography: Photographic & conceptual series on education and transmission."
 coverImage: "/oeuvre/miseducation/Miseducation Series -Muhsana Ali, 1 (open mouth).webp"
 images:
   - "/oeuvre/miseducation/Miseducation Series -Muhsana Ali, 1 (open mouth).webp"
@@ -16,4 +16,4 @@ images:
   - "/oeuvre/miseducation/Mushana_Ali_060.webp"
 ---
 
-Miseducation of the Negro par Muhsana Ali.
+Miseducation of the Negro by Muhsana Ali.

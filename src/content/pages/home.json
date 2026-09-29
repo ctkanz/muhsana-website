@@ -1,9 +1,9 @@
 {
-  "title": "Muhsana Ali | Artiste Multidisciplinaire",
-  "description": "Site officiel de l'artiste Muhsana Ali.",
+  "title": "Muhsana Ali | Multidisciplinary Artist",
+  "description": "Official website of artist Muhsana Ali.",
   "artworkFilters": [
     {
-      "label": "Toutes les Œuvres",
+      "label": "All Works",
       "value": "all"
     },
     {
@@ -19,7 +19,7 @@
       "value": "photography"
     },
     {
-      "label": "Peinture",
+      "label": "Painting",
       "value": "peinture"
     }
   ],
@@ -27,43 +27,43 @@
     {
       "type": "hero_block",
       "active": true,
-      "memorialBtnText": "Voir le mémorial",
+      "memorialBtnText": "View Memorial",
       "memorialBtnUrl": "/projects/bethel",
-      "scrollBtnText": "Explorer"
+      "scrollBtnText": "Explore"
     },
     {
       "type": "about_block",
       "active": true,
-      "subtitle": "Démarche & Vision",
+      "subtitle": "Approach & Vision",
       "title": "About Muhsana",
-      "navTitle": "À Propos"
+      "navTitle": "About"
     },
     {
       "active": true,
-      "navTitle": "Projets",
-      "nextBtnText": "Projet suivant →",
-      "prevBtnText": "← Projet précédent",
-      "subtitle": "Engagement Communautaire & Œuvres Majeures",
-      "title": "Projets Principaux",
-      "cardBtnText": "Découvrir le projet →",
+      "navTitle": "Projects",
+      "nextBtnText": "Next project →",
+      "prevBtnText": "← Previous project",
+      "subtitle": "Community Engagement & Major Works",
+      "title": "Featured Projects",
+      "cardBtnText": "Discover project →",
       "type": "projects_block",
       "sectionFilter": "principaux"
     },
     {
       "type": "artworks_block",
       "active": true,
-      "title": "Œuvres",
-      "navTitle": "Œuvres",
-      "subtitle": "Exploration Visuelle & Sculpturale"
+      "title": "Artworks",
+      "navTitle": "Artworks",
+      "subtitle": "Visual & Sculptural Exploration"
     },
     {
       "type": "map_block",
       "active": true,
-      "title": "Parcours Artistique de Muhsana Ali",
-      "navTitle": "Parcours (Carte)",
-      "subtitle": "Géographie & Parcours International",
-      "description": "Explorez les villes, résidences, expositions et projets communautaires à travers l'Afrique, l'Europe et les États-Unis.",
-      "timelineBtnText": "Chronologie"
+      "title": "Artistic Journey of Muhsana Ali",
+      "navTitle": "Journey (Map)",
+      "subtitle": "Geography & International Journey",
+      "description": "Explore cities, residencies, exhibitions, and community projects across Africa, Europe, and the United States.",
+      "timelineBtnText": "Timeline"
     }
   ]
 }

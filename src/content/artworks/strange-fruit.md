@@ -5,8 +5,8 @@ category: "sculpture"
 categoryLabel: "Autopsy of negritude 2010"
 badge: "Autopsy of negritude 2010"
 order: 1
-desc: "Série sculpturale & installation : Autopsy of negritude 2010."
-cardDesc: "Série sculpturale poignante interrogeant les déracinements et les blessures de l'histoire africaine."
+desc: "Sculptural series & installation: Autopsy of Negritude 2010."
+cardDesc: "Poignant sculptural series examining uprooting and historical wounds."
 coverImage: "/oeuvre/strange-fruit/autopsie-de-la-negritude-025.webp"
 images:
   - "/oeuvre/strange-fruit/autopsie-de-la-negritude-025.webp"
@@ -16,4 +16,4 @@ images:
   - "/oeuvre/strange-fruit/strange-fruit.webp"
 ---
 
-Strange Fruit — Autopsy of negritude 2010 par Muhsana Ali.
+Strange Fruit — Autopsy of Negritude 2010 by Muhsana Ali.

@@ -1,12 +1,12 @@
 ---
-title: "Siège de la Banque mondiale pour l'Afrique de l'Ouest"
-displayTitle: "Siège de la Banque mondiale"
+title: "World Bank Headquarters for West Africa"
+displayTitle: "World Bank Headquarters"
 category: "mosaic"
-categoryLabel: "Banque Mondiale"
-badge: "Banque Mondiale"
+categoryLabel: "World Bank"
+badge: "World Bank"
 order: 3
-desc: "Hall d'accueil du nouveau siège de la Banque mondiale pour l'Afrique de l'Ouest."
-cardDesc: "Alternative Mosaic : Installation monumentale pour le hall d'accueil du nouveau siège de la Banque mondiale pour l'Afrique de l'Ouest."
+desc: "Main lobby of the new World Bank Headquarters for West Africa."
+cardDesc: "Alternative Mosaic: Monumental installation for the lobby of the new World Bank Headquarters for West Africa."
 coverImage: "/oeuvre/banque-mondiale/Copy of Untitled design (3).webp"
 images:
   - "/oeuvre/banque-mondiale/Copy of Untitled design (3).webp"
@@ -15,4 +15,4 @@ images:
   - "/oeuvre/banque-mondiale/Copy of IMG-20250714-WA0005.webp"
 ---
 
-Siège de la Banque mondiale pour l'Afrique de l'Ouest par Muhsana Ali.
+World Bank Headquarters for West Africa by Muhsana Ali.

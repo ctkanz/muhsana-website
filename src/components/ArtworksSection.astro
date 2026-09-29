@@ -13,16 +13,16 @@ interface Props {
 }
 
 const defaultFilters: FilterItem[] = [
-  { label: 'Toutes les Œuvres', value: 'all' },
+  { label: 'All Works', value: 'all' },
   { label: 'Sculpture & Installation', value: 'sculpture' },
   { label: 'Alternative Mosaic', value: 'mosaic' },
   { label: 'Photography', value: 'photography' },
-  { label: 'Peinture', value: 'peinture' },
+  { label: 'Painting', value: 'peinture' },
 ];
 
 const {
-  title = 'Œuvres',
-  subtitle = 'Exploration Visuelle & Sculpturale',
+  title = 'Artworks',
+  subtitle = 'Visual & Sculptural Exploration',
   filters = defaultFilters,
 } = Astro.props;
 

@@ -1,15 +1,12 @@
 ---
 title: East Bayside Community Mosaic
-subtitle: Une œuvre collaborative unissant la communauté de Portland à travers
-  l'art de la mosaïque
-badge: Mosaïque Murale Communautaire
+subtitle: A collaborative work uniting the Portland community through mosaic art
+badge: Community Mosaic Mural
 section: ""
 order: 1
 heroImage: /project-east-bayside/a.webp
 metaTitle: East Bayside Community Mosaic | Muhsana Ali
-metaDescription: Découvrez le projet East Bayside Community Mosaic par Muhsana
-  Ali - Mosaïque murale communautaire réalisée avec les résidents d'East Bayside
-  à Portland, Maine.
+metaDescription: Discover East Bayside Community Mosaic by Muhsana Ali — A community mosaic mural created with residents of East Bayside in Portland, Maine.
 galleryImages:
   - /project-east-bayside/a.webp
   - /project-east-bayside/b.webp
@@ -67,24 +64,23 @@ externalLinks:
   - icon: 🏛️
     tag: University of Southern Maine Gallery (2016)
     title: "Muhsana Ali: East Bayside Community Mosaic Mural"
-    desc: Consultez la fiche d'exposition officielle et la documentation
-      institutionnelle sur le site de l'Université de Southern Maine.
+    desc: View the official exhibition entry and institutional documentation on the University of Southern Maine website.
     url: https://usm.maine.edu/gallery/2016-muhsana-ali-east-bayside-community-mosaic-mural/
-    btnText: Lire l'article officiel
+    btnText: Read official article
 sidebarMeta:
-  - label: Année / Période
+  - label: Year / Period
     value: 2015 - 2018
-  - label: Lieu
-    value: Portland, Maine (États-Unis)
-  - label: Médium
-    value: Mosaïque murale participative, céramique, verre, miroirs
-  - label: Partenaires & Institutions
-    value: University of Southern Maine, Résidents d'East Bayside
-  - label: Catégorie
-    value: Art Communautaire & Mosaïque
+  - label: Location
+    value: Portland, Maine (United States)
+  - label: Medium
+    value: Participatory mosaic mural, ceramic, glass, mirrors
+  - label: Partners & Institutions
+    value: University of Southern Maine, East Bayside residents
+  - label: Category
+    value: Community Art & Mosaic
 prevProject:
   slug: association
-  title: Association Portes & Passages
+  title: Portes & Passages Association
 nextProject:
   slug: mart
   title: Mart Community Project
@@ -95,4 +91,4 @@ showNav: true
 showVideo: true
 ---
 
-East Bayside Community Mosaic par Muhsana Ali.
+East Bayside Community Mosaic by Muhsana Ali.

@@ -32,8 +32,8 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
   <a href={`${pagePrefix}#hero`} class="brand-logo">Muhsana <span>Ali</span></a>
 
   <ul class="nav-menu" id="navMenu">
-    <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Fermer le menu">✕</button>
-    <li class="nav-item"><a href={`${pagePrefix}#hero`} class="nav-link active">Accueil</a></li>
+    <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close menu">✕</button>
+    <li class="nav-item"><a href={`${pagePrefix}#hero`} class="nav-link active">Home</a></li>
 
     {blocks.map((block: any) => {
       if (block.active === false) return null;
@@ -42,7 +42,7 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
       if (type === 'about_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#about`} class="nav-link">{block.navTitle || block.title || 'À Propos'}</a>
+            <a href={`${pagePrefix}#about`} class="nav-link">{block.navTitle || block.title || 'About'}</a>
           </li>
         );
       }
@@ -56,7 +56,7 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
 
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#projects-${filter}`} class="nav-link">{block.navTitle || 'Projets'} ▾</a>
+            <a href={`${pagePrefix}#projects-${filter}`} class="nav-link">{block.navTitle || 'Projects'} ▾</a>
             <ul class="dropdown-menu">
               {(sectionProjects.length > 0 ? sectionProjects : sortedProjects).map((project) => (
                 <li>
@@ -73,7 +73,7 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
       if (type === 'artworks_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#artwork`} class="nav-link">{block.navTitle || block.title || 'Œuvres'} ▾</a>
+            <a href={`${pagePrefix}#artwork`} class="nav-link">{block.navTitle || block.title || 'Artworks'} ▾</a>
             <ul class="dropdown-menu">
               {artworkCategories.map((cat: any) => (
                 <li>
@@ -90,7 +90,7 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
       if (type === 'map_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#interactive-map`} class="nav-link">{block.navTitle || block.title || 'Parcours (Carte)'}</a>
+            <a href={`${pagePrefix}#interactive-map`} class="nav-link">{block.navTitle || block.title || 'Journey (Map)'}</a>
           </li>
         );
       }
@@ -101,13 +101,13 @@ const sortedProjects = rawProjects.sort((a, b) => (a.data.order || 0) - (b.data.
 
   <div style="display: flex; align-items: center; gap: 1rem;">
     {isProjectPage ? (
-      <a href="/#projects" class="project-back-btn">← Retour aux projets</a>
+      <a href="/#projects" class="project-back-btn">← Back to projects</a>
     ) : (
-      <button class="sound-btn" id="soundBtn" title="Activer / Désactiver le son de la vidéo">
+      <button class="sound-btn" id="soundBtn" title="Unmute / Mute video audio">
         <span id="soundIcon">🔇</span>
-        <span id="soundText">Activer le son</span>
+        <span id="soundText">Enable Sound</span>
       </button>
     )}
-    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu Mobile">☰</button>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Mobile Menu">☰</button>
   </div>
 </nav>

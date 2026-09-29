@@ -1,12 +1,12 @@
 ---
-title: "Peintures & Toiles — Muhsana"
-displayTitle: "Peintures & Toiles"
+title: "Paintings & Canvas Works — Muhsana"
+displayTitle: "Paintings & Canvas Works"
 category: "peinture"
-categoryLabel: "Peinture"
-badge: "Peinture"
+categoryLabel: "Painting"
+badge: "Painting"
 order: 7
-desc: "Œuvres picturales et créations plastiques sur toile."
-cardDesc: "Œuvres picturales, toiles et créations à l'huile et techniques mixtes de Muhsana Ali."
+desc: "Pictorial works and fine art creations on canvas."
+cardDesc: "Pictorial works, canvases, and oil and mixed media creations by Muhsana Ali."
 coverImage: "/oeuvre/peintures/Muhsana1.webp"
 images:
   - "/oeuvre/peintures/Muhsana1.webp"
@@ -29,4 +29,4 @@ images:
   - "/oeuvre/peintures/image.webp"
 ---
 
-Peintures & Toiles par Muhsana Ali.
+Paintings & Canvas Works by Muhsana Ali.

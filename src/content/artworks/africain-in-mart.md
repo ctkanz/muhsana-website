@@ -5,9 +5,8 @@ category: photography
 categoryLabel: Muhsana 2011
 badge: Muhsana 2011
 order: 5
-desc: "Photography : Série de portraits et photographies documentaires (2011)."
-cardDesc: "Photography : Série de portraits et photographies documentaires sur
-  la vie à Mart, Texas."
+desc: "Photography: Portrait series and documentary photography (2011)."
+cardDesc: "Photography: Portrait series and documentary photography about life in Mart, Texas."
 coverImage: /oeuvre/africain-in-mart/Mart Sept photos sessions 009_edited.webp
 images:
   - /oeuvre/africain-in-mart/130.webp
@@ -35,4 +34,4 @@ images:
   - /oeuvre/africain-in-mart/Mart Sept photos sessions 092.webp
 ---
 
-Africain in Mart par Muhsana Ali.
+Africain in Mart by Muhsana Ali.

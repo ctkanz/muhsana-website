@@ -1,11 +1,11 @@
 ---
 title: "Association Portes & Passages du Retour"
-subtitle: "Un espace vivant d'innovation artistique, d'architecture alternative et d'échange interculturel à Mbodiène (Sénégal)"
-badge: "Centre Culturel & Développement Holistique"
+subtitle: "A living space of artistic innovation, alternative architecture, and intercultural exchange in Mbodiène (Senegal)"
+badge: "Cultural Center & Holistic Development"
 order: 7
 heroImage: "/project-association/Architecture Alternative.webp"
-metaTitle: "Association Portes & Passages du Retour | Muhsana Ali"
-metaDescription: "Découvrez l'Association Portes & Passages du Retour co-fondée par Muhsana Ali - Centre d'art et de développement holistique à Mbodiène, Sénégal."
+metaTitle: "Portes & Passages du Retour Association | Muhsana Ali"
+metaDescription: "Discover the Portes & Passages du Retour Association co-founded by Muhsana Ali — Art and holistic development center in Mbodiène, Senegal."
 galleryImages:
   - "/project-association/Architecture Alternative.webp"
   - "/project-association/AGROCAMP.webp"
@@ -32,25 +32,25 @@ paragraphs:
   - "Portes et Passages is situated between the villages of Mbodiene and the town of Joal-Fadiouth, which houses the largest fishing port in Senegal. The association is committed to the raising the awareness of creative values and to improving the manner in which such values are manifested in the everyday lives of inhabitants throughout the region. Intercultural exchange is encouraged through our engagement with artists, institutions and volunteers, in order to increase the dynamic manner in which African development may be enhanced."
 externalLinks:
   - icon: "🌐"
-    tag: "Site Web Officiel de l'Association"
+    tag: "Official Association Website"
     title: "Portes et Passages du Retour"
-    desc: "Visitez le site officiel de l'association pour découvrir tous les programmes et actualités du centre."
+    desc: "Visit the official association website to explore all programs and news from the center."
     url: "https://www.portesetpassagesduretour.com/"
-    btnText: "Visiter le site web"
+    btnText: "Visit website"
   - icon: "🎬"
-    tag: "Vidéo de Présentation"
+    tag: "Presentation Video"
     title: "Portes et Passages du Retour Video"
-    desc: "Visionnez la vidéo de présentation du centre et de ses actions à Mbodiène."
+    desc: "Watch the video presentation of the center and its activities in Mbodiène."
     url: "https://vimeo.com/44733858"
-    btnText: "Regarder sur Vimeo"
+    btnText: "Watch on Vimeo"
 sidebarMeta:
-  - label: "Année de création"
-    value: "2007 (Toujours actif)"
-  - label: "Localisation"
-    value: "Mbodiène, Région de Thiès, Sénégal"
-  - label: "Fondatrice"
+  - label: "Creation Year"
+    value: "2007 (Currently Active)"
+  - label: "Location"
+    value: "Mbodiène, Thiès Region, Senegal"
+  - label: "Founder"
     value: "Muhsana Ali"
-  - label: "Partenaires Majeurs"
+  - label: "Major Partners"
     value: "DOEN Foundation, Arts Collaboratory, University of Michigan, AIA"
 prevProject:
   slug: "doors"
@@ -65,4 +65,4 @@ showNav: true
 showVideo: true
 ---
 
-Association Portes & Passages du Retour par Muhsana Ali.
+Portes & Passages du Retour Association by Muhsana Ali.

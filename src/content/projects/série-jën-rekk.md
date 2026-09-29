@@ -1,13 +1,12 @@
 ---
-title: Série Jën Rekk
-subtitle: Sculptures explorant la vie côtière, l'océan et la culture maritime du Sénégal
+title: Jën Rekk Series
+subtitle: Sculptures exploring coastal life, the ocean, and Senegal's maritime culture
 badge: Sculpture & Installation
 section: principaux
 order: 3
 heroImage: /project-jen-rekk/1.webp
-metaTitle: Série Jën Rekk | Muhsana Ali
-metaDescription: Découvrez la Série Jën Rekk par Muhsana Ali - Sculptures et
-  installations explorant la vie côtière et l'écosystème marin sénégalais.
+metaTitle: Jën Rekk Series | Muhsana Ali
+metaDescription: Discover the Jën Rekk Series by Muhsana Ali — Sculptures and installations exploring coastal life and the Senegalese marine ecosystem.
 galleryImages:
   - /project-jen-rekk/1.webp
   - /project-jen-rekk/2.webp
@@ -57,14 +56,14 @@ paragraphs:
     to expand the creative repertoire of these painters by transferring their
     imagery to the walls of the city.
 sidebarMeta:
-  - label: Médium
-    value: Sculpture bois, bronze, matériaux de récupération, fer
-  - label: Origine
-    value: Mbodiène & Dakar, Sénégal
-  - label: Expositions
-    value: Biennale de Dakar (Dak'Art), Expositions internationales
-  - label: Thématique
-    value: Écologie marine, tradition maritime wolof, mémoire
+  - label: Medium
+    value: Wood sculpture, bronze, reclaimed materials, iron
+  - label: Origin
+    value: Mbodiène & Dakar, Senegal
+  - label: Exhibitions
+    value: Dakar Biennale (Dak'Art), International exhibitions
+  - label: Theme
+    value: Marine ecology, Wolof maritime tradition, memory
 showGallery: true
 showExternalLinks: true
 showSidebarMeta: true
@@ -72,4 +71,4 @@ showNav: true
 showVideo: true
 ---
 
-Série Jën Rekk par Muhsana Ali.
+Jën Rekk Series by Muhsana Ali.

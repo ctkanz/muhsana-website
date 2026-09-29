@@ -6,9 +6,9 @@ interface Props {
 }
 
 const {
-  memorialBtnText = "Voir le mémorial",
+  memorialBtnText = "View Memorial",
   memorialBtnUrl = "/projects/bethel",
-  scrollBtnText = "Explorer",
+  scrollBtnText = "Explore",
 } = Astro.props;
 ---
 
@@ -16,7 +16,7 @@ const {
   <video class="hero-video" id="heroVideo" autoplay loop muted playsinline preload="auto">
     <source src="/les-oiseaux-web.webm" type="video/webm">
     <source src="/les-oiseaux-web.mp4" type="video/mp4">
-    Votre navigateur ne prend pas en charge la lecture de cette vidéo.
+    Your browser does not support video playback.
   </video>
 
   <!-- Transparent Overlay to keep video text 100% visible -->
@@ -24,12 +24,12 @@ const {
 
   <div class="hero-bottom-actions">
     <!-- Floating Link for Bethel Burying Ground -->
-    <a href={memorialBtnUrl} class="hero-memorial-btn" title="Découvrir le projet Bethel Burying Ground">
+    <a href={memorialBtnUrl} class="hero-memorial-btn" title="Discover the Bethel Burying Ground project">
       <span>{memorialBtnText}</span>
       <span class="memorial-arrow">→</span>
     </a>
 
-    <a href="#about" class="scroll-indicator" aria-label="Défiler vers le bas">
+    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
       <div class="scroll-mouse">
         <div class="scroll-wheel"></div>
       </div>

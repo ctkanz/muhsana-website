@@ -1,14 +1,12 @@
 ---
 title: Presence of a Fundamental Absence
-subtitle: Méditation visuelle et sculpturale sur le vide, le déracinement et les
-  traces de l'histoire
-badge: Installation Conceptuelle
+subtitle: Visual and sculptural meditation on emptiness, uprooting, and traces of history
+badge: Conceptual Installation
 section: principaux
 order: 5
 heroImage: /project-presence/1.webp
 metaTitle: Presence of a Fundamental Absence | Muhsana Ali
-metaDescription: Découvrez Presence of a Fundamental Absence par Muhsana Ali -
-  Méditation visuelle et sculpturale sur le vide, le déracinement et la mémoire.
+metaDescription: Discover Presence of a Fundamental Absence by Muhsana Ali — Visual and sculptural meditation on emptiness, uprooting, and memory.
 galleryImages:
   - /project-presence/1.webp
   - /project-presence/2.webp
@@ -59,11 +57,11 @@ paragraphs:
     and its outcome: capitalism, this conglomeration represents the results; the
     presence of the fundamental absence."
 sidebarMeta:
-  - label: Médium
-    value: Installation multimédia, sculpture, textile, ombre & lumière
-  - label: Thématiques
-    value: Mémoire, Diaspora africaine, Absence & Présence
-  - label: Artiste
+  - label: Medium
+    value: Multimedia installation, sculpture, textile, shadow & light
+  - label: Themes
+    value: Memory, African Diaspora, Absence & Presence
+  - label: Artist
     value: Muhsana Ali
 prevProject:
   slug: bethel
@@ -78,4 +76,4 @@ showNav: true
 showVideo: true
 ---
 
-Presence of a Fundamental Absence par Muhsana Ali.
+Presence of a Fundamental Absence by Muhsana Ali.

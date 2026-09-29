@@ -38,8 +38,8 @@ const matchingBlock = homeBlocks.find(
   (b: any) => b.type === 'projects_block' && (b.sectionFilter === project.section || !project.section)
 ) || homeBlocks.find((b: any) => b.type === 'projects_block');
 
-const prevBtnText = matchingBlock?.prevBtnText || "← Projet précédent";
-const nextBtnText = matchingBlock?.nextBtnText || "Projet suivant →";
+const prevBtnText = matchingBlock?.prevBtnText || "← Previous project";
+const nextBtnText = matchingBlock?.nextBtnText || "Next project →";
 
 const prevNav = prevProject || project.prevProject;
 const nextNav = nextProject || project.nextProject;
@@ -121,7 +121,7 @@ const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.starts
       <aside class="project-sidebar">
         {(project.showSidebarMeta ?? true) && project.sidebarMeta && project.sidebarMeta.length > 0 && (
           <div class="project-meta-card">
-            <h3 class="meta-card-title">Fiche Technique</h3>
+            <h3 class="meta-card-title">Technical Specifications</h3>
             
             {project.sidebarMeta.map((item) => (
               <div class="meta-item">
@@ -156,12 +156,12 @@ const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.starts
     {(project.showVideo ?? true) && project.embeddedVideoYoutubeUrl && (
       <div class="embedded-video-fullwidth" style="margin-top: 3.5rem; width: 100%;">
         <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 1.2rem; color: var(--text-main); text-align: center;">
-          Présentation Vidéo Officielle
+          Official Video Presentation
         </h3>
         <div style="position: relative; padding-bottom: 52%; height: 0; overflow: hidden; border-radius: var(--radius-md); border: 1px solid var(--border-hover); box-shadow: 0 20px 50px rgba(0,0,0,0.8); background: #000;">
           <iframe 
             src={project.embeddedVideoYoutubeUrl} 
-            title="Présentation vidéo officielle" 
+            title="Official Video Presentation" 
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             allowfullscreen>
@@ -172,6 +172,6 @@ const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.starts
   </main>
 
   <footer class="footer" style="padding: 2rem 3rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.85rem;">
-    <p>© Muhsana Ali. Tous droits réservés. <a href="/#projects" style="color: var(--accent-gold); margin-left: 1rem;">← Retour au site principal</a></p>
+    <p>© Muhsana Ali. All rights reserved. <a href="/#projects" style="color: var(--accent-gold); margin-left: 1rem;">← Back to main site</a></p>
   </footer>
 </BaseLayout>

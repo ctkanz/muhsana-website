@@ -7,10 +7,10 @@ interface Props {
 }
 
 const {
-  title = "Parcours Artistique de Muhsana Ali",
-  subtitle = "Géographie & Parcours International",
-  description = "Explorez les villes, résidences, expositions et projets communautaires à travers l'Afrique, l'Europe et les États-Unis.",
-  timelineBtnText = "Chronologie",
+  title = "Artistic Journey of Muhsana Ali",
+  subtitle = "Geography & International Journey",
+  description = "Explore cities, residencies, exhibitions, and community projects across Africa, Europe, and the United States.",
+  timelineBtnText = "Timeline",
 } = Astro.props;
 ---
 
@@ -24,12 +24,12 @@ const {
 
   <!-- Map Filter Buttons -->
   <div class="map-filters" id="mapFilters">
-    <button class="filter-btn active" data-filter="all">Tous</button>
-    <button class="filter-btn" data-filter="education">Formation</button>
-    <button class="filter-btn" data-filter="exhibition">Expositions</button>
-    <button class="filter-btn" data-filter="residency">Résidences</button>
-    <button class="filter-btn" data-filter="project">Projets</button>
-    <button class="filter-btn" data-filter="conference">Conférences</button>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="education">Education</button>
+    <button class="filter-btn" data-filter="exhibition">Exhibitions</button>
+    <button class="filter-btn" data-filter="residency">Residencies</button>
+    <button class="filter-btn" data-filter="project">Projects</button>
+    <button class="filter-btn" data-filter="conference">Conferences</button>
     <button class="filter-btn timeline-btn" id="btnPlayTimeline"><span class="timeline-icon">▶</span> {timelineBtnText}</button>
   </div>
 
@@ -42,13 +42,13 @@ const {
     <!-- Info Details Drawer / Panel -->
     <aside class="map-info-panel" id="mapInfoPanel">
       <div class="info-panel-header">
-        <h3 id="panelLocationTitle">Sélectionnez un point</h3>
-        <p id="panelLocationSubtitle" class="panel-subtitle">Cliquez sur un marqueur de la carte pour afficher les détails du parcours.</p>
+        <h3 id="panelLocationTitle">Select a location</h3>
+        <p id="panelLocationSubtitle" class="panel-subtitle">Click on a map marker to display journey details.</p>
       </div>
       <div class="info-panel-content" id="panelLocationEvents">
         <div class="info-empty-state">
           <span class="empty-icon">📍</span>
-          <p>Découvrez les événements, expositions et projets communautaires organisés dans chaque ville.</p>
+          <p>Discover events, exhibitions, and community projects organized in each city.</p>
         </div>
       </div>
     </aside>

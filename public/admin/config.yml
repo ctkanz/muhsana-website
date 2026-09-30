@@ -17,12 +17,16 @@ collections:
       - { label: "Project Title", name: "title", widget: "string" }
       - { label: "Subtitle / Short Description", name: "subtitle", widget: "string" }
       - { label: "Display Badge", name: "badge", widget: "string", default: "Project" }
-      - label: "Place in Section"
+      - label: "Place in Section (Select from Homepage Sections)"
         name: "section"
-        widget: "select"
-        options:
-          - { label: "Projets Principaux (principaux)", value: "principaux" }
-        default: "principaux"
+        widget: "relation"
+        collection: "pages"
+        file: "home_en"
+        search_fields: ["blocks.*.title", "blocks.*.sectionFilter"]
+        value_field: "blocks.*.sectionFilter"
+        display_fields: ["blocks.*.title"]
+        hint: "💡 Choose the desired project section (e.g. Featured Projects)."
+        required: false
       - { label: "Display Order", name: "order", widget: "number", default: 1 }
       - { label: "Hero Cover Image", name: "heroImage", widget: "image" }
       - { label: "Meta Title (SEO)", name: "metaTitle", widget: "string", required: false }
@@ -66,12 +70,16 @@ collections:
       - { label: "Titre du Projet", name: "title", widget: "string" }
       - { label: "Sous-titre / Courte Description", name: "subtitle", widget: "string" }
       - { label: "Badge d'affichage", name: "badge", widget: "string", default: "Projet" }
-      - label: "Placement dans la Section"
+      - label: "Placement dans la Section (Sélectionner depuis les sections d'accueil)"
         name: "section"
-        widget: "select"
-        options:
-          - { label: "Projets Principaux (principaux)", value: "principaux" }
-        default: "principaux"
+        widget: "relation"
+        collection: "pages"
+        file: "home_fr"
+        search_fields: ["blocks.*.title", "blocks.*.sectionFilter"]
+        value_field: "blocks.*.sectionFilter"
+        display_fields: ["blocks.*.title"]
+        hint: "💡 Choisissez la section de destination pour ce projet (ex: Projets Principaux)."
+        required: false
       - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
       - { label: "Image de Couverture Hero", name: "heroImage", widget: "image" }
       - { label: "Titre Meta (SEO)", name: "metaTitle", widget: "string", required: false }

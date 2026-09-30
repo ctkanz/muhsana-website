@@ -14,16 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const soundText = document.getElementById('soundText');
   let userWantsSound = false;
 
+  const currentLang = document.documentElement.lang || 'en';
+  const isFrDoc = currentLang === 'fr';
+
   const updateSoundUI = (isMuted) => {
     if (!soundIcon || !soundText || !soundBtn) return;
     if (isMuted) {
       soundIcon.textContent = '🔇';
-      soundText.textContent = 'Activer le son';
+      soundText.textContent = isFrDoc ? 'Activer le son' : 'Enable Sound';
       soundBtn.style.borderColor = 'var(--border-color)';
       soundBtn.style.color = 'var(--text-main)';
     } else {
       soundIcon.textContent = '🔊';
-      soundText.textContent = 'Son Activé';
+      soundText.textContent = isFrDoc ? 'Son Activé' : 'Sound On';
       soundBtn.style.borderColor = 'var(--accent-gold)';
       soundBtn.style.color = 'var(--accent-gold)';
     }
@@ -394,14 +397,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const panelSubtitle = document.getElementById('panelLocationSubtitle');
     const panelEvents = document.getElementById('panelLocationEvents');
 
-    fetch('/journey.json')
+    const currentLang = document.documentElement.lang || 'en';
+    const journeyJsonUrl = currentLang === 'fr' ? '/journey.fr.json' : '/journey.json';
+
+    fetch(journeyJsonUrl)
       .then(response => response.json())
       .then(data => {
         journeyData = data;
         renderMapMarkers();
       })
       .catch(err => {
-        console.error('Erreur lors du chargement de journey.json:', err);
+        console.error('Erreur lors du chargement de journey data:', err);
       });
 
     function renderMapMarkers() {
@@ -426,7 +432,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const marker = L.marker([location.lat, location.lng], { icon: customPinIcon });
 
-        const eventCountText = `${matchingEvents.length} événement${matchingEvents.length > 1 ? 's' : ''}`;
+        const eventCountText = isFrDoc
+          ? `${matchingEvents.length} événement${matchingEvents.length > 1 ? 's' : ''}`
+          : `${matchingEvents.length} event${matchingEvents.length > 1 ? 's' : ''}`;
+
         const popupHTML = `
           <div style="text-align: center; padding: 0.3rem;">
             <div class="popup-custom-title">${location.city}</div>
@@ -448,7 +457,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayLocationDetails(location, events) {
       if (!panelTitle || !panelSubtitle || !panelEvents) return;
       panelTitle.textContent = `${location.city}, ${location.country}`;
-      panelSubtitle.textContent = `${events.length} event${events.length > 1 ? 's' : ''} listed`;
+      panelSubtitle.textContent = isFrDoc
+        ? `${events.length} événement${events.length > 1 ? 's' : ''} répertorié${events.length > 1 ? 's' : ''}`
+        : `${events.length} event${events.length > 1 ? 's' : ''} listed`;
 
       const sortedEvents = [...events].sort((a, b) => b.year - a.year);
 
@@ -485,12 +496,12 @@ document.addEventListener('DOMContentLoaded', () => {
         map.flyTo([20, -20], 2.5, { duration: 2.2 });
 
         if (panelTitle && panelSubtitle && panelEvents) {
-          panelTitle.textContent = 'Select a location';
-          panelSubtitle.textContent = 'Click on a map marker to display journey details.';
+          panelTitle.textContent = isFrDoc ? 'Sélectionnez un lieu' : 'Select a location';
+          panelSubtitle.textContent = isFrDoc ? 'Cliquez sur un repère pour afficher les détails du parcours.' : 'Click on a map marker to display journey details.';
           panelEvents.innerHTML = `
             <div class="info-empty-state">
               <span class="empty-icon">📍</span>
-              <p>Discover events, exhibitions, and community projects organized in each city.</p>
+              <p>${isFrDoc ? 'Découvrez les événements, expositions et projets communautaires organisés dans chaque ville.' : 'Discover events, exhibitions, and community projects organized in each city.'}</p>
             </div>
           `;
         }
@@ -512,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isTimelineAnimating = false;
       if (btnPlayTimeline) {
         btnPlayTimeline.classList.remove('is-playing');
-        btnPlayTimeline.innerHTML = `<span class="timeline-icon">▶</span> Timeline`;
+        btnPlayTimeline.innerHTML = `<span class="timeline-icon">▶</span> ${isFrDoc ? 'Chronologie' : 'Timeline'}`;
       }
     }
 
@@ -567,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (currentIdx >= validLocations.length) {
           if (tickerYearVal) tickerYearVal.textContent = '2026';
-          if (tickerLocationName) tickerLocationName.textContent = "Muhsana Ali's Journey";
+          if (tickerLocationName) tickerLocationName.textContent = isFrDoc ? "Parcours de Muhsana Ali" : "Muhsana Ali's Journey";
 
           map.flyTo([20, -20], 2.5, { duration: 2.5 });
 
@@ -592,7 +603,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const marker = L.marker([loc.lat, loc.lng], { icon: customPinIcon });
-        const eventCountText = `${loc.matchingEvents.length} event${loc.matchingEvents.length > 1 ? 's' : ''}`;
+        const eventCountText = isFrDoc
+          ? `${loc.matchingEvents.length} événement${loc.matchingEvents.length > 1 ? 's' : ''}`
+          : `${loc.matchingEvents.length} event${loc.matchingEvents.length > 1 ? 's' : ''}`;
         const popupHTML = `
           <div style="text-align: center; padding: 0.3rem;">
             <div class="popup-custom-title">${loc.city}</div>

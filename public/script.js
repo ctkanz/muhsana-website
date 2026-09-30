@@ -640,14 +640,31 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    const triggerMapResize = () => {
+      if (map) {
+        try {
+          map.invalidateSize();
+        } catch (e) {}
+      }
+    };
+
+    setTimeout(triggerMapResize, 100);
+    setTimeout(triggerMapResize, 500);
+    setTimeout(triggerMapResize, 1200);
+
+    if ('ResizeObserver' in window && mapElement) {
+      const resizeObserver = new ResizeObserver(() => {
+        triggerMapResize();
+      });
+      resizeObserver.observe(mapElement);
+    }
+
     const mapSectionEl = document.getElementById('interactive-map');
     if (mapSectionEl && 'IntersectionObserver' in window) {
       const mapObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            if (map) {
-              try { map.invalidateSize(); } catch(e) {}
-            }
+            triggerMapResize();
             if (!mapSectionEl.dataset.timelineTriggered) {
               mapSectionEl.dataset.timelineTriggered = 'true';
               setTimeout(() => {

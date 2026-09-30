@@ -7,31 +7,22 @@ backend:
 media_folder: "public"
 public_folder: ""
 
-i18n:
-  structure: multiple_folders
-  locales: [en, fr]
-  default_locale: en
-
 collections:
-  - name: "projects"
-    label: "Community Projects"
+  - name: "projects_en"
+    label: "Projets (Anglais / EN)"
     folder: "src/content/projects/en"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Project Title", name: "title", widget: "string" }
       - { label: "Subtitle / Short Description", name: "subtitle", widget: "string" }
-      - { label: "Display Badge (e.g. Project, Workshop, Installation...)", name: "badge", widget: "string", default: "Project" }
-      - label: "Place in Section (Select from Homepage Sections)"
+      - { label: "Display Badge", name: "badge", widget: "string", default: "Project" }
+      - label: "Place in Section"
         name: "section"
-        widget: "relation"
-        collection: "pages"
-        file: "en/home"
-        search_fields: ["blocks.*.title", "blocks.*.sectionFilter"]
-        value_field: "blocks.*.sectionFilter"
-        display_fields: ["blocks.*.title"]
-        hint: "💡 Choose the desired project section (e.g. Featured Projects)."
-        required: false
+        widget: "select"
+        options:
+          - { label: "Projets Principaux (principaux)", value: "principaux" }
+        default: "principaux"
       - { label: "Display Order", name: "order", widget: "number", default: 1 }
       - { label: "Hero Cover Image", name: "heroImage", widget: "image" }
       - { label: "Meta Title (SEO)", name: "metaTitle", widget: "string", required: false }
@@ -66,23 +57,72 @@ collections:
       - { label: "👁️ DISPLAY: Previous / Next Navigation", name: "showNav", widget: "boolean", default: true, required: false }
       - { label: "👁️ DISPLAY: YouTube Video", name: "showVideo", widget: "boolean", default: true, required: false }
 
+  - name: "projects_fr"
+    label: "Projets (Français / FR)"
+    folder: "src/content/projects/fr"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre du Projet", name: "title", widget: "string" }
+      - { label: "Sous-titre / Courte Description", name: "subtitle", widget: "string" }
+      - { label: "Badge d'affichage", name: "badge", widget: "string", default: "Projet" }
+      - label: "Placement dans la Section"
+        name: "section"
+        widget: "select"
+        options:
+          - { label: "Projets Principaux (principaux)", value: "principaux" }
+        default: "principaux"
+      - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
+      - { label: "Image de Couverture Hero", name: "heroImage", widget: "image" }
+      - { label: "Titre Meta (SEO)", name: "metaTitle", widget: "string", required: false }
+      - { label: "Description Meta (SEO)", name: "metaDescription", widget: "text", required: false }
+      - { label: "Galerie d'images", name: "galleryImages", widget: "list", required: false, field: { label: "Image", name: "image", widget: "image" } }
+      - { label: "Titre de Section Principale", name: "mainHeading", widget: "string", required: false }
+      - { label: "Paragraphe d'introduction", name: "leadParagraph", widget: "text", required: false }
+      - { label: "Paragraphes détaillés", name: "paragraphs", widget: "list", required: false, field: { label: "Paragraphe", name: "paragraph", widget: "text" } }
+      - { label: "Citation de l'Artiste", name: "quote", widget: "string", required: false }
+      - label: "Articles & Liens Externe"
+        name: "externalLinks"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Icône Émoji", name: "icon", widget: "string" }
+          - { label: "Tag / Source", name: "tag", widget: "string" }
+          - { label: "Titre de l'article", name: "title", widget: "string" }
+          - { label: "Description", name: "desc", widget: "text" }
+          - { label: "URL du lien", name: "url", widget: "string" }
+          - { label: "Texte du bouton", name: "btnText", widget: "string" }
+      - label: "Fiche Technique (Barre latérale)"
+        name: "sidebarMeta"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Étiquette (ex: Année)", name: "label", widget: "string" }
+          - { label: "Valeur (ex: 2023)", name: "value", widget: "string" }
+      - { label: "URL de la vidéo YouTube", name: "embeddedVideoYoutubeUrl", widget: "string", required: false }
+      - { label: "👁️ AFFICHAGE: Galerie d'Images", name: "showGallery", widget: "boolean", default: true, required: false }
+      - { label: "👁️ AFFICHAGE: Articles & Liens", name: "showExternalLinks", widget: "boolean", default: true, required: false }
+      - { label: "👁️ AFFICHAGE: Fiche Technique", name: "showSidebarMeta", widget: "boolean", default: true, required: false }
+      - { label: "👁️ AFFICHAGE: Navigation Précédent / Suivant", name: "showNav", widget: "boolean", default: true, required: false }
+      - { label: "👁️ AFFICHAGE: Vidéo YouTube", name: "showVideo", widget: "boolean", default: true, required: false }
 
-  - name: "artworks"
-    label: "Artworks & Galleries"
+  - name: "artworks_en"
+    label: "Œuvres (Anglais / EN)"
     folder: "src/content/artworks/en"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Full Series Title", name: "title", widget: "string" }
       - { label: "Display Title", name: "displayTitle", widget: "string" }
-      - label: "Filter Category (Select from Homepage Filters)"
+      - label: "Filter Category"
         name: "category"
-        widget: "relation"
-        collection: "pages"
-        file: "en/home"
-        search_fields: ["artworkFilters.*.label", "artworkFilters.*.value"]
-        value_field: "artworkFilters.*.value"
-        display_fields: ["artworkFilters.*.label"]
+        widget: "select"
+        options:
+          - { label: "Sculpture & Installation", value: "sculpture" }
+          - { label: "Alternative Mosaic", value: "mosaic" }
+          - { label: "Photography", value: "photography" }
+          - { label: "Painting", value: "peinture" }
+        default: "sculpture"
       - { label: "Subtitle / Category Label", name: "categoryLabel", widget: "string", required: false }
       - { label: "Display Badge", name: "badge", widget: "string" }
       - { label: "Display Order", name: "order", widget: "number", default: 1 }
@@ -91,12 +131,37 @@ collections:
       - { label: "Cover Image", name: "coverImage", widget: "image" }
       - { label: "Image Gallery (Lightbox Slideshow)", name: "images", widget: "list", required: false, field: { label: "Image", name: "image", widget: "image" } }
 
+  - name: "artworks_fr"
+    label: "Œuvres (Français / FR)"
+    folder: "src/content/artworks/fr"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre de la Série", name: "title", widget: "string" }
+      - { label: "Titre d'Affichage", name: "displayTitle", widget: "string" }
+      - label: "Catégorie de Filtre"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Sculpture & Installation", value: "sculpture" }
+          - { label: "Mosaïque Alternative", value: "mosaic" }
+          - { label: "Photographie", value: "photography" }
+          - { label: "Peinture", value: "peinture" }
+        default: "sculpture"
+      - { label: "Sous-titre / Catégorie", name: "categoryLabel", widget: "string", required: false }
+      - { label: "Badge d'affichage", name: "badge", widget: "string" }
+      - { label: "Ordre d'affichage", name: "order", widget: "number", default: 1 }
+      - { label: "Courte Description", name: "desc", widget: "string" }
+      - { label: "Description sur Carte", name: "cardDesc", widget: "text" }
+      - { label: "Image de Couverture", name: "coverImage", widget: "image" }
+      - { label: "Galerie d'Images", name: "images", widget: "list", required: false, field: { label: "Image", name: "image", widget: "image" } }
+
   - name: "pages"
     label: "Site Pages"
     files:
       - file: "src/content/pages/en/home.json"
-        label: "Home Page (Configuration & Blocks)"
-        name: "home"
+        label: "Home Page (EN)"
+        name: "home_en"
         fields:
           - label: "SEO Meta Title"
             name: "title"
@@ -162,3 +227,72 @@ collections:
             fields:
               - { label: "Filter Label (e.g. Sculpture & Installation)", name: "label", widget: "string" }
               - { label: "Filter ID (e.g. sculpture, mosaic, photography, peinture)", name: "value", widget: "string" }
+
+      - file: "src/content/pages/fr/home.json"
+        label: "Page d'Accueil (FR)"
+        name: "home_fr"
+        fields:
+          - label: "Titre SEO"
+            name: "title"
+            widget: "string"
+            default: "Muhsana Ali | Artiste Multidisciplinaire"
+          - label: "Description SEO"
+            name: "description"
+            widget: "text"
+            default: "Site officiel de l'artiste Muhsana Ali."
+          - label: "Blocs & Sections de la Page d'Accueil"
+            name: "blocks"
+            widget: "list"
+            types:
+              - label: "Section Hero (Bannière d'en-tête)"
+                name: "hero_block"
+                widget: "object"
+                fields:
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+                  - { label: "Texte du bouton mémorial", name: "memorialBtnText", widget: "string", default: "Voir le mémorial" }
+                  - { label: "URL du bouton mémorial", name: "memorialBtnUrl", widget: "string", default: "/fr/projects/bethel" }
+                  - { label: "Texte du bouton défiler / explorer", name: "scrollBtnText", widget: "string", default: "Explorer" }
+              - label: "Section À Propos"
+                name: "about_block"
+                widget: "object"
+                fields:
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+                  - { label: "Titre de la section", name: "title", widget: "string", default: "À Propos de Muhsana" }
+                  - { label: "Texte dans le menu de navigation", name: "navTitle", widget: "string", default: "À Propos", required: false }
+                  - { label: "Sous-titre / En-tête", name: "subtitle", widget: "string", default: "Démarche & Vision" }
+              - label: "Section Projets"
+                name: "projects_block"
+                widget: "object"
+                fields:
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+                  - { label: "Titre de la section", name: "title", widget: "string", default: "Projets Principaux" }
+                  - { label: "Texte dans le menu de navigation", name: "navTitle", widget: "string", default: "Projets", required: false }
+                  - { label: "Sous-titre de la section", name: "subtitle", widget: "string", default: "Engagement Communautaire & Œuvres Majeures" }
+                  - { label: "ID Filtre de Section", name: "sectionFilter", widget: "string", default: "principaux" }
+                  - { label: "Texte du bouton carte projet", name: "cardBtnText", widget: "string", default: "Découvrir le projet →" }
+                  - { label: "Texte bouton Projet Précédent", name: "prevBtnText", widget: "string", default: "← Projet précédent", required: false }
+                  - { label: "Texte bouton Projet Suivant", name: "nextBtnText", widget: "string", default: "Projet suivant →", required: false }
+              - label: "Section Œuvres & Galeries"
+                name: "artworks_block"
+                widget: "object"
+                fields:
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+                  - { label: "Titre de la section", name: "title", widget: "string", default: "Œuvres" }
+                  - { label: "Texte dans le menu de navigation", name: "navTitle", widget: "string", default: "Œuvres", required: false }
+                  - { label: "Sous-titre de la section", name: "subtitle", widget: "string", default: "Exploration Visuelle & Sculpturale" }
+              - label: "Section Carte Interactive"
+                name: "map_block"
+                widget: "object"
+                fields:
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+                  - { label: "Titre de la section", name: "title", widget: "string", default: "Parcours Artistique de Muhsana Ali" }
+                  - { label: "Texte dans le menu de navigation", name: "navTitle", widget: "string", default: "Parcours (Carte)", required: false }
+                  - { label: "Sous-titre de la section", name: "subtitle", widget: "string", default: "Géographie & Parcours International" }
+                  - { label: "Description de la section", name: "description", widget: "text", default: "Explorez les villes, résidences, expositions et projets communautaires à travers l'Afrique, l'Europe et les États-Unis." }
+                  - { label: "Texte du bouton chronologie", name: "timelineBtnText", widget: "string", default: "Chronologie" }
+          - label: "Filtres de Galeries d'Œuvres"
+            name: "artworkFilters"
+            widget: "list"
+            fields:
+              - { label: "Étiquette du filtre", name: "label", widget: "string" }
+              - { label: "ID du filtre", name: "value", widget: "string" }

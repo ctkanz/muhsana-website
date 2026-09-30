@@ -50,7 +50,7 @@ const {
 
 <body>
 
-  <Navbar isProjectPage={isProjectPage} lang={lang} />
+  <Navbar isProjectPage={isProjectPage} lang={lang} currentPath={Astro.url.pathname} />
 
   <slot />
 

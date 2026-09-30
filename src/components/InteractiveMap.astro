@@ -4,6 +4,7 @@ interface Props {
   subtitle?: string;
   description?: string;
   timelineBtnText?: string;
+  lang?: 'en' | 'fr';
 }
 
 const {
@@ -11,7 +12,30 @@ const {
   subtitle = "Geography & International Journey",
   description = "Explore cities, residencies, exhibitions, and community projects across Africa, Europe, and the United States.",
   timelineBtnText = "Timeline",
+  lang = "en",
 } = Astro.props;
+
+const labels = lang === 'fr' ? {
+  all: "Tous",
+  education: "Formation",
+  exhibitions: "Expositions",
+  residencies: "Résidences",
+  projects: "Projets",
+  conferences: "Conférences",
+  selectLocation: "Sélectionnez un lieu",
+  clickMarker: "Cliquez sur un repère pour afficher les détails du parcours.",
+  emptyDesc: "Découvrez les événements, expositions et projets communautaires organisés dans chaque ville."
+} : {
+  all: "All",
+  education: "Education",
+  exhibitions: "Exhibitions",
+  residencies: "Residencies",
+  projects: "Projects",
+  conferences: "Conferences",
+  selectLocation: "Select a location",
+  clickMarker: "Click on a map marker to display journey details.",
+  emptyDesc: "Discover events, exhibitions, and community projects organized in each city."
+};
 ---
 
 <section class="section" id="interactive-map">
@@ -24,12 +48,12 @@ const {
 
   <!-- Map Filter Buttons -->
   <div class="map-filters" id="mapFilters">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="education">Education</button>
-    <button class="filter-btn" data-filter="exhibition">Exhibitions</button>
-    <button class="filter-btn" data-filter="residency">Residencies</button>
-    <button class="filter-btn" data-filter="project">Projects</button>
-    <button class="filter-btn" data-filter="conference">Conferences</button>
+    <button class="filter-btn active" data-filter="all">{labels.all}</button>
+    <button class="filter-btn" data-filter="education">{labels.education}</button>
+    <button class="filter-btn" data-filter="exhibition">{labels.exhibitions}</button>
+    <button class="filter-btn" data-filter="residency">{labels.residencies}</button>
+    <button class="filter-btn" data-filter="project">{labels.projects}</button>
+    <button class="filter-btn" data-filter="conference">{labels.conferences}</button>
     <button class="filter-btn timeline-btn" id="btnPlayTimeline"><span class="timeline-icon">▶</span> {timelineBtnText}</button>
   </div>
 
@@ -42,13 +66,13 @@ const {
     <!-- Info Details Drawer / Panel -->
     <aside class="map-info-panel" id="mapInfoPanel">
       <div class="info-panel-header">
-        <h3 id="panelLocationTitle">Select a location</h3>
-        <p id="panelLocationSubtitle" class="panel-subtitle">Click on a map marker to display journey details.</p>
+        <h3 id="panelLocationTitle">{labels.selectLocation}</h3>
+        <p id="panelLocationSubtitle" class="panel-subtitle">{labels.clickMarker}</p>
       </div>
       <div class="info-panel-content" id="panelLocationEvents">
         <div class="info-empty-state">
           <span class="empty-icon">📍</span>
-          <p>Discover events, exhibitions, and community projects organized in each city.</p>
+          <p>{labels.emptyDesc}</p>
         </div>
       </div>
     </aside>

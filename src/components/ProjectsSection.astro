@@ -46,20 +46,23 @@ const projects = sortedProjects.map((item) => ({
   </div>
 
   <div class="projects-cards-grid">
-    {projects.map((project) => (
-      <article class="project-card" id={project.id}>
-        <a href={`/projects/${project.slug}`} class="project-card-link-wrapper">
-          <div class="project-card-image-wrapper">
-            <img src={project.image} alt={project.title} class="project-card-image" />
-            <span class="project-card-badge">{project.badge}</span>
-          </div>
-          <div class="project-card-content">
-            <h3 class="project-card-title">{project.title}</h3>
-            <p class="project-card-desc">{project.desc}</p>
-            <span class="project-card-cta">{cardBtnText}</span>
-          </div>
-        </a>
-      </article>
-    ))}
+    {projects.map((project) => {
+      const projectUrl = lang === 'en' ? `/projects/${project.slug}` : `/${lang}/projects/${project.slug}`;
+      return (
+        <article class="project-card" id={project.id}>
+          <a href={projectUrl} class="project-card-link-wrapper">
+            <div class="project-card-image-wrapper">
+              <img src={project.image} alt={project.title} class="project-card-image" />
+              <span class="project-card-badge">{project.badge}</span>
+            </div>
+            <div class="project-card-content">
+              <h3 class="project-card-title">{project.title}</h3>
+              <p class="project-card-desc">{project.desc}</p>
+              <span class="project-card-cta">{cardBtnText}</span>
+            </div>
+          </a>
+        </article>
+      );
+    })}
   </div>
 </section>

@@ -14,13 +14,13 @@ const homeData = homeEntry?.data || {
   artworkFilters: [
     { label: "Toutes les Œuvres", value: "all" },
     { label: "Sculpture & Installation", value: "sculpture" },
-    { label: "Alternative Mosaic", value: "mosaic" },
-    { label: "Photography", value: "photography" },
+    { label: "Mosaïque Alternative", value: "mosaic" },
+    { label: "Photographie", value: "photography" },
     { label: "Peinture", value: "peinture" }
   ],
   blocks: [
     { type: 'hero_block', active: true },
-    { type: 'about_block', active: true, title: "About Muhsana", navTitle: "À Propos" },
+    { type: 'about_block', active: true, title: "À Propos de Muhsana", navTitle: "À Propos" },
     { type: 'projects_block', title: 'Projets Principaux', navTitle: "Projets", sectionFilter: 'principaux' },
     { type: 'artworks_block', active: true, title: 'Œuvres', navTitle: "Œuvres" },
     { type: 'map_block', active: true, title: 'Parcours Artistique de Muhsana Ali', navTitle: "Parcours (Carte)" },
@@ -44,6 +44,7 @@ const homeData = homeEntry?.data || {
       if (type === 'about_block' && block.active !== false) {
         return (
           <About 
+            lang="fr"
             title={block.title} 
             subtitle={block.subtitle}
           />
@@ -73,6 +74,7 @@ const homeData = homeEntry?.data || {
       if (type === 'map_block' && block.active !== false) {
         return (
           <InteractiveMap 
+            lang="fr"
             title={block.title} 
             subtitle={block.subtitle} 
             description={block.description} 

@@ -11,11 +11,11 @@
       "value": "sculpture"
     },
     {
-      "label": "Alternative Mosaic",
+      "label": "Mosaïque Alternative",
       "value": "mosaic"
     },
     {
-      "label": "Photography",
+      "label": "Photographie",
       "value": "photography"
     },
     {
@@ -35,7 +35,7 @@
       "type": "about_block",
       "active": true,
       "subtitle": "Démarche & Vision",
-      "title": "About Muhsana",
+      "title": "À Propos de Muhsana",
       "navTitle": "À Propos"
     },
     {

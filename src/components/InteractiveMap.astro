@@ -4,7 +4,7 @@ interface Props {
   subtitle?: string;
   description?: string;
   timelineBtnText?: string;
-  lang?: 'en' | 'fr';
+  lang?: 'en' | 'fr' | 'es' | string;
 }
 
 const {
@@ -25,6 +25,26 @@ const labels = lang === 'fr' ? {
   selectLocation: "Sélectionnez un lieu",
   clickMarker: "Cliquez sur un repère pour afficher les détails du parcours.",
   emptyDesc: "Découvrez les événements, expositions et projets communautaires organisés dans chaque ville."
+} : lang === 'es' ? {
+  all: "Todos",
+  education: "Formación",
+  exhibitions: "Exposiciones",
+  residencies: "Residencias",
+  projects: "Proyectos",
+  conferences: "Conferencias",
+  selectLocation: "Seleccione una ubicación",
+  clickMarker: "Haga clic en un marcador para ver los detalles del recorrido.",
+  emptyDesc: "Descubra eventos, exposiciones y proyectos comunitarios organizados en cada ciudad."
+} : lang === 'zh-tw' ? {
+  all: "全部",
+  education: "教育背景",
+  exhibitions: "藝術展覽",
+  residencies: "藝術駐村",
+  projects: "社區專案",
+  conferences: "講座研討",
+  selectLocation: "請選擇地點",
+  clickMarker: "點擊地圖上的標記以查看詳細藝術歷程。",
+  emptyDesc: "探索在各個城市舉辦的展覽、活動與社區專案計畫。"
 } : {
   all: "All",
   education: "Education",

@@ -10,25 +10,22 @@ interface Props {
 const { isProjectPage = false, lang = 'en', currentPath = '' } = Astro.props;
 
 const isFr = lang === 'fr';
-const homeSlug = isFr ? 'fr/home' : 'en/home';
-const pagePrefix = isProjectPage ? (isFr ? '/fr' : '/') : '';
+const isEs = lang === 'es';
+const isZhTw = lang === 'zh-tw';
+const homeSlug = `${lang}/home`;
+const pagePrefix = isProjectPage ? (lang === 'en' ? '' : `/${lang}`) : '';
 
 // Calculate dynamic language switcher targets
-let enTarget = '/';
-let frTarget = '/fr';
+let cleanPath = currentPath || '/';
+if (cleanPath.startsWith('/fr')) cleanPath = cleanPath.replace(/^\/fr/, '');
+else if (cleanPath.startsWith('/es')) cleanPath = cleanPath.replace(/^\/es/, '');
+else if (cleanPath.startsWith('/zh-tw')) cleanPath = cleanPath.replace(/^\/zh-tw/, '');
+if (!cleanPath) cleanPath = '/';
 
-if (currentPath) {
-  if (currentPath.startsWith('/fr/')) {
-    enTarget = currentPath.replace(/^\/fr/, '') || '/';
-    frTarget = currentPath;
-  } else if (currentPath === '/fr') {
-    enTarget = '/';
-    frTarget = '/fr';
-  } else {
-    enTarget = currentPath;
-    frTarget = `/fr${currentPath === '/' ? '' : currentPath}`;
-  }
-}
+const enTarget = cleanPath;
+const frTarget = cleanPath === '/' ? '/fr' : `/fr${cleanPath}`;
+const esTarget = cleanPath === '/' ? '/es' : `/es${cleanPath}`;
+const zhTwTarget = cleanPath === '/' ? '/zh-tw' : `/zh-tw${cleanPath}`;
 
 // 1. Fetch home page data for blocks and artwork filters
 const homeEntry = await getEntry('pages', homeSlug as any);
@@ -50,7 +47,7 @@ const sortedProjects = langProjects.sort((a, b) => (a.data.order || 0) - (b.data
 
   <ul class="nav-menu" id="navMenu">
     <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close menu">✕</button>
-    <li class="nav-item"><a href={`${pagePrefix}#hero`} class="nav-link active">{isFr ? 'Accueil' : 'Home'}</a></li>
+    <li class="nav-item"><a href={`${pagePrefix}#hero`} class="nav-link active">{isFr ? 'Accueil' : (isEs ? 'Inicio' : (isZhTw ? '首頁' : 'Home'))}</a></li>
 
     {blocks.map((block: any) => {
       if (block.active === false) return null;
@@ -59,7 +56,7 @@ const sortedProjects = langProjects.sort((a, b) => (a.data.order || 0) - (b.data
       if (type === 'about_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#about`} class="nav-link">{block.navTitle || block.title || (isFr ? 'À Propos' : 'About')}</a>
+            <a href={`${pagePrefix}#about`} class="nav-link">{block.navTitle || block.title || (isFr ? 'À Propos' : (isEs ? 'Sobre la Artista' : (isZhTw ? '關於藝術家' : 'About')))}</a>
           </li>
         );
       }
@@ -73,11 +70,11 @@ const sortedProjects = langProjects.sort((a, b) => (a.data.order || 0) - (b.data
 
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#projects-${filter}`} class="nav-link">{block.navTitle || (isFr ? 'Projets' : 'Projects')} ▾</a>
+            <a href={`${pagePrefix}#projects-${filter}`} class="nav-link">{block.navTitle || (isFr ? 'Projets' : (isEs ? 'Proyectos' : (isZhTw ? '專案項目' : 'Projects')))} ▾</a>
             <ul class="dropdown-menu">
               {(sectionProjects.length > 0 ? sectionProjects : sortedProjects).map((project) => (
                 <li>
-                  <a href={`${isFr ? '/fr' : ''}/projects/${project.slug.replace(new RegExp(`^${lang}/`), '')}`} class="dropdown-link">
+                  <a href={`${lang === 'en' ? '' : `/${lang}`}/projects/${project.slug.replace(new RegExp(`^${lang}/`), '')}`} class="dropdown-link">
                     {project.data.title}
                   </a>
                 </li>
@@ -90,7 +87,7 @@ const sortedProjects = langProjects.sort((a, b) => (a.data.order || 0) - (b.data
       if (type === 'artworks_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#artwork`} class="nav-link">{block.navTitle || block.title || (isFr ? 'Œuvres' : 'Artworks')} ▾</a>
+            <a href={`${pagePrefix}#artwork`} class="nav-link">{block.navTitle || block.title || (isFr ? 'Œuvres' : (isEs ? 'Obras' : (isZhTw ? '作品集' : 'Artworks')))} ▾</a>
             <ul class="dropdown-menu">
               {artworkCategories.map((cat: any) => (
                 <li>
@@ -107,7 +104,7 @@ const sortedProjects = langProjects.sort((a, b) => (a.data.order || 0) - (b.data
       if (type === 'map_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#interactive-map`} class="nav-link">{block.navTitle || block.title || (isFr ? 'Parcours (Carte)' : 'Journey (Map)')}</a>
+            <a href={`${pagePrefix}#interactive-map`} class="nav-link">{block.navTitle || block.title || (isFr ? 'Parcours (Carte)' : (isEs ? 'Trayectoria (Mapa)' : (isZhTw ? '藝術歷程（地圖）' : 'Journey (Map)')))}</a>
           </li>
         );
       }
@@ -119,21 +116,23 @@ const sortedProjects = langProjects.sort((a, b) => (a.data.order || 0) - (b.data
     <li class="nav-item lang-dropdown-item">
       <a href="#" class="nav-link lang-dropdown-btn">🌐 {lang.toUpperCase()} ▾</a>
       <ul class="dropdown-menu lang-dropdown-menu">
-        <li><a href={enTarget} class={`dropdown-link ${!isFr ? 'active-lang' : ''}`}>🇬🇧 English (EN)</a></li>
-        <li><a href={frTarget} class={`dropdown-link ${isFr ? 'active-lang' : ''}`}>🇫🇷 Français (FR)</a></li>
+        <li><a href={enTarget} class={`dropdown-link ${lang === 'en' ? 'active-lang' : ''}`}>🇬🇧 English (EN)</a></li>
+        <li><a href={frTarget} class={`dropdown-link ${lang === 'fr' ? 'active-lang' : ''}`}>🇫🇷 Français (FR)</a></li>
+        <li><a href={esTarget} class={`dropdown-link ${lang === 'es' ? 'active-lang' : ''}`}>🇪🇸 Español (ES)</a></li>
+        <li><a href={zhTwTarget} class={`dropdown-link ${lang === 'zh-tw' ? 'active-lang' : ''}`}>🇹🇼 繁體中文 (ZH-TW)</a></li>
       </ul>
     </li>
   </ul>
 
   <div style="display: flex; align-items: center; gap: 1rem;">
     {isProjectPage ? (
-      <a href={isFr ? "/fr/#projects" : "/#projects"} class="project-back-btn">
-        {isFr ? '← Retour aux projets' : '← Back to projects'}
+      <a href={lang === 'en' ? '/#projects' : `/${lang}/#projects`} class="project-back-btn">
+        {isFr ? '← Retour aux projets' : (isEs ? '← Volver a proyectos' : (isZhTw ? '← 返回專案列表' : '← Back to projects'))}
       </a>
     ) : (
-      <button class="sound-btn" id="soundBtn" title={isFr ? "Activer / Désactiver le son" : "Unmute / Mute video audio"}>
+      <button class="sound-btn" id="soundBtn" title={isFr ? "Activer / Désactiver le son" : (isEs ? "Activar / Desactivar sonido" : (isZhTw ? "開啟 / 關閉聲音" : "Unmute / Mute video audio"))}>
         <span id="soundIcon">🔇</span>
-        <span id="soundText">{isFr ? 'Activer le son' : 'Enable Sound'}</span>
+        <span id="soundText">{isFr ? 'Activer le son' : (isEs ? 'Activar sonido' : (isZhTw ? '開啟聲音' : 'Enable Sound'))}</span>
       </button>
     )}
     <button class="mobile-toggle" id="mobileToggle" aria-label="Mobile Menu">☰</button>

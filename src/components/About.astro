@@ -2,7 +2,7 @@
 interface Props {
   title?: string;
   subtitle?: string;
-  lang?: 'en' | 'fr';
+  lang?: 'en' | 'fr' | 'es' | string;
 }
 
 const {
@@ -21,11 +21,11 @@ const {
 
   <div class="about-grid">
     <div class="about-image-wrapper">
-      <img src="/oeuvre/muhsana-ali.webp" alt="Muhsana Ali dans son atelier" class="about-image">
+      <img src="/oeuvre/muhsana-ali.webp" alt={lang === 'fr' ? "Muhsana Ali dans son atelier" : (lang === 'es' ? "Muhsana Ali en su taller" : (lang === 'zh-tw' ? "Muhsana Ali 在其工作室" : "Muhsana Ali in her studio"))} class="about-image">
     </div>
 
     <div class="about-content">
-      <div class="about-scroll-box" id="aboutScrollBox" aria-label={lang === 'fr' ? "Biographie complète de Muhsana Ali" : "Full biography of Muhsana Ali"}>
+      <div class="about-scroll-box" id="aboutScrollBox" aria-label={lang === 'fr' ? "Biographie complète de Muhsana Ali" : (lang === 'es' ? "Biografía completa de Muhsana Ali" : (lang === 'zh-tw' ? "Muhsana Ali 完整個人傳記" : "Full biography of Muhsana Ali"))}>
         {lang === 'fr' ? (
           <>
             <p style="font-size: 1.1rem; color: var(--text-main); font-weight: 500;">
@@ -58,6 +58,74 @@ const {
 
             <p>
               Les œuvres de Muhsana sont actuellement présentées dans les galeries d'Afrique rénovées du Penn Museum à Philadelphie, en Pennsylvanie.
+            </p>
+          </>
+        ) : lang === 'es' ? (
+          <>
+            <p style="font-size: 1.1rem; color: var(--text-main); font-weight: 500;">
+              Muhsana nació en Filadelfia en 1967. Dedicó nueve años a estudios académicos en bellas artes a nivel universitario en instituciones de renombre como Parsons School of Design, Pennsylvania Academy of the Fine Arts, La Sorbona, University of the Arts y Moore College of Art. También se formó en la fundición de bronce con maestros del arte en Costa de Marfil y en el arte del mosaico con Isaiah Zagar, reconocido maestro de murales en mosaico en Filadelfia.
+            </p>
+
+            <p>
+              Desde muy joven, Muhsana estuvo impulsada por el deseo de comprender y explorar sus orígenes africanos. Esta búsqueda nutrió su tesis de máster en 1993, titulada: <em>The Effects of European Centered Education on African American Artists</em>. Esta reflexión la llevó a viajar sola al continente africano en 1997, año en que obtuvo financiación para investigar el arte africano tradicional y contemporáneo y realizar una exposición basada en dicho estudio.
+            </p>
+
+            <p>
+              Tras seis meses de investigación en Costa de Marfil, Mali, Ghana, Burkina Faso, Togo, Senegal y Sudáfrica, se estableció en Costa de Marfil para producir su exposición. Allí descubrió un edificio abandonado en el centro del distrito financiero de Abidján. Su fascinación por este vasto espacio la llevó a iniciar un proyecto de dos años en el que participó un grupo de más de 50 jóvenes sin hogar que vivían allí.
+            </p>
+
+            <p>
+              Este grupo de adolescentes, muchos de ellos expuestos a la marginalidad, se convirtió en parte fundamental de su trabajo. Esta experiencia le reveló el poder transformador del arte para inspirar la innovación comunitaria y despertar la conciencia humana. Esta exposición en Costa de Marfil, <strong>Portes et Passages du Retour (Puertas y Pasajes del Retorno)</strong>, se convirtió en el nombre de la asociación que cofundaría más tarde al trasladarse a Senegal.
+            </p>
+
+            <p>
+              Así, la asociación Portes et Passages du Retour y su Centro de Arte y Desarrollo Holístico en Mbodiène, Senegal, han funcionado como un núcleo comunitario vital para esta región rural desde 2007. El objetivo del proyecto es generar programas comunitarios enfocados en un compromiso holístico en todas las áreas de la sociedad y elevar la conciencia sobre los valores creativos en la vida cotidiana.
+            </p>
+
+            <p>
+              La asociación ha colaborado con numerosas instituciones educativas y artísticas internacionales como la Bienal de Gwangju, Arts Collaboratory, la Bienal de Dakar, el programa CIEE y la Universidad de Míchigan. Sus proyectos han recibido el apoyo de la Fundación Doen y del Instituto Americano de Arquitectos. Su trabajo formó parte de la película galardonada <em>«Philadelphia»</em> y se exhibe en la Casa Blanca en conmemoración del galardón de bronce que realizó para el presidente Clinton en 2001.
+            </p>
+
+            <p>
+              Muhsana ha participado en numerosas residencias internacionales, conferencias e intervenciones en todo el mundo. Ha sido artista residente y profesora invitada en la Universidad del Sur de Maine y en la Universidad de Pensilvania. Seleccionada oficialmente en la Bienal de Dakar, cuenta con prestigiosas distinciones como la beca Pew Fellowship in the Arts y la beca Fulbright.
+            </p>
+
+            <p>
+              Las obras de Muhsana se presentan actualmente en las remodeladas Galerías de África del Penn Museum en Filadelfia, Pensilvania.
+            </p>
+          </>
+        ) : lang === 'zh-tw' ? (
+          <>
+            <p style="font-size: 1.1rem; color: var(--text-main); font-weight: 500;">
+              Muhsana 於 1967 年出生於費城。她在大學階段接受了長達九年的純藝術專業學術深造，先後就讀於帕森設計學院（Parsons School of Design）、賓夕法尼亞美術學院（PAFA）、索邦大學、藝術大學（University of the Arts）及摩爾藝術學院等知名府邸。她亦在象牙海岸向藝術大師學習傳統青銅鑄造技藝，並跟隨費城著名壁畫大師 Isaiah Zagar 研習鑲嵌藝術。
+            </p>
+
+            <p>
+              自幼以來，Muhsana 便深切渴求理解與探索自己的非洲根源。這份追求貫穿了她 1993 年的碩士論文《以歐洲為中心的教育對非裔美國藝術家的影響》。此思考促使她於 1997 年獨自前往非洲大陸，並獲得專案資助展開對非洲傳統與當代藝術的研究，舉辦了以此為基礎的專題展覽。
+            </p>
+
+            <p>
+              在象牙海岸、馬利、迦納、布吉納法索、多哥、塞內加爾與南非展開為期六個月的深入考察後，她定居於象牙海岸進行展覽創作。在那裡，她在阿比讓中央商業區發現了一座廢棄大樓。對探索該宏大空間的熱情，促成了一項為期兩年、帶領居住於該建築內的 50 多名無家可歸青少年共同參與的藝術計畫。
+            </p>
+
+            <p>
+              這群面臨社會邊緣化困境的青少年，成為她藝術創作不可或缺的一部分。這次經歷讓她深刻體會到藝術在激發社區創新與轉化人類意識方面的巨大力量。這場象牙海岸展覽《重返之門與通道》（Portes et Passages du Retour），隨後成為她定居塞內加爾後共同創立之協會的正式名稱。
+            </p>
+
+            <p>
+              自 2007 年以來，重返之門與通道協會及其位於塞內加爾 Mbodiène 的藝術與整體發展中心，一直作為該鄉村地區的核心社區樞紐。計畫宗旨為推動涵蓋社會各領域的整體參與，並在居民的日常生活中提升對創造性價值的認識與體現。
+            </p>
+
+            <p>
+              協會與全球眾多教育與藝術機構展開合作，包括光州雙年展、Arts Collaboratory、達喀爾雙年展、CIEE 國際交流計畫及密西根大學等；並獲得 DOEN 基金會與美國建築師協會（AIA）等機構的資助。Muhsana 在美洲與非洲的多個社區發起了多項社會互動創作。她的作品曾出現於獲獎電影《費城》（Philadelphia），其於 2001 年為柯林頓總統製作的青銅獎座目前於白宮展出。
+            </p>
+
+            <p>
+              Muhsana 曾參與世界各地多項國際藝術駐村、學術研討與講座。她曾任南緬因州大學及賓夕法尼亞大學的駐校藝術家與客座講師。她曾獲選達喀爾雙年展官方評選，並榮獲 Pew 藝術獎助金及傅爾布萊特（Fulbright）學者獎等多項頂尖殊榮。
+            </p>
+
+            <p>
+              Muhsana 的藝術作品目前展出於賓夕法尼亞州費城佩恩博物館（Penn Museum）全新重構的非洲展廳中。
             </p>
           </>
         ) : (

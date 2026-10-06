@@ -16,17 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const currentLang = document.documentElement.lang || 'en';
   const isFrDoc = currentLang === 'fr';
+  const isEsDoc = currentLang === 'es';
+  const isZhTwDoc = currentLang === 'zh-tw';
 
   const updateSoundUI = (isMuted) => {
     if (!soundIcon || !soundText || !soundBtn) return;
     if (isMuted) {
       soundIcon.textContent = '🔇';
-      soundText.textContent = isFrDoc ? 'Activer le son' : 'Enable Sound';
+      soundText.textContent = isFrDoc ? 'Activer le son' : (isEsDoc ? 'Activar sonido' : (isZhTwDoc ? '開啟聲音' : 'Enable Sound'));
       soundBtn.style.borderColor = 'var(--border-color)';
       soundBtn.style.color = 'var(--text-main)';
     } else {
       soundIcon.textContent = '🔊';
-      soundText.textContent = isFrDoc ? 'Son Activé' : 'Sound On';
+      soundText.textContent = isFrDoc ? 'Son Activé' : (isEsDoc ? 'Sonido Activado' : (isZhTwDoc ? '聲音已開啟' : 'Sound On'));
       soundBtn.style.borderColor = 'var(--accent-gold)';
       soundBtn.style.color = 'var(--accent-gold)';
     }
@@ -306,12 +308,33 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (e) {}
     }
 
-    const typeLabels = {
+    const typeLabels = isFrDoc ? {
       'education': 'Formation',
       'exhibition': 'Exposition',
       'residency': 'Résidence',
       'project': 'Projet',
       'conference': 'Conférence',
+      'collection': 'Collection'
+    } : isEsDoc ? {
+      'education': 'Formación',
+      'exhibition': 'Exposición',
+      'residency': 'Residencia',
+      'project': 'Proyecto',
+      'conference': 'Conferencia',
+      'collection': 'Colección'
+    } : isZhTwDoc ? {
+      'education': '教育背景',
+      'exhibition': '藝術展覽',
+      'residency': '藝術駐村',
+      'project': '社區專案',
+      'conference': '講座研討',
+      'collection': '館藏紀錄'
+    } : {
+      'education': 'Education',
+      'exhibition': 'Exhibition',
+      'residency': 'Residency',
+      'project': 'Project',
+      'conference': 'Conference',
       'collection': 'Collection'
     };
 
@@ -398,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const panelEvents = document.getElementById('panelLocationEvents');
 
     const currentLang = document.documentElement.lang || 'en';
-    const journeyJsonUrl = currentLang === 'fr' ? '/journey.fr.json' : '/journey.json';
+    const journeyJsonUrl = currentLang === 'fr' ? '/journey.fr.json' : (currentLang === 'es' ? '/journey.es.json' : (currentLang === 'zh-tw' ? '/journey.zh-tw.json' : '/journey.json'));
 
     fetch(journeyJsonUrl)
       .then(response => response.json())
@@ -434,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const eventCountText = isFrDoc
           ? `${matchingEvents.length} événement${matchingEvents.length > 1 ? 's' : ''}`
-          : `${matchingEvents.length} event${matchingEvents.length > 1 ? 's' : ''}`;
+          : (isEsDoc ? `${matchingEvents.length} evento${matchingEvents.length > 1 ? 's' : ''}` : (isZhTwDoc ? `${matchingEvents.length} 個活動` : `${matchingEvents.length} event${matchingEvents.length > 1 ? 's' : ''}`));
 
         const popupHTML = `
           <div style="text-align: center; padding: 0.3rem;">
@@ -459,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
       panelTitle.textContent = `${location.city}, ${location.country}`;
       panelSubtitle.textContent = isFrDoc
         ? `${events.length} événement${events.length > 1 ? 's' : ''} répertorié${events.length > 1 ? 's' : ''}`
-        : `${events.length} event${events.length > 1 ? 's' : ''} listed`;
+        : (isEsDoc ? `${events.length} evento${events.length > 1 ? 's' : ''} registrado${events.length > 1 ? 's' : ''}` : (isZhTwDoc ? `收錄 ${events.length} 個活動紀錄` : `${events.length} event${events.length > 1 ? 's' : ''} listed`));
 
       const sortedEvents = [...events].sort((a, b) => b.year - a.year);
 
@@ -496,12 +519,12 @@ document.addEventListener('DOMContentLoaded', () => {
         map.flyTo([20, -20], 2.5, { duration: 2.2 });
 
         if (panelTitle && panelSubtitle && panelEvents) {
-          panelTitle.textContent = isFrDoc ? 'Sélectionnez un lieu' : 'Select a location';
-          panelSubtitle.textContent = isFrDoc ? 'Cliquez sur un repère pour afficher les détails du parcours.' : 'Click on a map marker to display journey details.';
+          panelTitle.textContent = isFrDoc ? 'Sélectionnez un lieu' : (isEsDoc ? 'Seleccione una ubicación' : (isZhTwDoc ? '請選擇地點' : 'Select a location'));
+          panelSubtitle.textContent = isFrDoc ? 'Cliquez sur un repère pour afficher les détails du parcours.' : (isEsDoc ? 'Haga clic en un marcador para ver los detalles del recorrido.' : (isZhTwDoc ? '點擊地圖上的標記以查看詳細藝術歷程。' : 'Click on a map marker to display journey details.'));
           panelEvents.innerHTML = `
             <div class="info-empty-state">
               <span class="empty-icon">📍</span>
-              <p>${isFrDoc ? 'Découvrez les événements, expositions et projets communautaires organisés dans chaque ville.' : 'Discover events, exhibitions, and community projects organized in each city.'}</p>
+              <p>${isFrDoc ? 'Découvrez les événements, expositions et projets communautaires organisés dans chaque ville.' : (isEsDoc ? 'Descubra eventos, exposiciones y proyectos comunitarios organizados en cada ciudad.' : (isZhTwDoc ? '探索在各個城市舉辦的展覽、活動與社區專案計畫。' : 'Discover events, exhibitions, and community projects organized in each city.'))}</p>
             </div>
           `;
         }
@@ -523,7 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isTimelineAnimating = false;
       if (btnPlayTimeline) {
         btnPlayTimeline.classList.remove('is-playing');
-        btnPlayTimeline.innerHTML = `<span class="timeline-icon">▶</span> ${isFrDoc ? 'Chronologie' : 'Timeline'}`;
+        btnPlayTimeline.innerHTML = `<span class="timeline-icon">▶</span> ${isFrDoc ? 'Chronologie' : (isEsDoc ? 'Cronología' : (isZhTwDoc ? '時間軸' : 'Timeline'))}`;
       }
     }
 
@@ -578,7 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (currentIdx >= validLocations.length) {
           if (tickerYearVal) tickerYearVal.textContent = '2026';
-          if (tickerLocationName) tickerLocationName.textContent = isFrDoc ? "Parcours de Muhsana Ali" : "Muhsana Ali's Journey";
+          if (tickerLocationName) tickerLocationName.textContent = isFrDoc ? "Parcours de Muhsana Ali" : (isEsDoc ? "Trayectoria de Muhsana Ali" : (isZhTwDoc ? "Muhsana Ali 的藝術歷程" : "Muhsana Ali's Journey"));
 
           map.flyTo([20, -20], 2.5, { duration: 2.5 });
 
@@ -605,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const marker = L.marker([loc.lat, loc.lng], { icon: customPinIcon });
         const eventCountText = isFrDoc
           ? `${loc.matchingEvents.length} événement${loc.matchingEvents.length > 1 ? 's' : ''}`
-          : `${loc.matchingEvents.length} event${loc.matchingEvents.length > 1 ? 's' : ''}`;
+          : (isEsDoc ? `${loc.matchingEvents.length} evento${loc.matchingEvents.length > 1 ? 's' : ''}` : (isZhTwDoc ? `${loc.matchingEvents.length} 個活動` : `${loc.matchingEvents.length} event${loc.matchingEvents.length > 1 ? 's' : ''}`));
         const popupHTML = `
           <div style="text-align: center; padding: 0.3rem;">
             <div class="popup-custom-title">${loc.city}</div>
@@ -724,8 +747,8 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.id = 'artworkLightbox';
     lightbox.innerHTML = `
       <div class="lightbox-overlay" id="lightboxOverlay"></div>
-      <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">✕</button>
-      <button class="lightbox-nav-btn prev" id="lightboxPrev" aria-label="Image précédente">❮</button>
+      <button class="lightbox-close" id="lightboxClose" aria-label="${isFrDoc ? 'Fermer' : (isEsDoc ? 'Cerrar' : (isZhTwDoc ? '關閉' : 'Close'))}">✕</button>
+      <button class="lightbox-nav-btn prev" id="lightboxPrev" aria-label="${isFrDoc ? 'Image précédente' : (isEsDoc ? 'Imagen anterior' : (isZhTwDoc ? '上一張圖片' : 'Previous image'))}">❮</button>
       <div class="lightbox-image-stage">
         <img src="" alt="" id="lightboxImg">
         <div class="lightbox-minimal-caption">
@@ -733,7 +756,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="lightbox-counter" id="lightboxCounter">1 / 1</span>
         </div>
       </div>
-      <button class="lightbox-nav-btn next" id="lightboxNext" aria-label="Image suivante">❯</button>
+      <button class="lightbox-nav-btn next" id="lightboxNext" aria-label="${isFrDoc ? 'Image suivante' : (isEsDoc ? 'Imagen siguiente' : (isZhTwDoc ? '下一張圖片' : 'Next image'))}">❯</button>
     `;
     document.body.appendChild(lightbox);
   }

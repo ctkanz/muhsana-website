@@ -1,0 +1,92 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import ProjectsSection from '../../components/ProjectsSection.astro';
+import ArtworksSection from '../../components/ArtworksSection.astro';
+import InteractiveMap from '../../components/InteractiveMap.astro';
+
+const homeEntry = await getEntry('pages', 'zh-cn/home');
+const homeData = homeEntry?.data || {
+  title: "Muhsana Ali | 跨领域艺术家",
+  description: "艺术家 Muhsana Ali 官方网站。",
+  artworkFilters: [
+    { label: "全部作品", value: "all" },
+    { label: "雕塑与装置艺术", value: "sculpture" },
+    { label: "替代镶嵌艺术", value: "mosaic" },
+    { label: "摄影艺术", value: "photography" },
+    { label: "绘画创作", value: "peinture" }
+  ],
+  blocks: [
+    { type: 'hero_block', active: true },
+    { type: 'about_block', active: true, title: "关于 Muhsana", navTitle: "关于艺术家" },
+    { type: 'projects_block', title: '精选项目', navTitle: "项目专区", sectionFilter: 'principaux' },
+    { type: 'artworks_block', active: true, title: '艺术作品', navTitle: "作品集" },
+    { type: 'map_block', active: true, title: 'Muhsana Ali 的艺术历程', navTitle: "艺术历程（地图）" },
+  ]
+};
+---
+
+<BaseLayout title={homeData.title} description={homeData.description} lang="zh-cn">
+  <main>
+    {homeData.blocks.map((block: any) => {
+      const type = block.type;
+      if (type === 'hero_block' && block.active !== false) {
+        return (
+          <Hero 
+            memorialBtnText={block.memorialBtnText} 
+            memorialBtnUrl={block.memorialBtnUrl}
+            scrollBtnText={block.scrollBtnText}
+          />
+        );
+      }
+      if (type === 'about_block' && block.active !== false) {
+        return (
+          <About 
+            lang="zh-cn"
+            title={block.title} 
+            subtitle={block.subtitle}
+          />
+        );
+      }
+      if (type === 'projects_block' && block.active !== false) {
+        return (
+          <ProjectsSection 
+            lang="zh-cn"
+            sectionFilter={block.sectionFilter || 'principaux'} 
+            sectionTitle={block.title || '精选项目'} 
+            sectionSubtitle={block.subtitle || '社区参与与代表作品'} 
+            cardBtnText={block.cardBtnText}
+          />
+        );
+      }
+      if (type === 'artworks_block' && block.active !== false) {
+        return (
+          <ArtworksSection 
+            lang="zh-cn"
+            title={block.title} 
+            subtitle={block.subtitle}
+            filters={homeData.artworkFilters}
+          />
+        );
+      }
+      if (type === 'map_block' && block.active !== false) {
+        return (
+          <InteractiveMap 
+            lang="zh-cn"
+            title={block.title} 
+            subtitle={block.subtitle} 
+            description={block.description} 
+            timelineBtnText={block.timelineBtnText}
+          />
+        );
+      }
+      return null;
+    })}
+  </main>
+
+  <footer class="footer" style="padding: 3rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem;">
+    <p>© Muhsana Ali. 版权所有，保留一切权利。</p>
+  </footer>
+</BaseLayout>

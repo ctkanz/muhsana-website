@@ -1,0 +1,299 @@
+{
+  "map": {
+    "id": "muhsana-ali-artistic-journey-zh-cn",
+    "title": "Muhsana Ali 的艺术历程",
+    "subtitle": "跨越非洲、欧洲与美国的艺术足迹",
+    "center": {
+      "lat": 20,
+      "lng": -20
+    },
+    "zoom": 2
+  },
+
+  "filters": [
+    {
+      "id": "education",
+      "label": "教育背景"
+    },
+    {
+      "id": "exhibition",
+      "label": "艺术展览"
+    },
+    {
+      "id": "residency",
+      "label": "艺术驻村"
+    },
+    {
+      "id": "project",
+      "label": "社区项目"
+    },
+    {
+      "id": "conference",
+      "label": "讲座研讨"
+    },
+    {
+      "id": "collection",
+      "label": "馆藏纪录"
+    }
+  ],
+
+  "locations": [
+    {
+      "id": "dakar",
+      "city": "达喀尔",
+      "country": "塞内加尔",
+      "lat": 14.7167,
+      "lng": -17.4677,
+      "types": [
+        "exhibition",
+        "project",
+        "conference"
+      ],
+      "events": [
+        {
+          "year": 2026,
+          "title": "Kersa 壁画项目",
+          "type": "project",
+          "description": "于 Sicap Mermoz 篮球场创作之公共镶嵌壁画。"
+        },
+        {
+          "year": 2024,
+          "title": "Convergence 展览",
+          "type": "exhibition",
+          "description": "于 Radisson Blu 酒店举办之艺术展览。"
+        },
+        {
+          "year": 2022,
+          "title": "国家画廊展览",
+          "type": "exhibition",
+          "description": "妇女节主题联展。"
+        },
+        {
+          "year": 2016,
+          "title": "北京 - 达喀尔展览",
+          "type": "exhibition",
+          "description": "于达喀尔大剧院展出之双年展计划。"
+        },
+        {
+          "year": 2014,
+          "title": "镶嵌壁画创作",
+          "type": "project",
+          "description": "于 Kër Thiossane 文化中心花园建置之镶嵌艺术。"
+        },
+        {
+          "year": 2008,
+          "title": "Dak'Art OFF 平行展",
+          "type": "exhibition",
+          "description": "于达喀尔法国文化中心举办之展览。"
+        },
+        {
+          "year": 2004,
+          "title": "达喀尔双年展",
+          "type": "exhibition",
+          "description": "入选 Dak'Art 非洲当代艺术双年展官方评选。"
+        },
+        {
+          "year": 1999,
+          "title": "雕塑研讨会",
+          "type": "conference",
+          "description": "参与国际石雕研讨会与学术交流。"
+        }
+      ]
+    },
+    {
+      "id": "mbodiene",
+      "city": "姆博迪耶恩",
+      "country": "塞内加尔",
+      "lat": 14.2833,
+      "lng": -16.9000,
+      "types": [
+        "project",
+        "residency"
+      ],
+      "events": [
+        {
+          "year": 2007,
+          "title": "重返之门与通道协会",
+          "type": "project",
+          "description": "创立艺术与整体发展中心并建置生土可持续建筑。"
+        },
+        {
+          "year": 2010,
+          "title": "艺术家驻村",
+          "type": "residency",
+          "description": "与美国建筑师协会（AIA）合作之国际雕塑与生态建筑工作坊。"
+        }
+      ]
+    },
+    {
+      "id": "abidjan",
+      "city": "阿比让",
+      "country": "象牙海岸",
+      "lat": 5.3600,
+      "lng": -4.0083,
+      "types": [
+        "project",
+        "exhibition",
+        "education"
+      ],
+      "events": [
+        {
+          "year": 1997,
+          "title": "重返之门与通道计划",
+          "type": "project",
+          "description": "为期 2 年带领 50 名街头青少年共同完成之重大社区艺术计划。"
+        },
+        {
+          "year": 1998,
+          "title": "青铜铸造学习",
+          "type": "education",
+          "description": "跟随传统艺术大师学习失蜡法青铜铸造技艺。"
+        }
+      ]
+    },
+    {
+      "id": "philadelphia",
+      "city": "费城",
+      "country": "美国",
+      "lat": 39.9526,
+      "lng": -75.1652,
+      "types": [
+        "education",
+        "exhibition",
+        "project",
+        "collection"
+      ],
+      "events": [
+        {
+          "year": 2021,
+          "title": "伯特利墓园项目",
+          "type": "project",
+          "description": "Weccacoe 公园纪念碑设计竞赛决选艺术家。"
+        },
+        {
+          "year": 2019,
+          "title": "佩恩博物馆 (Penn Museum)",
+          "type": "collection",
+          "description": "全新非洲展厅之永久装置艺术展示。"
+        },
+        {
+          "year": 1993,
+          "title": "艺术硕士学位",
+          "type": "education",
+          "description": "获得艺术大学（University of the Arts）纯艺术硕士。"
+        },
+        {
+          "year": 1989,
+          "title": "PAFA & 摩尔艺术学院",
+          "type": "education",
+          "description": "研习纯艺术并跟随 Isaiah Zagar 学习大型镶嵌壁画。"
+        }
+      ]
+    },
+    {
+      "id": "portland",
+      "city": "波特兰",
+      "country": "美国",
+      "lat": 43.6591,
+      "lng": -70.2568,
+      "types": [
+        "project",
+        "residency"
+      ],
+      "events": [
+        {
+          "year": 2016,
+          "title": "东贝赛德社区镶嵌画",
+          "type": "project",
+          "description": "与 100 多名学生及社区居民共同创作之镶嵌壁画。"
+        },
+        {
+          "year": 2015,
+          "title": "USM 驻校艺术家",
+          "type": "residency",
+          "description": "于南缅因州大学（USM）担任驻校艺术家与客座讲师。"
+        }
+      ]
+    },
+    {
+      "id": "mart",
+      "city": "马特镇",
+      "country": "美国",
+      "lat": 31.5363,
+      "lng": -96.8319,
+      "types": [
+        "project",
+        "exhibition"
+      ],
+      "events": [
+        {
+          "year": 2012,
+          "title": "家族之树雕塑",
+          "type": "project",
+          "description": "带领社区共同制作之大型镶嵌树雕塑。"
+        },
+        {
+          "year": 2011,
+          "title": "马特社区发展计划",
+          "type": "project",
+          "description": "于美式足球场建置社区镶嵌画与种族和谐交流活动。"
+        }
+      ]
+    },
+    {
+      "id": "paris",
+      "city": "巴黎",
+      "country": "法国",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "types": [
+        "education",
+        "exhibition"
+      ],
+      "events": [
+        {
+          "year": 1991,
+          "title": "索邦大学",
+          "type": "education",
+          "description": "于索邦大学研习艺术史与法语语言文化。"
+        }
+      ]
+    },
+    {
+      "id": "gwangju",
+      "city": "光州",
+      "country": "韩国",
+      "lat": 35.1595,
+      "lng": 126.8526,
+      "types": [
+        "exhibition"
+      ],
+      "events": [
+        {
+          "year": 2012,
+          "title": "光州双年展",
+          "type": "exhibition",
+          "description": "于光州国际艺术双年展展出大型装置艺术。"
+        }
+      ]
+    },
+    {
+      "id": "washington",
+      "city": "华盛顿特区",
+      "country": "美国",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "types": [
+        "collection"
+      ],
+      "events": [
+        {
+          "year": 2001,
+          "title": "白宫馆藏",
+          "type": "collection",
+          "description": "创作赠予克林顿总统之青铜艺术奖座并于白宫展出。"
+        }
+      ]
+    }
+  ]
+}

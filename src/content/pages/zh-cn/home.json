@@ -1,0 +1,69 @@
+{
+  "title": "Muhsana Ali | 跨领域艺术家",
+  "description": "艺术家 Muhsana Ali 官方网站。",
+  "artworkFilters": [
+    {
+      "label": "全部作品",
+      "value": "all"
+    },
+    {
+      "label": "雕塑与装置艺术",
+      "value": "sculpture"
+    },
+    {
+      "label": "替代镶嵌艺术",
+      "value": "mosaic"
+    },
+    {
+      "label": "摄影艺术",
+      "value": "photography"
+    },
+    {
+      "label": "绘画创作",
+      "value": "peinture"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero_block",
+      "active": true,
+      "memorialBtnText": "浏览纪念项目",
+      "memorialBtnUrl": "/zh-cn/projects/bethel",
+      "scrollBtnText": "探索内容"
+    },
+    {
+      "type": "about_block",
+      "active": true,
+      "subtitle": "艺术理念与视野",
+      "title": "关于 Muhsana",
+      "navTitle": "关于艺术家"
+    },
+    {
+      "type": "projects_block",
+      "active": true,
+      "navTitle": "项目专区",
+      "nextBtnText": "下一个项目 →",
+      "prevBtnText": "← 上一个项目",
+      "subtitle": "社区参与与代表作品",
+      "title": "精选项目",
+      "cardBtnText": "探索项目内容 →",
+      "sectionFilter": "principaux"
+    },
+    {
+      "type": "artworks_block",
+      "active": true,
+      "title": "艺术作品",
+      "navTitle": "作品集",
+      "subtitle": "视觉与雕塑探索"
+    },
+    {
+      "type": "map_block",
+      "active": true,
+      "title": "Muhsana Ali 的艺术历程",
+      "navTitle": "艺术历程（地图）",
+      "subtitle": "地理与跨国艺术足迹",
+      "description": "探索贯穿非洲、欧洲与美国的城市足迹、驻村计划、展览与社区项目。",
+      "timelineBtnText": "时间轴年表"
+    }
+  ]
+}

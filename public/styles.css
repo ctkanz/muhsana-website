@@ -2250,16 +2250,43 @@ html[dir="rtl"] .nav-links {
 
 html[dir="rtl"] .about-scroll-box {
   text-align: right;
+  direction: rtl;
+  border-left: none;
+  border-right: 3px solid rgba(255, 255, 255, 0.15);
+  padding-left: 1.2rem;
+  padding-right: 1.5rem;
 }
 
-html[dir="rtl"] .info-panel-header,
+html[dir="rtl"] .about-scroll-box:hover {
+  border-right-color: var(--accent-gold);
+  border-left-color: transparent;
+  box-shadow: 4px 0 15px -3px rgba(212, 175, 55, 0.3);
+}
+
+html[dir="rtl"] .info-panel-header {
+  text-align: right;
+}
+
+html[dir="rtl"] .info-panel-content {
+  direction: rtl;
+  padding-left: 0.5rem;
+  padding-right: 0;
+}
+
 html[dir="rtl"] .event-card {
   text-align: right;
+  border-left: none;
+  border-right: 3px solid var(--accent-gold);
+}
+
+html[dir="rtl"] .event-card:hover {
+  transform: translateX(-4px);
 }
 
 html[dir="rtl"] .external-article-card {
   border-left: 1px solid var(--border-hover);
   border-right: 4px solid var(--accent-gold);
+  text-align: right;
 }
 
 html[dir="rtl"] .article-card-icon {
@@ -2269,5 +2296,25 @@ html[dir="rtl"] .article-card-icon {
   font-family: system-ui, -apple-system, "Segoe UI Emoji", "Apple Color Emoji", sans-serif !important;
   line-height: 1 !important;
 }
+
+html[dir="rtl"] .project-quote {
+  border-left: none;
+  border-right: 3px solid var(--accent-gold);
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  text-align: right;
+}
+
+html[dir="rtl"] .project-main-text,
+html[dir="rtl"] .project-sidebar,
+html[dir="rtl"] .project-meta-card,
+html[dir="rtl"] .project-nav-card,
+html[dir="rtl"] .next-project-link {
+  text-align: right;
+}
+
+html[dir="rtl"] .next-project-link:hover {
+  transform: translateX(-4px);
+}
+
 
 

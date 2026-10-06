@@ -1,0 +1,299 @@
+{
+  "map": {
+    "id": "muhsana-ali-artistic-journey-es",
+    "title": "Trayectoria Artística de Muhsana Ali",
+    "subtitle": "Un recorrido por África, Europa y Estados Unidos",
+    "center": {
+      "lat": 20,
+      "lng": -20
+    },
+    "zoom": 2
+  },
+
+  "filters": [
+    {
+      "id": "education",
+      "label": "Formación"
+    },
+    {
+      "id": "exhibition",
+      "label": "Exposiciones"
+    },
+    {
+      "id": "residency",
+      "label": "Residencias"
+    },
+    {
+      "id": "project",
+      "label": "Proyectos"
+    },
+    {
+      "id": "conference",
+      "label": "Conferencias"
+    },
+    {
+      "id": "collection",
+      "label": "Colecciones"
+    }
+  ],
+
+  "locations": [
+    {
+      "id": "dakar",
+      "city": "Dakar",
+      "country": "Senegal",
+      "lat": 14.7167,
+      "lng": -17.4677,
+      "types": [
+        "exhibition",
+        "project",
+        "conference"
+      ],
+      "events": [
+        {
+          "year": 2026,
+          "title": "Kersa",
+          "type": "project",
+          "description": "Mural comunitario de mosaico en la cancha de baloncesto de Sicap Mermoz."
+        },
+        {
+          "year": 2024,
+          "title": "Convergence",
+          "type": "exhibition",
+          "description": "Exposición en el hotel Radisson Blu."
+        },
+        {
+          "year": 2022,
+          "title": "Galería Nacional",
+          "type": "exhibition",
+          "description": "Exposición colectiva en el marco del Día de la Mujer."
+        },
+        {
+          "year": 2016,
+          "title": "Pekín-Dakar",
+          "type": "exhibition",
+          "description": "Proyecto presentado en el Gran Teatro de Dakar durante la Bienal Dak'Art."
+        },
+        {
+          "year": 2014,
+          "title": "Mural en Mosaico",
+          "type": "project",
+          "description": "Instalación en mosaico realizada en el jardín del Centro Cultural Kër Thiossane."
+        },
+        {
+          "year": 2008,
+          "title": "Dak'Art OFF",
+          "type": "exhibition",
+          "description": "Exposición en el Centro Cultural Francés de Dakar."
+        },
+        {
+          "year": 2004,
+          "title": "Bienal de Dakar",
+          "type": "exhibition",
+          "description": "Selección oficial en la Bienal de Arte Contemporáneo Africano Dak'Art."
+        },
+        {
+          "year": 1999,
+          "title": "Simposio de Escultura",
+          "type": "conference",
+          "description": "Participación en el simposio internacional de escultura en piedra."
+        }
+      ]
+    },
+    {
+      "id": "mbodiene",
+      "city": "Mbodiène",
+      "country": "Senegal",
+      "lat": 14.2833,
+      "lng": -16.9000,
+      "types": [
+        "project",
+        "residency"
+      ],
+      "events": [
+        {
+          "year": 2007,
+          "title": "Portes & Passages du Retour",
+          "type": "project",
+          "description": "Fundación del Centro de Arte y Desarrollo Holístico y construcción en tierra cruda."
+        },
+        {
+          "year": 2010,
+          "title": "Residencia de Artistas",
+          "type": "residency",
+          "description": "Taller internacional de escultura y arquitectura sostenible con el AIA."
+        }
+      ]
+    },
+    {
+      "id": "abidjan",
+      "city": "Abidján",
+      "country": "Costa de Marfil",
+      "lat": 5.3600,
+      "lng": -4.0083,
+      "types": [
+        "project",
+        "exhibition",
+        "education"
+      ],
+      "events": [
+        {
+          "year": 1997,
+          "title": "Puertas y Pasajes del Retorno",
+          "type": "project",
+          "description": "Proyecto artístico comunitario monumental de 2 años con 50 jóvenes sin hogar."
+        },
+        {
+          "year": 1998,
+          "title": "Fundición en Bronce",
+          "type": "education",
+          "description": "Formación tradicional en fundición de bronce a la cera perdida con maestros artesanos."
+        }
+      ]
+    },
+    {
+      "id": "philadelphia",
+      "city": "Filadelfia",
+      "country": "Estados Unidos",
+      "lat": 39.9526,
+      "lng": -75.1652,
+      "types": [
+        "education",
+        "exhibition",
+        "project",
+        "collection"
+      ],
+      "events": [
+        {
+          "year": 2021,
+          "title": "Bethel Burying Ground",
+          "type": "project",
+          "description": "Finalista del concurso de diseño del memorial en el parque Weccacoe."
+        },
+        {
+          "year": 2019,
+          "title": "Penn Museum",
+          "type": "collection",
+          "description": "Instalación permanente en la Galería Africana remodelada."
+        },
+        {
+          "year": 1993,
+          "title": "Tesis de Máster",
+          "type": "education",
+          "description": "Máster en Bellas Artes en la University of the Arts."
+        },
+        {
+          "year": 1989,
+          "title": "PAFA & Moore College",
+          "type": "education",
+          "description": "Formación en artes plásticas y mosaicos monumentales con Isaiah Zagar."
+        }
+      ]
+    },
+    {
+      "id": "portland",
+      "city": "Portland",
+      "country": "Estados Unidos",
+      "lat": 43.6591,
+      "lng": -70.2568,
+      "types": [
+        "project",
+        "residency"
+      ],
+      "events": [
+        {
+          "year": 2016,
+          "title": "Mosaico East Bayside",
+          "type": "project",
+          "description": "Mural en mosaico comunitario realizado con más de 100 estudiantes y residentes."
+        },
+        {
+          "year": 2015,
+          "title": "Artista Residente USM",
+          "type": "residency",
+          "description": "Residencia artística y docencia en la Universidad del Sur de Maine."
+        }
+      ]
+    },
+    {
+      "id": "mart",
+      "city": "Mart",
+      "country": "Estados Unidos",
+      "lat": 31.5363,
+      "lng": -96.8319,
+      "types": [
+        "project",
+        "exhibition"
+      ],
+      "events": [
+        {
+          "year": 2012,
+          "title": "Escultura Árbol Familiar",
+          "type": "project",
+          "description": "Escultura de árbol gigante revestida en mosaico participativo por la comunidad."
+        },
+        {
+          "year": 2011,
+          "title": "Mart Community Project",
+          "type": "project",
+          "description": "Creación de murales en mosaico e iniciativas interraciales en el campo de fútbol."
+        }
+      ]
+    },
+    {
+      "id": "paris",
+      "city": "París",
+      "country": "Francia",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "types": [
+        "education",
+        "exhibition"
+      ],
+      "events": [
+        {
+          "year": 1991,
+          "title": "La Sorbona",
+          "type": "education",
+          "description": "Estudios de historia del arte e idioma francés en la Universidad de la Sorbona."
+        }
+      ]
+    },
+    {
+      "id": "gwangju",
+      "city": "Gwangju",
+      "country": "Corea del Sur",
+      "lat": 35.1595,
+      "lng": 126.8526,
+      "types": [
+        "exhibition"
+      ],
+      "events": [
+        {
+          "year": 2012,
+          "title": "Bienal de Gwangju",
+          "type": "exhibition",
+          "description": "Presentación de instalaciones artísticas en la Bienal Internacional."
+        }
+      ]
+    },
+    {
+      "id": "washington",
+      "city": "Washington D.C.",
+      "country": "Estados Unidos",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "types": [
+        "collection"
+      ],
+      "events": [
+        {
+          "year": 2001,
+          "title": "Casa Blanca",
+          "type": "collection",
+          "description": "Creación del galardón de bronce entregado al Presidente Bill Clinton."
+        }
+      ]
+    }
+  ]
+}

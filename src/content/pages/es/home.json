@@ -1,0 +1,69 @@
+{
+  "title": "Muhsana Ali | Artista Multidisciplinaria",
+  "description": "Sitio web oficial de la artista Muhsana Ali.",
+  "artworkFilters": [
+    {
+      "label": "Todas las Obras",
+      "value": "all"
+    },
+    {
+      "label": "Escultura e Instalación",
+      "value": "sculpture"
+    },
+    {
+      "label": "Mosaico Alternativo",
+      "value": "mosaic"
+    },
+    {
+      "label": "Fotografía",
+      "value": "photography"
+    },
+    {
+      "label": "Pintura",
+      "value": "peinture"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero_block",
+      "active": true,
+      "memorialBtnText": "Ver Memorial",
+      "memorialBtnUrl": "/es/projects/bethel",
+      "scrollBtnText": "Explorar"
+    },
+    {
+      "type": "about_block",
+      "active": true,
+      "subtitle": "Enfoque y Visión",
+      "title": "Sobre Muhsana",
+      "navTitle": "Sobre la Artista"
+    },
+    {
+      "type": "projects_block",
+      "active": true,
+      "navTitle": "Proyectos",
+      "nextBtnText": "Siguiente proyecto →",
+      "prevBtnText": "← Proyecto anterior",
+      "subtitle": "Compromiso Comunitario y Obras Principales",
+      "title": "Proyectos Destacados",
+      "cardBtnText": "Descubrir proyecto →",
+      "sectionFilter": "principaux"
+    },
+    {
+      "type": "artworks_block",
+      "active": true,
+      "title": "Obras de Arte",
+      "navTitle": "Obras",
+      "subtitle": "Exploración Visual y Escultórica"
+    },
+    {
+      "type": "map_block",
+      "active": true,
+      "title": "Trayectoria Artística de Muhsana Ali",
+      "navTitle": "Trayectoria (Mapa)",
+      "subtitle": "Geografía y Recorrido Internacional",
+      "description": "Explore ciudades, residencias, exposiciones y proyectos comunitarios en África, Europa y Estados Unidos.",
+      "timelineBtnText": "Cronología"
+    }
+  ]
+}

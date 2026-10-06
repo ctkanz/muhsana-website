@@ -1,0 +1,69 @@
+{
+  "title": "محسنة علي | فنانة متعددة التخصصات",
+  "description": "الموقع الرسمي للفنانة محسنة علي.",
+  "artworkFilters": [
+    {
+      "label": "جميع الأعمال",
+      "value": "all"
+    },
+    {
+      "label": "النحت والتجهيز في الفراغ",
+      "value": "sculpture"
+    },
+    {
+      "label": "الفسيفساء البديلة",
+      "value": "mosaic"
+    },
+    {
+      "label": "التصوير الفوتوغرافي",
+      "value": "photography"
+    },
+    {
+      "label": "الرسم والتلوين",
+      "value": "peinture"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero_block",
+      "active": true,
+      "memorialBtnText": "عرض النصب التذكاري",
+      "memorialBtnUrl": "/ar/projects/bethel",
+      "scrollBtnText": "استكشف"
+    },
+    {
+      "type": "about_block",
+      "active": true,
+      "subtitle": "النهج والرؤية الفنية",
+      "title": "عن محسنة علي",
+      "navTitle": "نبذة عنها"
+    },
+    {
+      "type": "projects_block",
+      "active": true,
+      "navTitle": "المشاريع",
+      "subtitle": "المشاركة المجتمعية والأعمال الرئيسية",
+      "title": "المشاريع الرئيسية",
+      "nextBtnText": "المشروع التالي ←",
+      "prevBtnText": "→ المشروع السابق",
+      "cardBtnText": "اكتشف المشروع ←",
+      "sectionFilter": "principaux"
+    },
+    {
+      "type": "artworks_block",
+      "active": true,
+      "subtitle": "استكشاف بصري ونحتي",
+      "title": "الأعمال الفنية",
+      "navTitle": "الأعمال"
+    },
+    {
+      "type": "map_block",
+      "active": true,
+      "subtitle": "الجغرافيا والمسار الدولي",
+      "title": "المسار الفني لمحسنة علي",
+      "navTitle": "المسار الجغرافي",
+      "description": "استكشف المدن، الإقامات الفنية، المعارض والمشاريع المجتمعية عبر إفريقيا وأوروبا والولايات المتحدة.",
+      "timelineBtnText": "الجدول الزمني"
+    }
+  ]
+}

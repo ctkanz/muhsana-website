@@ -1,0 +1,92 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import ProjectsSection from '../../components/ProjectsSection.astro';
+import ArtworksSection from '../../components/ArtworksSection.astro';
+import InteractiveMap from '../../components/InteractiveMap.astro';
+
+const homeEntry = await getEntry('pages', 'ar/home');
+const homeData = homeEntry?.data || {
+  title: "محسنة علي | فنانة متعددة التخصصات",
+  description: "الموقع الرسمي للفنانة محسنة علي.",
+  artworkFilters: [
+    { label: "جميع الأعمال", value: "all" },
+    { label: "النحت والتجهيز في الفراغ", value: "sculpture" },
+    { label: "الفسيفساء البديلة", value: "mosaic" },
+    { label: "التصوير الفوتوغرافي", value: "photography" },
+    { label: "الرسم والتلوين", value: "peinture" }
+  ],
+  blocks: [
+    { type: 'hero_block', active: true },
+    { type: 'about_block', active: true, title: "عن محسنة علي", navTitle: "نبذة عنها" },
+    { type: 'projects_block', title: 'المشاريع الرئيسية', navTitle: "المشاريع", sectionFilter: 'principaux' },
+    { type: 'artworks_block', active: true, title: 'الأعمال الفنية', navTitle: "الأعمال" },
+    { type: 'map_block', active: true, title: 'المسار الفني لمحسنة علي', navTitle: "المسار الجغرافي" },
+  ]
+};
+---
+
+<BaseLayout title={homeData.title} description={homeData.description} lang="ar">
+  <main>
+    {homeData.blocks.map((block: any) => {
+      const type = block.type;
+      if (type === 'hero_block' && block.active !== false) {
+        return (
+          <Hero 
+            memorialBtnText={block.memorialBtnText} 
+            memorialBtnUrl={block.memorialBtnUrl}
+            scrollBtnText={block.scrollBtnText}
+          />
+        );
+      }
+      if (type === 'about_block' && block.active !== false) {
+        return (
+          <About 
+            lang="ar"
+            title={block.title} 
+            subtitle={block.subtitle}
+          />
+        );
+      }
+      if (type === 'projects_block' && block.active !== false) {
+        return (
+          <ProjectsSection 
+            lang="ar"
+            sectionFilter={block.sectionFilter || 'principaux'} 
+            sectionTitle={block.title || 'المشاريع الرئيسية'} 
+            sectionSubtitle={block.subtitle || 'المشاركة المجتمعية والأعمال الرئيسية'} 
+            cardBtnText={block.cardBtnText}
+          />
+        );
+      }
+      if (type === 'artworks_block' && block.active !== false) {
+        return (
+          <ArtworksSection 
+            lang="ar"
+            title={block.title} 
+            subtitle={block.subtitle}
+            filters={homeData.artworkFilters}
+          />
+        );
+      }
+      if (type === 'map_block' && block.active !== false) {
+        return (
+          <InteractiveMap 
+            lang="ar"
+            title={block.title} 
+            subtitle={block.subtitle} 
+            description={block.description} 
+            timelineBtnText={block.timelineBtnText}
+          />
+        );
+      }
+      return null;
+    })}
+  </main>
+
+  <footer class="footer" style="padding: 3rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem;">
+    <p>© محسنة علي. جميع الحقوق محفوظة.</p>
+  </footer>
+</BaseLayout>

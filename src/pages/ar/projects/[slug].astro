@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allProjects = await getCollection('projects');
+  // Filter only projects located in the 'ar/' subfolder
+  const projects = allProjects.filter(p => p.slug.startsWith('ar/'));
+  const sortedProjects = [...projects].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+  return sortedProjects.map((entry, index) => {
+    const prevEntry = sortedProjects.length > 1 
+      ? sortedProjects[(index - 1 + sortedProjects.length) % sortedProjects.length] 
+      : null;
+    const nextEntry = sortedProjects.length > 1 
+      ? sortedProjects[(index + 1) % sortedProjects.length] 
+      : null;
+
+    // Remove 'ar/' prefix from slug for the clean URL route
+    const cleanSlug = entry.slug.replace(/^ar\//, '');
+    const cleanPrevSlug = prevEntry ? prevEntry.slug.replace(/^ar\//, '') : '';
+    const cleanNextSlug = nextEntry ? nextEntry.slug.replace(/^ar\//, '') : '';
+
+    return {
+      params: { slug: cleanSlug },
+      props: {
+        project: entry.data,
+        prevProject: prevEntry ? { slug: cleanPrevSlug, title: prevEntry.data.title } : null,
+        nextProject: nextEntry ? { slug: cleanNextSlug, title: nextEntry.data.title } : null,
+      },
+    };
+  });
+}
+
+const { project, prevProject, nextProject } = Astro.props;
+
+if (!project) {
+  return Astro.redirect('/404');
+}
+
+const homePage = await getEntry('pages', 'ar/home');
+const homeBlocks = homePage?.data?.blocks || [];
+
+const matchingBlock = homeBlocks.find(
+  (b: any) => b.type === 'projects_block' && (b.sectionFilter === project.section || !project.section)
+) || homeBlocks.find((b: any) => b.type === 'projects_block');
+
+const prevBtnText = matchingBlock?.prevBtnText || "→ المشروع السابق";
+const nextBtnText = matchingBlock?.nextBtnText || "المشروع التالي ←";
+
+const prevNav = prevProject || project.prevProject;
+const nextNav = nextProject || project.nextProject;
+
+const galleryVisible = (project.galleryImages || []).slice(0, 6);
+const heroImgSrc = project.heroImage.startsWith('/') ? project.heroImage : '/' + project.heroImage;
+const allImagesJson = JSON.stringify((project.galleryImages || []).map((img: string) => img.startsWith('/') ? img : '/' + img));
+---
+
+<BaseLayout title={project.metaTitle} description={project.metaDescription} isProjectPage={true} lang="ar">
+  <!-- Project Detail Hero Banner -->
+  <header
+    class="project-hero"
+    style={`background-image: linear-gradient(to bottom, rgba(10,10,12,0.5), var(--bg-primary)), url('${heroImgSrc}');`}
+  >
+    <div class="project-hero-content">
+      <span class="project-badge">{project.badge}</span>
+      <h1 class="project-hero-title">{project.title}</h1>
+      <p class="project-hero-subtitle">{project.subtitle}</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="section project-detail-container">
+    <div class="project-layout">
+      <!-- Main Text -->
+      <article class="project-main-text">
+
+        <!-- Project Gallery Grid -->
+        {(project.showGallery ?? true) && galleryVisible.length > 0 && (
+          <div
+            class="project-gallery-grid"
+            style="grid-template-columns: repeat(3, 1fr); margin-bottom: 2.5rem;"
+            data-all-images={allImagesJson}
+          >
+            {galleryVisible.map((imgSrc: string, idx: number) => (
+              <div class="project-gallery-item">
+                <img src={imgSrc.startsWith('/') ? imgSrc : '/' + imgSrc} alt={`${project.title} صورة ${idx + 1}`} />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {project.mainHeading && <h2 class="project-section-heading">{project.mainHeading}</h2>}
+        <div class="section-divider" style="margin-right: 0; margin-left: auto;"></div>
+
+        {project.leadParagraph && <p class="project-lead">{project.leadParagraph}</p>}
+
+        {project.paragraphs && project.paragraphs.map((paragraph: string) => (
+          <p>{paragraph}</p>
+        ))}
+
+        {project.quote && (
+          <blockquote class="project-quote">
+            {project.quote}
+          </blockquote>
+        )}
+
+        {(project.showExternalLinks ?? true) && project.externalLinks && project.externalLinks.map((link: any) => (
+          <div class="external-article-card" style="margin-top: 1.5rem;">
+            <div class="article-card-icon">{link.icon}</div>
+            <div class="article-card-info">
+              <span class="article-card-tag">{link.tag}</span>
+              <h4 class="article-card-title">{link.title}</h4>
+              <p class="article-card-desc">{link.desc}</p>
+            </div>
+            <a href={link.url} target="_blank" rel="noopener noreferrer" class="article-card-btn">
+              <span>{link.btnText}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        ))}
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="project-sidebar">
+        {(project.showSidebarMeta ?? true) && project.sidebarMeta && project.sidebarMeta.length > 0 && (
+          <div class="project-meta-card">
+            <h3 class="meta-card-title">بطاقة معلومات</h3>
+            
+            {project.sidebarMeta.map((item: any) => (
+              <div class="meta-item">
+                <span class="meta-label">{item.label}</span>
+                <span class="meta-value">{item.value}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {(project.showNav ?? true) && (prevNav || nextNav) && (
+          <div class="project-nav-card">
+            <h4>التنقل</h4>
+            {prevNav && (
+              <a href={`/ar/projects/${prevNav.slug}`} class="next-project-link" style="margin-bottom: 0.8rem;">
+                <span>{prevBtnText}</span>
+                <strong>{prevNav.title}</strong>
+              </a>
+            )}
+            {nextNav && (
+              <a href={`/ar/projects/${nextNav.slug}`} class="next-project-link">
+                <span>{nextBtnText}</span>
+                <strong>{nextNav.title}</strong>
+              </a>
+            )}
+          </div>
+        )}
+      </aside>
+    </div>
+
+    <!-- Embedded Youtube Video if available -->
+    {(project.showVideo ?? true) && project.embeddedVideoYoutubeUrl && (
+      <div class="embedded-video-fullwidth" style="margin-top: 3.5rem; width: 100%;">
+        <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 1.2rem; color: var(--text-main); text-align: center;">
+          عرض الفيديو الرسمي
+        </h3>
+        <div style="position: relative; padding-bottom: 52%; height: 0; overflow: hidden; border-radius: var(--radius-md); border: 1px solid var(--border-hover); box-shadow: 0 20px 50px rgba(0,0,0,0.8); background: #000;">
+          <iframe 
+            src={project.embeddedVideoYoutubeUrl} 
+            title="عرض الفيديو الرسمي" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    )}
+  </main>
+
+  <footer class="footer" style="padding: 2rem 3rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.85rem;">
+    <p>© محسنة علي. جميع الحقوق محفوظة. <a href="/ar/#projects" style="color: var(--accent-gold); margin-right: 1rem;">← العودة إلى الصفحة الرئيسية</a></p>
+  </footer>
+</BaseLayout>

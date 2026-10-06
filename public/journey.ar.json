@@ -1,0 +1,297 @@
+{
+  "map": {
+    "id": "muhsana-ali-artistic-journey-ar",
+    "title": "المسار الفني لمحسنة علي",
+    "subtitle": "رحلة استكشافية عبر إفريقيا وأوروبا والولايات المتحدة",
+    "center": {
+      "lat": 20,
+      "lng": -20
+    },
+    "zoom": 2
+  },
+  "filters": [
+    {
+      "id": "education",
+      "label": "التعليم والتكويين"
+    },
+    {
+      "id": "exhibition",
+      "label": "المعارض الفنية"
+    },
+    {
+      "id": "residency",
+      "label": "الإقامات الفنية"
+    },
+    {
+      "id": "project",
+      "label": "المشاريع المجتمعية"
+    },
+    {
+      "id": "conference",
+      "label": "المؤتمرات والندوات"
+    },
+    {
+      "id": "collection",
+      "label": "المجموعات الدائمة"
+    }
+  ],
+  "locations": [
+    {
+      "id": "dakar",
+      "city": "داكار",
+      "country": "السنغال",
+      "lat": 14.7167,
+      "lng": -17.4677,
+      "types": [
+        "exhibition",
+        "project",
+        "conference"
+      ],
+      "events": [
+        {
+          "year": 2026,
+          "title": "كيرسا (Kersa)",
+          "type": "project",
+          "description": "جدارية فسيفسائية مجتمعية في ملعب كرة السلة بسيكاب ميرموز."
+        },
+        {
+          "year": 2024,
+          "title": "التقارب (Convergence)",
+          "type": "exhibition",
+          "description": "معرض فني في فندق راديسون بلو."
+        },
+        {
+          "year": 2022,
+          "title": "المعرض الوطني",
+          "type": "exhibition",
+          "description": "معرض جماعي بمناسبة اليوم العالمي للمرأة."
+        },
+        {
+          "year": 2016,
+          "title": "بكين - داكار",
+          "type": "exhibition",
+          "description": "مشروع فني عُرض في المسرح الكبير بداكار خلال بينالي داكارت."
+        },
+        {
+          "year": 2014,
+          "title": "جدارية الفسيفساء",
+          "type": "project",
+          "description": "تجهيز فسيفسائي في حديقة مركز كير ثيوسان الثقافي."
+        },
+        {
+          "year": 2008,
+          "title": "داكارت OFF",
+          "type": "exhibition",
+          "description": "معرض فني في المركز الثقافي الفرنسي بداكار."
+        },
+        {
+          "year": 2004,
+          "title": "بينالي داكار",
+          "type": "exhibition",
+          "description": "مشاركة رسمية في بينالي الفن الإفريقي المعاصر داكارت."
+        },
+        {
+          "year": 1999,
+          "title": "ندوة النحت",
+          "type": "conference",
+          "description": "مشاركة في الندوة الدولية للنحت على الحجر."
+        }
+      ]
+    },
+    {
+      "id": "mbodiene",
+      "city": "مبودين",
+      "country": "السنغال",
+      "lat": 14.2833,
+      "lng": -16.9000,
+      "types": [
+        "project",
+        "residency"
+      ],
+      "events": [
+        {
+          "year": 2007,
+          "title": "أبواب وممرات العودة",
+          "type": "project",
+          "description": "تأسيس مركز الفن والتنمية الشمولية والبناء المعماري بالتراب المستدام."
+        },
+        {
+          "year": 2010,
+          "title": "إقامة الفنانين",
+          "type": "residency",
+          "description": "ورشة عمل دولية للنحت والمعمار المستدام بالتعاون مع AIA."
+        }
+      ]
+    },
+    {
+      "id": "abidjan",
+      "city": "أبيدجان",
+      "country": "كوت ديفوار",
+      "lat": 5.3600,
+      "lng": -4.0083,
+      "types": [
+        "project",
+        "exhibition",
+        "education"
+      ],
+      "events": [
+        {
+          "year": 1997,
+          "title": "أبواب وممرات العودة",
+          "type": "project",
+          "description": "مشروع فني مجتمعي ضخم امتد لعامين بمشاركة 50 شاباً."
+        },
+        {
+          "year": 1998,
+          "title": "سبك البرونز",
+          "type": "education",
+          "description": "تدريب تقليدي على سبك البرونز بالشمع المفقود مع كبار الحرفيين."
+        }
+      ]
+    },
+    {
+      "id": "philadelphia",
+      "city": "فيلادلفيا",
+      "country": "الولايات المتحدة",
+      "lat": 39.9526,
+      "lng": -75.1652,
+      "types": [
+        "education",
+        "exhibition",
+        "project",
+        "collection"
+      ],
+      "events": [
+        {
+          "year": 2021,
+          "title": "مقبرة بيت إيل",
+          "type": "project",
+          "description": "التأهل لنهائيات مسابقة تصميم النصب التذكاري في حديقة ويكاكوي."
+        },
+        {
+          "year": 2019,
+          "title": "متحف بنسلفانيا",
+          "type": "collection",
+          "description": "عرض دائم في الجناح الإفريقي الجديد بالمتحف."
+        },
+        {
+          "year": 1993,
+          "title": "درجة الماجستير",
+          "type": "education",
+          "description": "ماجستير الفنون الجميلة من جامعة الفنون بفيلادلفيا."
+        },
+        {
+          "year": 1989,
+          "title": "أكاديمية PAFA وكلية مور",
+          "type": "education",
+          "description": "دراسة الفنون الجميلة والفسيفساء مع المعلم إشعياء زاغار."
+        }
+      ]
+    },
+    {
+      "id": "portland",
+      "city": "بورتلاند",
+      "country": "الولايات المتحدة",
+      "lat": 43.6591,
+      "lng": -70.2568,
+      "types": [
+        "project",
+        "residency"
+      ],
+      "events": [
+        {
+          "year": 2016,
+          "title": "فسيفساء إيست بايسايد",
+          "type": "project",
+          "description": "جدارية فسيفساء تشاركية أنجزت بمشاركة 100 طالب وساكن."
+        },
+        {
+          "year": 2015,
+          "title": "فنانة مقيمة في USM",
+          "type": "residency",
+          "description": "إقامة فنية وتدريس بجامعة جنوب مين."
+        }
+      ]
+    },
+    {
+      "id": "mart",
+      "city": "مارت",
+      "country": "الولايات المتحدة",
+      "lat": 31.5363,
+      "lng": -96.8319,
+      "types": [
+        "project",
+        "exhibition"
+      ],
+      "events": [
+        {
+          "year": 2012,
+          "title": "منحوتة شجرة العائلة",
+          "type": "project",
+          "description": "منحوتة شجرة ضخمة مكسوة بالفسيفساء بمشاركة مجتمعية."
+        },
+        {
+          "year": 2011,
+          "title": "مشروع مجتمع مارت",
+          "type": "project",
+          "description": "إنجاز جداريات فسيفساء ومبادرات للتواصل الاجتماعي في الملعب الرياضي."
+        }
+      ]
+    },
+    {
+      "id": "paris",
+      "city": "باريس",
+      "country": "فرنسا",
+      "lat": 48.8566,
+      "lng": 2.3522,
+      "types": [
+        "education",
+        "exhibition"
+      ],
+      "events": [
+        {
+          "year": 1991,
+          "title": "جامعة السوربون",
+          "type": "education",
+          "description": "دراسة تاريخ الفن واللغة الفرنسية بجامعة السوربون."
+        }
+      ]
+    },
+    {
+      "id": "gwangju",
+      "city": "غوانغجو",
+      "country": "كوريا الجنوبية",
+      "lat": 35.1595,
+      "lng": 126.8526,
+      "types": [
+        "exhibition"
+      ],
+      "events": [
+        {
+          "year": 2012,
+          "title": "بينالي غوانغجو",
+          "type": "exhibition",
+          "description": "عرض تجهيزات فنية ضمن البينالي الدولي بغوانغجو."
+        }
+      ]
+    },
+    {
+      "id": "washington",
+      "city": "واشنطن العاصمة",
+      "country": "الولايات المتحدة",
+      "lat": 38.9072,
+      "lng": -77.0369,
+      "types": [
+        "collection"
+      ],
+      "events": [
+        {
+          "year": 2001,
+          "title": "البيت الأبيض",
+          "type": "collection",
+          "description": "تصميم درع تكريمي من البرونز قُدم للرئيس بيل كلينتون."
+        }
+      ]
+    }
+  ]
+}

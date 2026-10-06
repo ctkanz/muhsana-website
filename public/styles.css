@@ -1877,16 +1877,18 @@ textarea.form-control {
 }
 
 .article-card-icon {
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   flex-shrink: 0;
   background: rgba(212, 175, 55, 0.1);
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   border: 1px solid rgba(212, 175, 55, 0.2);
+  line-height: 1 !important;
+  direction: ltr !important;
+  font-family: system-ui, -apple-system, "Segoe UI Emoji", "Apple Color Emoji", sans-serif !important;
 }
 
 .article-card-info {
@@ -2226,3 +2228,46 @@ textarea.form-control {
     right: 0.5rem;
   }
 }
+
+/* ==========================================================================
+   RTL (RIGHT-TO-LEFT) LANGUAGE OVERRIDES FOR ARABIC (AR)
+   ========================================================================== */
+html[dir="rtl"] {
+  font-family: 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .hero-title {
+  font-family: 'Tajawal', 'Cinzel', serif;
+}
+
+html[dir="rtl"] .nav-links {
+  direction: rtl;
+}
+
+html[dir="rtl"] .about-scroll-box {
+  text-align: right;
+}
+
+html[dir="rtl"] .info-panel-header,
+html[dir="rtl"] .event-card {
+  text-align: right;
+}
+
+html[dir="rtl"] .external-article-card {
+  border-left: 1px solid var(--border-hover);
+  border-right: 4px solid var(--accent-gold);
+}
+
+html[dir="rtl"] .article-card-icon {
+  direction: ltr !important;
+  display: grid !important;
+  place-items: center !important;
+  font-family: system-ui, -apple-system, "Segoe UI Emoji", "Apple Color Emoji", sans-serif !important;
+  line-height: 1 !important;
+}
+
+

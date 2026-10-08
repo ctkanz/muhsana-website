@@ -6,6 +6,7 @@ import About from '../../components/About.astro';
 import ProjectsSection from '../../components/ProjectsSection.astro';
 import ArtworksSection from '../../components/ArtworksSection.astro';
 import InteractiveMap from '../../components/InteractiveMap.astro';
+import Contact from '../../components/Contact.astro';
 
 const homeEntry = await getEntry('pages', 'zh-tw/home');
 const homeData = homeEntry?.data || {
@@ -24,6 +25,7 @@ const homeData = homeEntry?.data || {
     { type: 'projects_block', title: '精選專案', navTitle: "專案項目", sectionFilter: 'principaux' },
     { type: 'artworks_block', active: true, title: '藝術作品', navTitle: "作品集" },
     { type: 'map_block', active: true, title: 'Muhsana Ali 的藝術歷程', navTitle: "藝術歷程（地圖）" },
+    { type: 'contact_block', active: true, title: '聯繫我', navTitle: "聯繫" },
   ]
 };
 ---
@@ -79,6 +81,15 @@ const homeData = homeEntry?.data || {
             subtitle={block.subtitle} 
             description={block.description} 
             timelineBtnText={block.timelineBtnText}
+          />
+        );
+      }
+      if (type === 'contact_block' && block.active !== false) {
+        return (
+          <Contact 
+            lang="zh-tw"
+            title={block.title} 
+            subtitle={block.subtitle} 
           />
         );
       }

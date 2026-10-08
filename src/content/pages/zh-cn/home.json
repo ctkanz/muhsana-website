@@ -64,6 +64,13 @@
       "subtitle": "地理与跨国艺术足迹",
       "description": "探索贯穿非洲、欧洲与美国的城市足迹、驻村计划、展览与社区项目。",
       "timelineBtnText": "时间轴年表"
+    },
+    {
+      "type": "contact_block",
+      "active": true,
+      "title": "联系我",
+      "navTitle": "联系",
+      "subtitle": "保持联系"
     }
   ]
 }

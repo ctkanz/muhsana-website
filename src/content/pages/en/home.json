@@ -64,6 +64,13 @@
       "subtitle": "Geography & International Journey",
       "description": "Explore cities, residencies, exhibitions, and community projects across Africa, Europe, and the United States.",
       "timelineBtnText": "Timeline"
+    },
+    {
+      "type": "contact_block",
+      "active": true,
+      "title": "Contact Me",
+      "navTitle": "Contact",
+      "subtitle": "Get In Touch"
     }
   ]
 }

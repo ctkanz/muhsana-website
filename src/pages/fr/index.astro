@@ -6,6 +6,7 @@ import About from '../../components/About.astro';
 import ProjectsSection from '../../components/ProjectsSection.astro';
 import ArtworksSection from '../../components/ArtworksSection.astro';
 import InteractiveMap from '../../components/InteractiveMap.astro';
+import Contact from '../../components/Contact.astro';
 
 const homeEntry = await getEntry('pages', 'fr/home');
 const homeData = homeEntry?.data || {
@@ -24,6 +25,7 @@ const homeData = homeEntry?.data || {
     { type: 'projects_block', title: 'Projets Principaux', navTitle: "Projets", sectionFilter: 'principaux' },
     { type: 'artworks_block', active: true, title: 'Œuvres', navTitle: "Œuvres" },
     { type: 'map_block', active: true, title: 'Parcours Artistique de Muhsana Ali', navTitle: "Parcours (Carte)" },
+    { type: 'contact_block', active: true, title: 'Contactez-moi', navTitle: "Contact" },
   ]
 };
 ---
@@ -79,6 +81,15 @@ const homeData = homeEntry?.data || {
             subtitle={block.subtitle} 
             description={block.description} 
             timelineBtnText={block.timelineBtnText}
+          />
+        );
+      }
+      if (type === 'contact_block' && block.active !== false) {
+        return (
+          <Contact 
+            lang="fr"
+            title={block.title} 
+            subtitle={block.subtitle} 
           />
         );
       }

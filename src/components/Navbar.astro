@@ -115,6 +115,14 @@ const sortedProjects = langProjects.sort((a, b) => (a.data.order || 0) - (b.data
         );
       }
 
+      if (type === 'contact_block') {
+        return (
+          <li class="nav-item">
+            <a href={`${pagePrefix}#contact`} class="nav-link">{block.navTitle || block.title || (isFr ? 'Contact' : (isEs ? 'Contacto' : (isZhTw ? '聯繫' : (isZhCn ? '联系' : (isAr ? 'تواصل' : 'Contact')))))}</a>
+          </li>
+        );
+      }
+
       return null;
     })}
 

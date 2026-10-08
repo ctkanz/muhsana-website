@@ -64,6 +64,13 @@
       "subtitle": "Geografía y Recorrido Internacional",
       "description": "Explore ciudades, residencias, exposiciones y proyectos comunitarios en África, Europa y Estados Unidos.",
       "timelineBtnText": "Cronología"
+    },
+    {
+      "type": "contact_block",
+      "active": true,
+      "title": "Contacto",
+      "navTitle": "Contacto",
+      "subtitle": "Sigamos en contacto"
     }
   ]
 }

@@ -6,6 +6,7 @@ import About from '../components/About.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
 import ArtworksSection from '../components/ArtworksSection.astro';
 import InteractiveMap from '../components/InteractiveMap.astro';
+import Contact from '../components/Contact.astro';
 
 const homeEntry = await getEntry('pages', 'en/home');
 const homeData = homeEntry?.data || {
@@ -24,6 +25,7 @@ const homeData = homeEntry?.data || {
     { type: 'projects_block', title: 'Featured Projects', navTitle: "Projects", sectionFilter: 'principaux' },
     { type: 'artworks_block', active: true, title: 'Artworks', navTitle: "Artworks" },
     { type: 'map_block', active: true, title: 'Artistic Journey of Muhsana Ali', navTitle: "Journey (Map)" },
+    { type: 'contact_block', active: true, title: 'Contact Me', navTitle: "Contact" },
   ]
 };
 ---
@@ -75,6 +77,14 @@ const homeData = homeEntry?.data || {
             subtitle={block.subtitle} 
             description={block.description} 
             timelineBtnText={block.timelineBtnText}
+          />
+        );
+      }
+      if (type === 'contact_block' && block.active !== false) {
+        return (
+          <Contact 
+            title={block.title} 
+            subtitle={block.subtitle} 
           />
         );
       }

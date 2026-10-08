@@ -229,6 +229,14 @@ collections:
                   - { label: "Section subtitle", name: "subtitle", widget: "string", default: "Geography & International Journey" }
                   - { label: "Section description", name: "description", widget: "text", default: "Explore cities, residencies, exhibitions, and community projects across Africa, Europe, and the United States." }
                   - { label: "Timeline button text", name: "timelineBtnText", widget: "string", default: "Timeline" }
+              - label: "Contact Section"
+                name: "contact_block"
+                widget: "object"
+                fields:
+                  - { label: "Enable this section", name: "active", widget: "boolean", default: true }
+                  - { label: "Section title on page", name: "title", widget: "string", default: "Contact Me" }
+                  - { label: "Navigation menu text (optional)", name: "navTitle", widget: "string", default: "Contact", required: false }
+                  - { label: "Section subtitle", name: "subtitle", widget: "string", default: "Get In Touch" }
           - label: "Artwork Gallery Filters (Category Buttons)"
             name: "artworkFilters"
             widget: "list"
@@ -298,6 +306,14 @@ collections:
                   - { label: "Sous-titre de la section", name: "subtitle", widget: "string", default: "Géographie & Parcours International" }
                   - { label: "Description de la section", name: "description", widget: "text", default: "Explorez les villes, résidences, expositions et projets communautaires à travers l'Afrique, l'Europe et les États-Unis." }
                   - { label: "Texte du bouton chronologie", name: "timelineBtnText", widget: "string", default: "Chronologie" }
+              - label: "Section Contact"
+                name: "contact_block"
+                widget: "object"
+                fields:
+                  - { label: "Activer cette section", name: "active", widget: "boolean", default: true }
+                  - { label: "Titre de la section", name: "title", widget: "string", default: "Contactez-moi" }
+                  - { label: "Texte dans le menu de navigation", name: "navTitle", widget: "string", default: "Contact", required: false }
+                  - { label: "Sous-titre de la section", name: "subtitle", widget: "string", default: "Restons en contact" }
           - label: "Filtres de Galeries d'Œuvres"
             name: "artworkFilters"
             widget: "list"

@@ -64,6 +64,13 @@
       "subtitle": "Géographie & Parcours International",
       "description": "Explorez les villes, résidences, expositions et projets communautaires à travers l'Afrique, l'Europe et les États-Unis.",
       "timelineBtnText": "Chronologie"
+    },
+    {
+      "type": "contact_block",
+      "active": true,
+      "title": "Contactez-moi",
+      "navTitle": "Contact",
+      "subtitle": "Restons en contact"
     }
   ]
 }

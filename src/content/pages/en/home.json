@@ -67,7 +67,7 @@
     },
     {
       "type": "contact_block",
-      "active": true,
+      "active": false,
       "title": "Contact Me",
       "navTitle": "Contact",
       "subtitle": "Get In Touch"

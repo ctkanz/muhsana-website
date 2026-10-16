@@ -50,6 +50,17 @@
       "sectionFilter": "principaux"
     },
     {
+      "active": true,
+      "navTitle": "Projets 2027",
+      "nextBtnText": "Projet suivant →",
+      "prevBtnText": "← Projet précédent",
+      "subtitle": "Engagement Communautaire & Œuvres Majeures",
+      "title": "Projets 2027",
+      "cardBtnText": "Découvrir le projet →",
+      "type": "projects_block",
+      "sectionFilter": "principaux 2027"
+    },
+    {
       "type": "artworks_block",
       "active": true,
       "title": "Œuvres",

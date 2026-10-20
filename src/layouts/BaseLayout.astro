@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import Lightbox from '../components/Lightbox.astro';
+import QrWelcomeModal from '../components/QrWelcomeModal.astro';
 
 interface Props {
   title?: string;
@@ -55,6 +56,7 @@ const {
   <slot />
 
   <Lightbox />
+  <QrWelcomeModal />
 
   <!-- Main Interactive Client Script -->
   <script is:inline src="/script.js"></script>

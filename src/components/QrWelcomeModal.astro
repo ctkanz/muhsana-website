@@ -1,0 +1,229 @@
+---
+// QrWelcomeModal.astro
+// Modale légère et sans dépendance externe, affichée UNIQUEMENT si le visiteur vient du QR code (?src=qr)
+---
+
+<div id="qr-welcome-modal" class="qr-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="qr-modal-dialog">
+    <button type="button" class="qr-modal-close" id="qr-modal-close-btn" aria-label="Fermer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="qr-modal-content">
+      <!-- Zone Image optionnelle (tu peux modifier le src ou la retirer) -->
+      <div class="qr-modal-badge">
+        <span>EXCLUSIF QR</span>
+      </div>
+
+      <div class="qr-modal-body">
+        <h3 class="qr-modal-title">Bienvenue sur l'espace Muhsana Ali</h3>
+        <div class="qr-modal-divider"></div>
+        <p class="qr-modal-text">
+          Merci d'avoir scanné le QR Code. Explorez les œuvres, les créations contemporaines et les expositions immersives de l'artiste.
+        </p>
+
+        <!-- Bouton d'action ou lien vers la découverte -->
+        <button type="button" class="qr-modal-action-btn" id="qr-modal-action-btn">
+          Découvrir les œuvres
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .qr-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(5, 5, 8, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+  }
+
+  .qr-modal-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .qr-modal-dialog {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    background: #121217;
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 175, 55, 0.08);
+    overflow: hidden;
+    transform: scale(0.94) translateY(12px);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .qr-modal-overlay.is-active .qr-modal-dialog {
+    transform: scale(1) translateY(0);
+  }
+
+  .qr-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: #a0a0ab;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 2;
+  }
+
+  .qr-modal-close:hover {
+    color: #fff;
+    background: rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.4);
+    transform: rotate(90deg);
+  }
+
+  .qr-modal-content {
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+  }
+
+  .qr-modal-badge {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #d4af37;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .qr-modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f3f3f5;
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+  }
+
+  .qr-modal-divider {
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    margin: 0.8rem auto 1.2rem;
+  }
+
+  .qr-modal-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #a0a0ab;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+  }
+
+  .qr-modal-action-btn {
+    display: inline-block;
+    padding: 0.85rem 2.2rem;
+    background: linear-gradient(135deg, #d4af37 0%, #b89025 100%);
+    color: #0a0a0c;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .qr-modal-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.5);
+  }
+
+  @media (max-width: 480px) {
+    .qr-modal-content {
+      padding: 2rem 1.25rem 1.5rem;
+    }
+    .qr-modal-title {
+      font-size: 1.3rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Logique ultra-légère (exécutée en moins de 1ms, 0 requête réseau)
+  (function initQrModal() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var isFromQr = params.get('src') === 'qr' || params.get('source') === 'qrcode';
+
+      if (!isFromQr) return;
+
+      // Évite la réapparition intempestive si déjà fermé pendant cette session
+      if (sessionStorage.getItem('qr_popup_dismissed') === 'true') return;
+
+      var modal = document.getElementById('qr-welcome-modal');
+      var closeBtn = document.getElementById('qr-modal-close-btn');
+      var actionBtn = document.getElementById('qr-modal-action-btn');
+
+      if (!modal) return;
+
+      function openModal() {
+        modal.classList.add('is-active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        sessionStorage.setItem('qr_popup_dismissed', 'true');
+      }
+
+      // Temporisation de 300ms pour une transition fluide après affichage de la page
+      setTimeout(openModal, 300);
+
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (actionBtn) actionBtn.addEventListener('click', closeModal);
+
+      // Fermeture au clic sur le fond flouté
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+      });
+
+      // Fermeture touche Échap
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+          closeModal();
+        }
+      });
+    } catch (err) {
+      // Sécurité silencieuse pour ne jamais bloquer le rendu
+    }
+  })();
+</script>

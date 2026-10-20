@@ -36,7 +36,7 @@
       "active": true,
       "subtitle": "Enfoque y Visión",
       "title": "Sobre Muhsana",
-      "navTitle": "Sobre la Artista"
+      "navTitle": "Biografía"
     },
     {
       "type": "projects_block",
@@ -60,7 +60,7 @@
       "type": "map_block",
       "active": true,
       "title": "Trayectoria Artística de Muhsana Ali",
-      "navTitle": "Trayectoria (Mapa)",
+      "navTitle": "Trayectoria",
       "subtitle": "Geografía y Recorrido Internacional",
       "description": "Explore ciudades, residencias, exposiciones y proyectos comunitarios en África, Europa y Estados Unidos.",
       "timelineBtnText": "Cronología"

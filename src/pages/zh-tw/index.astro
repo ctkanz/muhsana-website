@@ -97,7 +97,13 @@ const homeData = homeEntry?.data || {
     })}
   </main>
 
-  <footer class="footer" style="padding: 3rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem;">
-    <p>© Muhsana Ali. 版權所有，保留一切權利。</p>
+  <footer class="footer" style="padding: 3rem 1.5rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem;">
+    <p>
+      © Muhsana Ali. 版權所有，保留一切權利。
+      <span style="margin: 0 0.6rem; opacity: 0.4;">|</span>
+      <button type="button" data-open-legal class="footer-legal-btn">
+        法律聲明
+      </button>
+    </p>
   </footer>
 </BaseLayout>

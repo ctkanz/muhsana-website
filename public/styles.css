@@ -1207,6 +1207,20 @@ textarea.form-control {
   font-size: 0.9rem;
 }
 
+/* Medium screens navbar breathing room */
+@media (min-width: 1151px) and (max-width: 1350px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+  .nav-menu {
+    gap: 1.2rem;
+  }
+  .nav-link {
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+  }
+}
+
 /* Mobile & Tablet Responsiveness */
 @media (max-width: 1150px) {
   .navbar {
@@ -2477,6 +2491,27 @@ html[dir="rtl"] .next-project-link {
 
 html[dir="rtl"] .next-project-link:hover {
   transform: translateX(-4px);
+}
+
+/* Footer Legal Notice Trigger */
+.footer-legal-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+  padding: 0;
+  display: inline;
+}
+
+.footer-legal-btn:hover,
+.footer-legal-btn:focus,
+.footer-legal-btn:active {
+  color: var(--accent-gold) !important;
+  outline: none;
 }
 
 

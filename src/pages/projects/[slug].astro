@@ -179,6 +179,13 @@ const allImagesJson = JSON.stringify(project.galleryImages.map(img => img.starts
   </main>
 
   <footer class="footer" style="padding: 2rem 3rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.85rem;">
-    <p>© Muhsana Ali. All rights reserved. <a href="/#projects" style="color: var(--accent-gold); margin-left: 1rem;">← Back to main site</a></p>
+    <p>
+      © Muhsana Ali. All rights reserved. 
+      <span style="margin: 0 0.6rem; opacity: 0.4;">|</span>
+      <button type="button" data-open-legal class="footer-legal-btn">
+        Legal Notice
+      </button>
+      <a href="/#projects" style="color: var(--accent-gold); margin-left: 1rem;">← Back to main site</a>
+    </p>
   </footer>
 </BaseLayout>

@@ -62,7 +62,7 @@ const sortedProjects = langProjects.sort((a, b) => (a.data.order || 0) - (b.data
       if (type === 'about_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#about`} class="nav-link">{block.navTitle || block.title || (isFr ? 'À Propos' : (isEs ? 'Sobre la Artista' : (isZhTw ? '關於藝術家' : (isZhCn ? '关于艺术家' : (isAr ? 'عن الفنانة' : 'About')))))}</a>
+            <a href={`${pagePrefix}#about`} class="nav-link">{block.navTitle || block.title || (isFr ? 'À Propos' : (isEs ? 'Biografía' : (isZhTw ? '關於藝術家' : (isZhCn ? '关于艺术家' : (isAr ? 'عن الفنانة' : 'About')))))}</a>
           </li>
         );
       }
@@ -110,7 +110,7 @@ const sortedProjects = langProjects.sort((a, b) => (a.data.order || 0) - (b.data
       if (type === 'map_block') {
         return (
           <li class="nav-item">
-            <a href={`${pagePrefix}#interactive-map`} class="nav-link">{block.navTitle || block.title || (isFr ? 'Parcours (Carte)' : (isEs ? 'Trayectoria (Mapa)' : (isZhTw ? '藝術歷程（地圖）' : (isZhCn ? '艺术历程（地图）' : (isAr ? 'المسار الجغرافي' : 'Journey (Map)')))))}</a>
+            <a href={`${pagePrefix}#interactive-map`} class="nav-link">{block.navTitle || block.title || (isFr ? 'Parcours (Carte)' : (isEs ? 'Trayectoria' : (isZhTw ? '藝術歷程（地圖）' : (isZhCn ? '艺术历程（地图）' : (isAr ? 'المسار الجغرافي' : 'Journey (Map)')))))}</a>
           </li>
         );
       }

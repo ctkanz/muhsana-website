@@ -1,0 +1,397 @@
+---
+// LegalModal.astro
+// Modale internationale pour les Mentions Légales & Confidentialité
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+
+const translations: Record<string, {
+  title: string;
+  sec1Title: string;
+  sec1Publisher: string;
+  sec1Contact: string;
+  sec1Address: string;
+  sec2Title: string;
+  sec2Host: string;
+  sec2Address: string;
+  sec3Title: string;
+  sec3Copyright: string;
+  sec3Liability: string;
+  sec4Title: string;
+  sec4Data: string;
+  sec4Cookies: string;
+  closeBtn: string;
+}> = {
+  fr: {
+    title: "Mentions Légales & Confidentialité",
+    sec1Title: "1. Éditeur du site",
+    sec1Publisher: "Responsable de la publication :",
+    sec1Contact: "Contact :",
+    sec1Address: "Adresse :",
+    sec2Title: "2. Hébergeur",
+    sec2Host: "Société :",
+    sec2Address: "Adresse :",
+    sec3Title: "3. Propriété intellectuelle & Liens externes",
+    sec3Copyright: "Droit d'auteur : Toutes les œuvres, photographies, textes et contenus visuels présents sur ce site sont la propriété exclusive de Muhsana Ali. Toute reproduction ou utilisation sans accord écrit préalable est interdite.",
+    sec3Liability: "Responsabilité : Le site peut contenir des liens vers des sites externes (comme celui de l'association). L'éditeur décline toute responsabilité quant aux contenus ou pratiques de ces sites tiers.",
+    sec4Title: "4. Données personnelles & Cookies",
+    sec4Data: "Les informations envoyées via le formulaire de contact (nom, e-mail) sont uniquement utilisées pour répondre à vos messages. Elles restent confidentielles, ne sont jamais partagées, et peuvent être supprimées sur simple demande par e-mail.",
+    sec4Cookies: "Ce site n'utilise aucun cookie de traçage publicitaire ou de profilage.",
+    closeBtn: "Fermer"
+  },
+  en: {
+    title: "Legal Notice & Privacy Policy",
+    sec1Title: "1. Site Publisher",
+    sec1Publisher: "Publication Director:",
+    sec1Contact: "Contact:",
+    sec1Address: "Address:",
+    sec2Title: "2. Hosting Provider",
+    sec2Host: "Company:",
+    sec2Address: "Address:",
+    sec3Title: "3. Intellectual Property & External Links",
+    sec3Copyright: "Copyright: All artworks, photographs, texts and visual contents on this site are the exclusive property of Muhsana Ali. Any reproduction or use without prior written consent is strictly prohibited.",
+    sec3Liability: "Liability: This website may contain links to third-party websites (such as the association). The publisher disclaims any responsibility for the content or practices of these external sites.",
+    sec4Title: "4. Personal Data & Cookies",
+    sec4Data: "Information sent via the contact form (name, email) is solely used to respond to your inquiries. It remains strictly confidential, is never shared with third parties, and can be deleted upon simple email request.",
+    sec4Cookies: "This site does not use any advertising or profiling cookies.",
+    closeBtn: "Close"
+  },
+  es: {
+    title: "Aviso Legal y Privacidad",
+    sec1Title: "1. Editor del sitio",
+    sec1Publisher: "Responsable de publicación:",
+    sec1Contact: "Contacto:",
+    sec1Address: "Dirección:",
+    sec2Title: "2. Alojamiento web",
+    sec2Host: "Empresa:",
+    sec2Address: "Dirección:",
+    sec3Title: "3. Propiedad intelectual y enlaces externos",
+    sec3Copyright: "Derechos de autor: Todas las obras de arte, fotografías, textos y contenidos visuales en este sitio son propiedad exclusiva de Muhsana Ali. Queda prohibida toda reproducción o uso sin autorización previa por escrito.",
+    sec3Liability: "Responsabilidad: El sitio web puede incluir enlaces a páginas externas. El editor declina cualquier responsabilidad sobre los contenidos o políticas de dichos sitios.",
+    sec4Title: "4. Datos personales y cookies",
+    sec4Data: "Los datos enviados a través del formulario de contacto (nombre, correo) se utilizan exclusivamente para responder a sus mensajes. Son confidenciales, no se comparten con terceros y pueden ser eliminados previa solicitud por correo.",
+    sec4Cookies: "Este sitio web no utiliza cookies publicitarias ni de seguimiento.",
+    closeBtn: "Cerrar"
+  },
+  ar: {
+    title: "الإشعار القانوني والخصوصية",
+    sec1Title: "١. ناشر الموقع",
+    sec1Publisher: "المسؤول عن النشر:",
+    sec1Contact: "الاتصال:",
+    sec1Address: "العنوان:",
+    sec2Title: "٢. الاستضافة",
+    sec2Host: "الشركة:",
+    sec2Address: "العنوان:",
+    sec3Title: "٣. الملكية الفكرية والروابط الخارجية",
+    sec3Copyright: "حقوق النشر: جميع الأعمال الفنية والصور والنصوص والمحتويات المرئية الموجودة على هذا الموقع هي ملكية حصرية للفنانة محسنة علي. يُحظر أي نسخ أو استخدام دون إذن كتابي مسبق.",
+    sec3Liability: "المسؤولية: قد يحتوي الموقع على روابط لمواقع خارجية. يخلي الناشر مسؤوليته عن محتوى أو ممارسات هذه المواقع الخارجية.",
+    sec4Title: "٤. البيانات الشخصية وملفات تعريف الارتباط",
+    sec4Data: "المعلومات المرسلة عبر نموذج الاتصال (الاسم، البريد الإلكتروني) تُستخدم فقط للرد على رسائلكم. تظل سرية للغاية ولا يتم مشاركتها أبداً، ويمكن حذفها بطلب بسيط عبر البريد الإلكتروني.",
+    sec4Cookies: "هذا الموقع لا يستخدم أي ملفات تعريف ارتباط للإعلانات أو التتبع.",
+    closeBtn: "إغلاق"
+  },
+  'zh-cn': {
+    title: "法律声明与隐私政策",
+    sec1Title: "1. 网站发布者",
+    sec1Publisher: "发布负责人：",
+    sec1Contact: "联系方式：",
+    sec1Address: "地址：",
+    sec2Title: "2. 托管服务商",
+    sec2Host: "公司名称：",
+    sec2Address: "地址：",
+    sec3Title: "3. 知识产权与外部链接",
+    sec3Copyright: "版权所有：本网站上的所有艺术作品、照片、文字及视觉内容均为Muhsana Ali独家所有。未经书面许可，严禁任何形式的复制或使用。",
+    sec3Liability: "免责声明：本网站可能包含指向第三方网站的链接。发布者对第三方网站的内容或行为不承担任何责任。",
+    sec4Title: "4. 个人数据与Cookie政策",
+    sec4Data: "通过联系表单发送的信息（姓名、电子邮箱）仅用于回复您的咨询。信息完全保密，绝不与任何第三方共享，并可根据您的邮件请求随时予以删除。",
+    sec4Cookies: "本网站不使用任何广告或用户跟踪类Cookie。",
+    closeBtn: "关闭"
+  },
+  'zh-tw': {
+    title: "法律聲明與隱私政策",
+    sec1Title: "1. 網站發布者",
+    sec1Publisher: "發布負責人：",
+    sec1Contact: "聯絡方式：",
+    sec1Address: "地址：",
+    sec2Title: "2. 託管服務商",
+    sec2Host: "公司名稱：",
+    sec2Address: "地址：",
+    sec3Title: "3. 智慧財產權與外部連結",
+    sec3Copyright: "版權所有：本網站上的所有藝術作品、照片、文字及視覺內容均為Muhsana Ali獨家所有。未經書面許可，嚴禁任何形式的複製或使用。",
+    sec3Liability: "免責聲明：本網站可能包含指向第三方網站的連結。發布者對第三方網站的內容或行為不承擔任何責任。",
+    sec4Title: "4. 個人資料與Cookie政策",
+    sec4Data: "透過聯絡表單發送的資訊（姓名、電子郵件）僅用於回覆您的諮詢。資訊完全保密，絕不與任何第三方共享，並可根據您的電子郵件請求隨時予以刪除。",
+    sec4Cookies: "本網站不使用任何廣告或使用者追蹤類Cookie。",
+    closeBtn: "關閉"
+  }
+};
+
+const t = translations[lang] || translations.en;
+const isRtl = lang === 'ar';
+---
+
+<div id="legal-modal" class="legal-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="legal-modal-dialog" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div class="legal-modal-header">
+      <h3 class="legal-modal-title">{t.title}</h3>
+      <button type="button" class="legal-modal-close" id="legal-modal-close-btn" aria-label={t.closeBtn}>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="legal-modal-body">
+      <section class="legal-section">
+        <h4>{t.sec1Title}</h4>
+        <p><strong>{t.sec1Publisher}</strong> Muhsana Ali</p>
+        <p><strong>{t.sec1Contact}</strong> <a href="mailto:muhsaali@protonmail.com">muhsaali@protonmail.com</a> | +221 77 978 79 34</p>
+        <p><strong>{t.sec1Address}</strong> Mbodiène, Sénégal</p>
+      </section>
+
+      <section class="legal-section">
+        <h4>{t.sec2Title}</h4>
+        <p><strong>{t.sec2Host}</strong> Netlify, Inc.</p>
+        <p><strong>{t.sec2Address}</strong> 512 2nd Street, Suite 200, San Francisco, CA 94107, USA</p>
+      </section>
+
+      <section class="legal-section">
+        <h4>{t.sec3Title}</h4>
+        <p><strong>{t.sec3Copyright.split(':')[0]}:</strong> {t.sec3Copyright.substring(t.sec3Copyright.indexOf(':') + 1)}</p>
+        <p><strong>{t.sec3Liability.split(':')[0]}:</strong> {t.sec3Liability.substring(t.sec3Liability.indexOf(':') + 1)}</p>
+      </section>
+
+      <section class="legal-section">
+        <h4>{t.sec4Title}</h4>
+        <p>{t.sec4Data}</p>
+        <p class="legal-note">{t.sec4Cookies}</p>
+      </section>
+    </div>
+
+    <div class="legal-modal-footer">
+      <button type="button" class="legal-modal-ok-btn" id="legal-modal-ok-btn">{t.closeBtn}</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .legal-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(8, 8, 10, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
+  }
+
+  .legal-modal-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .legal-modal-dialog {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    background: #121217;
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    border-radius: 16px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.08);
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .legal-modal-overlay.is-active .legal-modal-dialog {
+    transform: scale(1) translateY(0);
+  }
+
+  .legal-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .legal-modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    color: #f3f3f5;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  .legal-modal-close {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: #a0a0ab;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .legal-modal-close:hover {
+    color: #fff;
+    background: rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.4);
+    transform: rotate(90deg);
+  }
+
+  .legal-modal-body {
+    padding: 1.8rem 2rem;
+    overflow-y: auto;
+    color: #a0a0ab;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .legal-section {
+    margin-bottom: 1.6rem;
+  }
+
+  .legal-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-section h4 {
+    font-family: 'Cinzel', serif;
+    color: #d4af37;
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+
+  .legal-section p {
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-section strong {
+    color: #e5e5ea;
+  }
+
+  .legal-section a {
+    color: #d4af37;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .legal-section a:hover {
+    color: #fff;
+  }
+
+  .legal-note {
+    font-style: italic;
+    color: #8c8c96;
+    margin-top: 0.6rem;
+  }
+
+  .legal-modal-footer {
+    padding: 1rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .legal-modal-ok-btn {
+    padding: 0.6rem 1.6rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #f3f3f5;
+    border-radius: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .legal-modal-ok-btn:hover {
+    background: rgba(212, 175, 55, 0.18);
+    border-color: rgba(212, 175, 55, 0.4);
+    color: #d4af37;
+  }
+
+  @media (max-width: 600px) {
+    .legal-modal-dialog {
+      max-height: 90vh;
+    }
+    .legal-modal-header {
+      padding: 1.2rem 1.2rem 1rem;
+    }
+    .legal-modal-title {
+      font-size: 1.1rem;
+    }
+    .legal-modal-body {
+      padding: 1.2rem;
+      font-size: 0.88rem;
+    }
+    .legal-modal-footer {
+      padding: 0.8rem 1.2rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function initLegalModal() {
+    var modal = document.getElementById('legal-modal');
+    var closeBtn = document.getElementById('legal-modal-close-btn');
+    var okBtn = document.getElementById('legal-modal-ok-btn');
+
+    if (!modal) return;
+
+    function openModal(e) {
+      if (e) e.preventDefault();
+      modal.classList.add('is-active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', function(e) {
+      var trigger = e.target.closest('[data-open-legal]');
+      if (trigger) {
+        openModal(e);
+      }
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (okBtn) okBtn.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeModal();
+    });
+
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+        closeModal();
+      }
+    });
+  })();
+</script>

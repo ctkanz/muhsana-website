@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar.astro';
 import Lightbox from '../components/Lightbox.astro';
 import QrWelcomeModal from '../components/QrWelcomeModal.astro';
+import LegalModal from '../components/LegalModal.astro';
 
 interface Props {
   title?: string;
@@ -57,6 +58,7 @@ const {
 
   <Lightbox />
   <QrWelcomeModal />
+  <LegalModal lang={lang} />
 
   <!-- Main Interactive Client Script -->
   <script is:inline src="/script.js"></script>

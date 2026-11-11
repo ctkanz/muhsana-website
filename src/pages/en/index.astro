@@ -1,0 +1,104 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import ProjectsSection from '../../components/ProjectsSection.astro';
+import ArtworksSection from '../../components/ArtworksSection.astro';
+import InteractiveMap from '../../components/InteractiveMap.astro';
+import Contact from '../../components/Contact.astro';
+
+const homeEntry = await getEntry('pages', 'en/home');
+const homeData = homeEntry?.data || {
+  title: "Muhsana Ali | Multidisciplinary Artist",
+  description: "Official website of artist Muhsana Ali.",
+  artworkFilters: [
+    { label: "All Works", value: "all" },
+    { label: "Sculpture & Installation", value: "sculpture" },
+    { label: "Alternative Mosaic", value: "mosaic" },
+    { label: "Photography", value: "photography" },
+    { label: "Painting", value: "peinture" }
+  ],
+  blocks: [
+    { type: 'hero_block', active: true },
+    { type: 'about_block', active: true, title: "About Muhsana", navTitle: "About" },
+    { type: 'projects_block', title: 'Featured Projects', navTitle: "Projects", sectionFilter: 'principaux' },
+    { type: 'artworks_block', active: true, title: 'Artworks', navTitle: "Artworks" },
+    { type: 'map_block', active: true, title: 'Artistic Journey of Muhsana Ali', navTitle: "Journey (Map)" },
+    { type: 'contact_block', active: true, title: 'Contact Me', navTitle: "Contact" },
+  ]
+};
+---
+
+<BaseLayout title={homeData.title} description={homeData.description}>
+  <main>
+    {homeData.blocks.map((block: any) => {
+      const type = block.type;
+      if (type === 'hero_block' && block.active !== false) {
+        return (
+          <Hero 
+            memorialBtnText={block.memorialBtnText} 
+            memorialBtnUrl={block.memorialBtnUrl}
+            scrollBtnText={block.scrollBtnText}
+          />
+        );
+      }
+      if (type === 'about_block' && block.active !== false) {
+        return (
+          <About 
+            title={block.title} 
+            subtitle={block.subtitle}
+          />
+        );
+      }
+      if (type === 'projects_block' && block.active !== false) {
+        return (
+          <ProjectsSection 
+            sectionFilter={block.sectionFilter || 'principaux'} 
+            sectionTitle={block.title || 'Featured Projects'} 
+            sectionSubtitle={block.subtitle || 'Community Engagement & Major Works'} 
+            cardBtnText={block.cardBtnText}
+          />
+        );
+      }
+      if (type === 'artworks_block' && block.active !== false) {
+        return (
+          <ArtworksSection 
+            title={block.title} 
+            subtitle={block.subtitle}
+            filters={homeData.artworkFilters}
+          />
+        );
+      }
+      if (type === 'map_block' && block.active !== false) {
+        return (
+          <InteractiveMap 
+            title={block.title} 
+            subtitle={block.subtitle} 
+            description={block.description} 
+            timelineBtnText={block.timelineBtnText}
+          />
+        );
+      }
+      if (type === 'contact_block' && block.active !== false) {
+        return (
+          <Contact 
+            title={block.title} 
+            subtitle={block.subtitle} 
+          />
+        );
+      }
+      return null;
+    })}
+  </main>
+
+  <footer class="footer" style="padding: 3rem 1.5rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem;">
+    <p>
+      © Muhsana Ali. All rights reserved.
+      <span style="margin: 0 0.6rem; opacity: 0.4;">|</span>
+      <button type="button" data-open-legal class="footer-legal-btn">
+        Legal Notice
+      </button>
+    </p>
+  </footer>
+</BaseLayout>

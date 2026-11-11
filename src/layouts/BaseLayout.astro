@@ -1,7 +1,6 @@
 ---
 import Navbar from '../components/Navbar.astro';
 import Lightbox from '../components/Lightbox.astro';
-import QrWelcomeModal from '../components/QrWelcomeModal.astro';
 import LegalModal from '../components/LegalModal.astro';
 
 interface Props {
@@ -46,6 +45,19 @@ const {
   <!-- Netlify Identity Widget -->
   <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
+  <!-- Redirection transparente des anciens QR codes vers l'invitation vidéo -->
+  <script is:inline>
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('src') === 'qr' || params.get('source') === 'qrcode') {
+          // Si le visiteur arrive avec le paramètre QR, on le redirige immédiatement vers l'invitation
+          window.location.replace('/');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="/styles.css">
 </head>
@@ -57,7 +69,6 @@ const {
   <slot />
 
   <Lightbox />
-  <QrWelcomeModal />
   <LegalModal lang={lang} />
 
   <!-- Main Interactive Client Script -->

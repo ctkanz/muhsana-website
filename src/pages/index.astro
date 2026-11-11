@@ -1,104 +1,796 @@
 ---
-import { getEntry } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import ProjectsSection from '../components/ProjectsSection.astro';
-import ArtworksSection from '../components/ArtworksSection.astro';
-import InteractiveMap from '../components/InteractiveMap.astro';
-import Contact from '../components/Contact.astro';
-
-const homeEntry = await getEntry('pages', 'en/home');
-const homeData = homeEntry?.data || {
-  title: "Muhsana Ali | Multidisciplinary Artist",
-  description: "Official website of artist Muhsana Ali.",
-  artworkFilters: [
-    { label: "All Works", value: "all" },
-    { label: "Sculpture & Installation", value: "sculpture" },
-    { label: "Alternative Mosaic", value: "mosaic" },
-    { label: "Photography", value: "photography" },
-    { label: "Painting", value: "peinture" }
-  ],
-  blocks: [
-    { type: 'hero_block', active: true },
-    { type: 'about_block', active: true, title: "About Muhsana", navTitle: "About" },
-    { type: 'projects_block', title: 'Featured Projects', navTitle: "Projects", sectionFilter: 'principaux' },
-    { type: 'artworks_block', active: true, title: 'Artworks', navTitle: "Artworks" },
-    { type: 'map_block', active: true, title: 'Artistic Journey of Muhsana Ali', navTitle: "Journey (Map)" },
-    { type: 'contact_block', active: true, title: 'Contact Me', navTitle: "Contact" },
-  ]
-};
+// src/pages/index.astro
+// Landing page épurée : Invitation vidéo Muhsana Ali
 ---
 
-<BaseLayout title={homeData.title} description={homeData.description}>
-  <main>
-    {homeData.blocks.map((block: any) => {
-      const type = block.type;
-      if (type === 'hero_block' && block.active !== false) {
-        return (
-          <Hero 
-            memorialBtnText={block.memorialBtnText} 
-            memorialBtnUrl={block.memorialBtnUrl}
-            scrollBtnText={block.scrollBtnText}
-          />
-        );
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitation — Muhsana Ali</title>
+  <meta name="description" content="Invitation vidéo — Muhsana Ali, Artiste Contemporaine.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Google Fonts officielles du site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-color: #0c0c0f;
+      --gold: #d4af37;
+      --gold-hover: #e5c358;
+      --text: #f0f0f5;
+      --text-muted: #9999a5;
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 1.5rem;
+    }
+
+    /* Canvas interactif pour le fond de mosaïque génératif en JS */
+    #mosaic-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      transition: opacity 1s ease;
+    }
+
+    /* En cours de lecture : fond assombri à 100% (noir pur cinéma) */
+    body.is-playing #mosaic-canvas,
+    body.is-playing .ambient-bg {
+      opacity: 0;
+    }
+
+    /* Halo lumineux subtil aux tons dorés */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.08) 0%, transparent 65%),
+                  radial-gradient(circle at 10% 90%, rgba(12, 12, 16, 0.9) 0%, transparent 50%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .landing-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 900px;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Titre épuré "INVITATION" avec la typographie Cinzel */
+    .invitation-title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.8rem;
+      font-weight: 600;
+      text-shadow: 0 2px 20px rgba(212, 175, 55, 0.25);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    /* En cours de lecture : fond et titre assombris à 100% (noir pur cinéma) */
+    body.is-playing #mosaic-canvas,
+    body.is-playing .ambient-bg,
+    body.is-playing .invitation-title {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    body.is-playing .invitation-title {
+      transform: translateY(-8px);
+    }
+
+    /* Cadre de la vidéo */
+    .video-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 840px;
+      margin: 0 auto 2rem;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 0;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(212, 175, 55, 0.08);
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+      display: block;
+    }
+
+    /* En plein écran : respecter rigoureusement le ratio 16:9 sans aucun recadrage */
+    .video-viewport:fullscreen {
+      max-width: 100vw;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      border: none;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-viewport:-webkit-full-screen {
+      max-width: 100vw;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      border: none;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Rideau initial avec bouton "Regarder l'invitation" */
+    .video-curtain {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 14, 0.78);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      transition: opacity 0.4s ease, visibility 0.4s;
+      z-index: 5;
+    }
+
+    .video-curtain.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* Bouton principal : Regarder l'invitation */
+    .btn-watch {
+      font-family: var(--font-heading);
+      background: var(--gold);
+      color: #0c0c0f;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1.1rem 2.4rem;
+      border-radius: 50px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
+      transition: transform 0.25s ease, background 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-watch:hover {
+      background: var(--gold-hover);
+      transform: scale(1.04);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.55);
+    }
+
+    .btn-watch svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    /* Bouton "Entrer dans le site" */
+    .action-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .btn-enter-site {
+      font-family: var(--font-heading);
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-enter-site:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .btn-enter-site.highlight {
+      background: var(--gold);
+      color: #0c0c0f;
+      border-color: var(--gold);
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .btn-enter-site.highlight:hover {
+      background: var(--gold-hover);
+    }
+
+    /* Barre de progression dorée interactive : masquée par défaut, visible au survol */
+    .video-progress-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      z-index: 6;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease, height 0.2s ease;
+    }
+
+    .video-viewport:hover .video-progress-container {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      height: 6px;
+    }
+
+    .video-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #bfa035, #d4af37, #f7e08b);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+      transition: width 0.1s linear;
+      position: relative;
+    }
+
+    .video-progress-bar::after {
+      content: '';
+      position: absolute;
+      right: -4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.9);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .video-viewport:hover .video-progress-bar::after {
+      opacity: 1;
+    }
+
+    /* Contrôles discrets : masqués par défaut, apparaissent UNIQUEMENT au survol du cadre vidéo */
+    .video-float-ctrl {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      z-index: 7;
+      display: flex;
+      gap: 8px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .video-viewport:hover .video-float-ctrl {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* Le bouton rejouer est masqué par défaut, affiché uniquement à la fin de la vidéo */
+    #btn-replay {
+      display: none;
+    }
+
+    #btn-replay.show-replay {
+      display: inline-flex;
+    }
+
+    .ctrl-pill {
+      font-family: var(--font-body);
+      background: rgba(12, 12, 15, 0.78);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .ctrl-pill svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .ctrl-pill:hover {
+      background: rgba(212, 175, 55, 0.85);
+      color: #0c0c0f;
+      border-color: var(--gold);
+    }
+
+    @media (max-width: 640px) {
+      .invitation-title {
+        font-size: 1.4rem;
+        letter-spacing: 0.25em;
+        margin-bottom: 1.2rem;
       }
-      if (type === 'about_block' && block.active !== false) {
-        return (
-          <About 
-            title={block.title} 
-            subtitle={block.subtitle}
-          />
-        );
+      .btn-watch {
+        font-size: 0.95rem;
+        padding: 0.9rem 1.8rem;
       }
-      if (type === 'projects_block' && block.active !== false) {
-        return (
-          <ProjectsSection 
-            sectionFilter={block.sectionFilter || 'principaux'} 
-            sectionTitle={block.title || 'Featured Projects'} 
-            sectionSubtitle={block.subtitle || 'Community Engagement & Major Works'} 
-            cardBtnText={block.cardBtnText}
-          />
-        );
+      .btn-enter-site {
+        width: 100%;
+        justify-content: center;
+        font-size: 0.85rem;
+        padding: 0.85rem 1.4rem;
       }
-      if (type === 'artworks_block' && block.active !== false) {
-        return (
-          <ArtworksSection 
-            title={block.title} 
-            subtitle={block.subtitle}
-            filters={homeData.artworkFilters}
-          />
-        );
-      }
-      if (type === 'map_block' && block.active !== false) {
-        return (
-          <InteractiveMap 
-            title={block.title} 
-            subtitle={block.subtitle} 
-            description={block.description} 
-            timelineBtnText={block.timelineBtnText}
-          />
-        );
-      }
-      if (type === 'contact_block' && block.active !== false) {
-        return (
-          <Contact 
-            title={block.title} 
-            subtitle={block.subtitle} 
-          />
-        );
-      }
-      return null;
-    })}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Canvas JS pour les formes de carreaux/mosaïque -->
+  <canvas id="mosaic-canvas"></canvas>
+  <div class="ambient-bg"></div>
+
+  <main class="landing-wrapper">
+    <!-- Seul texte conservé : INVITATION (avec la police Cinzel) -->
+    <h1 class="invitation-title">Invitation</h1>
+
+    <!-- Cadre Vidéo -->
+    <div class="video-viewport" id="viewport">
+      <video id="kersa-video" preload="metadata" playsinline>
+        <source src="/kersa-web.mp4" type="video/mp4" />
+        Votre navigateur ne prend pas en charge la lecture vidéo.
+      </video>
+
+      <!-- Rideau initial -->
+      <div class="video-curtain" id="curtain">
+        <button type="button" class="btn-watch" id="btn-watch">
+          <svg viewBox="0 0 24 24">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Regarder l'invitation
+        </button>
+      </div>
+
+      <!-- Contrôles flottants réduits (icônes seules) -->
+      <div class="video-float-ctrl" id="float-ctrl">
+        <button type="button" class="ctrl-pill" id="btn-play-pause" title="Lecture / Pause" aria-label="Lecture / Pause">
+          <svg id="icon-pause" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+          <svg id="icon-play" viewBox="0 0 24 24" style="display: none;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </button>
+        <button type="button" class="ctrl-pill" id="btn-replay" title="Rejouer depuis le début" aria-label="Rejouer">
+          <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"></path></svg>
+        </button>
+        <button type="button" class="ctrl-pill" id="btn-sound-toggle" title="Activer / Couper le son" aria-label="Activer / Couper le son">
+          <svg id="icon-sound-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+          <svg id="icon-sound-off" viewBox="0 0 24 24" style="display: none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"></path></svg>
+        </button>
+        <button type="button" class="ctrl-pill" id="btn-fullscreen" title="Plein écran" aria-label="Plein écran">
+          <svg id="icon-fs-enter" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>
+          <svg id="icon-fs-exit" viewBox="0 0 24 24" style="display: none;"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"></path></svg>
+        </button>
+      </div>
+
+      <!-- Barre de progression -->
+      <div class="video-progress-container" id="progress-container" title="Avancer / Reculer">
+        <div class="video-progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- Bouton d'entrée dans le site -->
+    <div class="action-bar">
+      <a href="/fr/" class="btn-enter-site" id="btn-enter">
+        <span>Entrer dans le site</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
   </main>
 
-  <footer class="footer" style="padding: 3rem 1.5rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.9rem;">
-    <p>
-      © Muhsana Ali. All rights reserved.
-      <span style="margin: 0 0.6rem; opacity: 0.4;">|</span>
-      <button type="button" data-open-legal class="footer-legal-btn">
-        Legal Notice
-      </button>
-    </p>
-  </footer>
-</BaseLayout>
+  <script>
+    const viewport = document.getElementById('viewport');
+    const video = document.getElementById('kersa-video');
+    const curtain = document.getElementById('curtain');
+    const btnWatch = document.getElementById('btn-watch');
+    const btnEnter = document.getElementById('btn-enter');
+    const btnSoundToggle = document.getElementById('btn-sound-toggle');
+    const iconSoundOn = document.getElementById('icon-sound-on');
+    const iconSoundOff = document.getElementById('icon-sound-off');
+    const btnPlayPause = document.getElementById('btn-play-pause');
+    const iconPlay = document.getElementById('icon-play');
+    const iconPause = document.getElementById('icon-pause');
+    const btnReplay = document.getElementById('btn-replay');
+    const btnFullscreen = document.getElementById('btn-fullscreen');
+    const iconFsEnter = document.getElementById('icon-fs-enter');
+    const iconFsExit = document.getElementById('icon-fs-exit');
+    const progressContainer = document.getElementById('progress-container');
+    const progressBar = document.getElementById('progress-bar');
+
+    // Mise à jour de la barre de progression en temps réel
+    video?.addEventListener('timeupdate', () => {
+      if (video.duration && progressBar) {
+        const percent = (video.currentTime / video.duration) * 100;
+        progressBar.style.width = `${percent}%`;
+      }
+    });
+
+    // Clic sur la barre de progression pour naviguer dans la vidéo
+    progressContainer?.addEventListener('click', (e) => {
+      if (!video || !video.duration) return;
+      const rect = progressContainer.getBoundingClientRect();
+      const pos = (e.clientX - rect.left) / rect.width;
+      video.currentTime = pos * video.duration;
+    });
+
+    // Mettre à jour l'état visuel Play / Pause
+    function updatePlayPauseUI() {
+      if (!video) return;
+      if (video.ended) {
+        if (btnPlayPause) btnPlayPause.style.display = 'none';
+        return;
+      }
+      if (btnPlayPause) btnPlayPause.style.display = 'inline-flex';
+      if (video.paused) {
+        viewport?.classList.add('is-paused');
+        if (iconPlay) iconPlay.style.display = 'inline-block';
+        if (iconPause) iconPause.style.display = 'none';
+      } else {
+        viewport?.classList.remove('is-paused');
+        if (iconPlay) iconPlay.style.display = 'none';
+        if (iconPause) iconPause.style.display = 'inline-block';
+      }
+    }
+
+    // Clic sur la vidéo pour alterner Play / Pause
+    video?.addEventListener('click', () => {
+      if (curtain?.classList.contains('hidden')) {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+    });
+
+    video?.addEventListener('play', () => {
+      document.body.classList.add('is-playing');
+      updatePlayPauseUI();
+      btnReplay?.classList.remove('show-replay');
+    });
+    video?.addEventListener('pause', () => {
+      document.body.classList.remove('is-playing');
+      updatePlayPauseUI();
+    });
+
+    // Bouton Play / Pause
+    btnPlayPause?.addEventListener('click', () => {
+      if (!video) return;
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+
+    // Bouton Rejouer (affiché à la fin)
+    btnReplay?.addEventListener('click', () => {
+      if (!video) return;
+      btnReplay.classList.remove('show-replay');
+      video.currentTime = 0;
+      video.play();
+      updatePlayPauseUI();
+    });
+
+    // Lancer la vidéo au clic
+    btnWatch?.addEventListener('click', () => {
+      curtain?.classList.add('hidden');
+      if (video) {
+        video.muted = false;
+        video.play().catch(err => {
+          console.warn("Autoplay audio bloqué, lecture en muet :", err);
+          video.muted = true;
+          video.play();
+        });
+      }
+    });
+
+    // Basculer le son
+    btnSoundToggle?.addEventListener('click', () => {
+      if (video) {
+        video.muted = !video.muted;
+        if (iconSoundOn) iconSoundOn.style.display = video.muted ? 'none' : 'inline-block';
+        if (iconSoundOff) iconSoundOff.style.display = video.muted ? 'inline-block' : 'none';
+      }
+    });
+
+    // Basculer le mode Plein écran
+    function updateFullscreenUI() {
+      const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      if (iconFsEnter) iconFsEnter.style.display = isFs ? 'none' : 'inline-block';
+      if (iconFsExit) iconFsExit.style.display = isFs ? 'inline-block' : 'none';
+    }
+
+    btnFullscreen?.addEventListener('click', () => {
+      const target = viewport || video;
+      if (!target) return;
+
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (target.requestFullscreen) {
+          target.requestFullscreen().catch(err => console.warn(err));
+        } else if (target.webkitRequestFullscreen) {
+          target.webkitRequestFullscreen();
+        } else if (video?.webkitEnterFullscreen) {
+          // Fallback iPhone / iOS
+          video.webkitEnterFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(err => console.warn(err));
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    });
+
+    document.addEventListener('fullscreenchange', updateFullscreenUI);
+    document.addEventListener('webkitfullscreenchange', updateFullscreenUI);
+
+    // Fin de vidéo : afficher "Rejouer" et mettre en valeur le bouton d'entrée
+    video?.addEventListener('ended', () => {
+      document.body.classList.remove('is-playing');
+      if (btnEnter) {
+        btnEnter.classList.add('highlight');
+      }
+      btnReplay?.classList.add('show-replay');
+      updatePlayPauseUI();
+    });
+
+    // ==========================================
+    // Fond dynamique JS : Motif Graphique & Zébré (inspiré de 0:22)
+    // Structure de carreaux géométriques noirs & blancs hachurés avec reflets
+    // ==========================================
+    const canvas = document.getElementById('mosaic-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let tiles = [];
+
+      function resize() {
+        dpr = window.devicePixelRatio || 1;
+        width = window.innerWidth;
+        height = window.innerHeight;
+        
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        generateGraphicTiles();
+      }
+
+      function generateGraphicTiles() {
+        tiles = [];
+        const step = 56;
+        const cols = Math.ceil(width / step) + 2;
+        const rows = Math.ceil(height / step) + 2;
+
+        const grid = [];
+        for (let r = 0; r <= rows; r++) {
+          grid[r] = [];
+          for (let c = 0; c <= cols; c++) {
+            const jX = (Math.random() - 0.5) * (step * 0.35);
+            const jY = (Math.random() - 0.5) * (step * 0.35);
+            grid[r][c] = {
+              x: (c - 0.5) * step + jX,
+              y: (r - 0.5) * step + jY
+            };
+          }
+        }
+
+        const gap = 2.5;
+        for (let r = 0; r < rows - 1; r++) {
+          for (let c = 0; c < cols - 1; c++) {
+            const p1 = grid[r][c];
+            const p2 = grid[r][c + 1];
+            const p3 = grid[r + 1][c + 1];
+            const p4 = grid[r + 1][c];
+
+            const cX = (p1.x + p2.x + p3.x + p4.x) / 4;
+            const cY = (p1.y + p2.y + p3.y + p4.y) / 4;
+
+            function inset(p) {
+              const dx = p.x - cX;
+              const dy = p.y - cY;
+              const d = Math.hypot(dx, dy);
+              const f = Math.max(0.65, (d - gap) / d);
+              return { x: cX + dx * f, y: cY + dy * f };
+            }
+
+            // Certains carreaux sont mats et ne reflètent pas la lumière (reflète: ~60% oui, ~40% non)
+            const reflectsLight = Math.random() < 0.62;
+
+            // Seule une minorité de carreaux (environ 25-30%) est parsemée de zébrures
+            const hasStripes = Math.random() < 0.28;
+            const stripeAngle = (Math.floor(Math.random() * 4) * Math.PI) / 4; // 0, 45, 90, 135 deg
+            const stripeCount = 3 + Math.floor(Math.random() * 2);
+
+            tiles.push({
+              points: [inset(p1), inset(p2), inset(p3), inset(p4)],
+              cx: cX,
+              cy: cY,
+              reflectsLight,
+              hasStripes,
+              stripeAngle,
+              stripeCount,
+              goldTint: Math.random() > 0.72,
+              baseAlpha: 0.03 + Math.random() * 0.04
+            });
+          }
+        }
+      }
+
+      const beamAngle = Math.PI * 0.25;
+      const dirX = Math.cos(beamAngle);
+      const dirY = Math.sin(beamAngle);
+      const beamWidth = 32000;
+
+      let lastTime = 0;
+      let waveProgress = -800;
+
+      function draw(time) {
+        if (!lastTime) lastTime = time;
+        const delta = Math.min(32, time - lastTime);
+        lastTime = time;
+
+        ctx.clearRect(0, 0, width, height);
+
+        const maxSpan = Math.hypot(width, height) * 0.7;
+        waveProgress += 0.55 * (delta * 0.06) * 15;
+        if (waveProgress > maxSpan) waveProgress = -maxSpan;
+
+        const midX = width / 2;
+        const midY = height / 2;
+
+        for (const tile of tiles) {
+          const relX = tile.cx - midX;
+          const relY = tile.cy - midY;
+          const projDist = (relX * dirX + relY * dirY) - waveProgress;
+
+          // Calcul du reflet lumineux uniquement si le carreau n'est pas mat
+          const rawSheen = Math.exp(-(projDist * projDist) / beamWidth);
+          const sheen = tile.reflectsLight ? rawSheen : 0;
+          const finalAlpha = (tile.baseAlpha + sheen * 0.38) * 0.55;
+          const strokeAlpha = Math.min(0.5, 0.12 + sheen * 0.35);
+
+          // Tracé du carreau
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(tile.points[0].x, tile.points[0].y);
+          for (let i = 1; i < tile.points.length; i++) {
+            ctx.lineTo(tile.points[i].x, tile.points[i].y);
+          }
+          ctx.closePath();
+
+          // Couleur de fond du carreau
+          if (tile.goldTint) {
+            ctx.fillStyle = `rgba(212, 175, 55, ${finalAlpha * 0.35})`;
+            ctx.strokeStyle = `rgba(212, 175, 55, ${strokeAlpha})`;
+          } else {
+            ctx.fillStyle = `rgba(255, 255, 255, ${finalAlpha * 0.2})`;
+            ctx.strokeStyle = `rgba(240, 240, 255, ${strokeAlpha * 0.9})`;
+          }
+
+          ctx.lineWidth = 1.2;
+          ctx.lineJoin = 'miter';
+          ctx.fill();
+          ctx.stroke();
+
+          // Tracer les zébrures uniquement sur les carreaux sélectionnés (parsemés)
+          if (tile.hasStripes) {
+            ctx.clip();
+            ctx.beginPath();
+            const cosA = Math.cos(tile.stripeAngle);
+            const sinA = Math.sin(tile.stripeAngle);
+            const perpX = -sinA;
+            const perpY = cosA;
+            const span = 22;
+
+            for (let s = -tile.stripeCount; s <= tile.stripeCount; s++) {
+              const off = s * (span / tile.stripeCount);
+              const startX = tile.cx + perpX * off - cosA * 35;
+              const startY = tile.cy + perpY * off - sinA * 35;
+              const endX = tile.cx + perpX * off + cosA * 35;
+              const endY = tile.cy + perpY * off + sinA * 35;
+
+              ctx.moveTo(startX, startY);
+              ctx.lineTo(endX, endY);
+            }
+
+            if (tile.goldTint) {
+              ctx.strokeStyle = `rgba(212, 175, 55, ${strokeAlpha * 0.75})`;
+            } else {
+              ctx.strokeStyle = `rgba(255, 255, 255, ${strokeAlpha * 0.65})`;
+            }
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      requestAnimationFrame(draw);
+    }
+  </script>
+</body>
+</html>

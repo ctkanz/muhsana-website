@@ -3,78 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Code Muhsana Ali - Impression Haute Résolution</title>
+  <title>QR Code Muhsana Ali - Conforme ISO & Haute Résolution</title>
+  
+  <!-- Librairie QR Code standard officielle (ultra-légère) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
   <style>
     body {
       margin: 0;
-      padding: 40px;
-      background: #f7f7f8;
+      padding: 40px 20px;
+      background: #0c0c0f;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      color: #111;
+      color: #eaeaea;
     }
     .card {
-      background: #fff;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      background: #14141a;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(212, 175, 55, 0.08);
       text-align: center;
-      max-width: 500px;
+      max-width: 480px;
       width: 100%;
+      box-sizing: border-box;
     }
     .title {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      color: #d4af37;
     }
     .subtitle {
       font-size: 14px;
-      color: #666;
+      color: #a0a0ab;
       margin-bottom: 24px;
     }
-    .qr-container {
-      width: 320px;
-      height: 320px;
+    .qr-frame {
+      width: 290px;
+      height: 290px;
       margin: 0 auto 24px;
       padding: 16px;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      background: #fff;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .qr-container img, .qr-container svg {
-      width: 100%;
-      height: 100%;
+    .qr-frame canvas,
+    .qr-frame img {
+      width: 100% !important;
+      height: 100% !important;
       display: block;
     }
     .url {
       font-family: monospace;
       font-size: 13px;
-      background: #f0f0f2;
-      padding: 8px 14px;
-      border-radius: 6px;
-      color: #333;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #d4af37;
       word-break: break-all;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
-    .btn-print {
-      background: #111;
-      color: #fff;
-      border: none;
-      padding: 12px 28px;
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .btn {
+      padding: 12px 20px;
       font-size: 14px;
       font-weight: 600;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.2s;
+      border: none;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+    .btn-whatsapp:hover {
+      background: #1eb956;
+    }
+    .btn-print {
+      background: #d4af37;
+      color: #0c0c0f;
     }
     .btn-print:hover {
-      background: #333;
+      background: #bfa035;
+    }
+    .btn-svg {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-svg:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
     @media print {
       body {
@@ -82,11 +118,18 @@
         background: #fff;
       }
       .card {
+        border: none;
         box-shadow: none;
-        padding: 20px;
-        max-width: 100%;
+        padding: 0;
+        background: #fff;
       }
-      .btn-print {
+      .title {
+        color: #000;
+      }
+      .subtitle, .url {
+        color: #333;
+      }
+      .btn-group {
         display: none;
       }
     }
@@ -96,16 +139,88 @@
 
   <div class="card">
     <div class="title">Muhsana Ali</div>
-    <div class="subtitle">Scannez pour accéder au site (Version Française)</div>
+    <div class="subtitle">Scannez pour accéder au site & découvrir le pop-up</div>
     
-    <div class="qr-container">
-      <img src="/qrcode-fr.svg" alt="QR Code Muhsana Ali" />
-    </div>
+    <div class="qr-frame" id="qrcode-box"></div>
 
     <div class="url">https://muhsana.com/fr/?src=qr</div>
 
-    <button class="btn-print" onclick="window.print()">Imprimer en grand format</button>
+    <div class="btn-group">
+      <button class="btn btn-whatsapp" onclick="downloadHDImage()">
+        📥 Télécharger l'image HD (Pour WhatsApp / Email)
+      </button>
+      <button class="btn btn-svg" onclick="downloadSVG()">
+        📐 Télécharger en Vectoriel SVG (Pour Imprimeur Grand Format)
+      </button>
+      <button class="btn btn-print" onclick="window.print()">
+        🖨️ Imprimer directement
+      </button>
+    </div>
   </div>
+
+  <script>
+    var targetUrl = "https://muhsana.com/fr/?src=qr";
+    var qrContainer = document.getElementById("qrcode-box");
+
+    // Génération conforme ISO avec correction d'erreur niveau H (High)
+    var qrcode = new QRCode(qrContainer, {
+      text: targetUrl,
+      width: 1000,
+      height: 1000,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Télécharger en image HD pour WhatsApp / Email
+    function downloadHDImage() {
+      var canvas = qrContainer.querySelector("canvas");
+      if (canvas) {
+        var link = document.createElement("a");
+        link.download = "qrcode-muhsana-ali-hd.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      } else {
+        var img = qrContainer.querySelector("img");
+        if (img) {
+          var link = document.createElement("a");
+          link.download = "qrcode-muhsana-ali-hd.png";
+          link.href = img.src;
+          link.click();
+        }
+      }
+    }
+
+    // Télécharger en SVG vectoriel ULTRA-LÉGER (~3 Ko)
+    function downloadSVG() {
+      if (qrcode && qrcode._oQRCode) {
+        var qrModel = qrcode._oQRCode;
+        var moduleCount = qrModel.getModuleCount();
+        var margin = 4;
+        var totalSize = moduleCount + margin * 2;
+
+        var d = "";
+        for (var row = 0; row < moduleCount; row++) {
+          for (var col = 0; col < moduleCount; col++) {
+            if (qrModel.isDark(row, col)) {
+              d += "M" + (col + margin) + "," + (row + margin) + "h1v1h-1z ";
+            }
+          }
+        }
+
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + totalSize + ' ' + totalSize + '" shape-rendering="crispEdges" width="100%" height="100%">' +
+          '<rect width="100%" height="100%" fill="#ffffff"/>' +
+          '<path fill="#000000" d="' + d.trim() + '"/>' +
+          '</svg>';
+
+        var blob = new Blob([svg], { type: "image/svg+xml" });
+        var link = document.createElement("a");
+        link.download = "qrcode-muhsana-ali-grand-format.svg";
+        link.href = URL.createObjectURL(blob);
+        link.click();
+      }
+    }
+  </script>
 
 </body>
 </html>

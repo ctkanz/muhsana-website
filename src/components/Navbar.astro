@@ -15,18 +15,19 @@ const isZhTw = lang === 'zh-tw';
 const isZhCn = lang === 'zh-cn';
 const isAr = lang === 'ar';
 const homeSlug = `${lang}/home`;
-const pagePrefix = isProjectPage ? (lang === 'en' ? '' : `/${lang}`) : '';
+const pagePrefix = isProjectPage ? (lang === 'en' ? '/en' : `/${lang}`) : '';
 
 // Calculate dynamic language switcher targets
 let cleanPath = currentPath || '/';
-if (cleanPath.startsWith('/fr')) cleanPath = cleanPath.replace(/^\/fr/, '');
+if (cleanPath.startsWith('/en')) cleanPath = cleanPath.replace(/^\/en/, '');
+else if (cleanPath.startsWith('/fr')) cleanPath = cleanPath.replace(/^\/fr/, '');
 else if (cleanPath.startsWith('/es')) cleanPath = cleanPath.replace(/^\/es/, '');
 else if (cleanPath.startsWith('/zh-tw')) cleanPath = cleanPath.replace(/^\/zh-tw/, '');
 else if (cleanPath.startsWith('/zh-cn')) cleanPath = cleanPath.replace(/^\/zh-cn/, '');
 else if (cleanPath.startsWith('/ar')) cleanPath = cleanPath.replace(/^\/ar/, '');
 if (!cleanPath) cleanPath = '/';
 
-const enTarget = cleanPath;
+const enTarget = cleanPath === '/' ? '/en' : `/en${cleanPath}`;
 const frTarget = cleanPath === '/' ? '/fr' : `/fr${cleanPath}`;
 const esTarget = cleanPath === '/' ? '/es' : `/es${cleanPath}`;
 const zhTwTarget = cleanPath === '/' ? '/zh-tw' : `/zh-tw${cleanPath}`;

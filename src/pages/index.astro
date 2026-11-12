@@ -213,37 +213,53 @@
       fill: currentColor;
     }
 
-    /* Bouton "Entrer dans le site" */
+    /* Barre d'action avec boutons "Entrer dans le site" et "Lieu de l'exposition" */
     .action-bar {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
+      gap: 1rem;
       width: 100%;
     }
 
-    .btn-enter-site {
+    .btn-enter-site,
+    .btn-map-trigger {
       font-family: var(--font-heading);
       background: transparent;
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.28);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 0.9rem 2.2rem;
+      padding: 0.85rem 2rem;
       border-radius: 50px;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 0.7rem;
+      cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    .btn-enter-site:hover {
+    .btn-enter-site:hover,
+    .btn-map-trigger:hover {
       background: rgba(255, 255, 255, 0.1);
       border-color: var(--gold);
       color: var(--gold);
       transform: translateY(-2px);
+    }
+
+    .btn-map-trigger {
+      border-color: rgba(212, 175, 55, 0.45);
+      color: var(--gold);
+    }
+
+    .btn-map-trigger svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
     }
 
     .btn-enter-site.highlight {
@@ -257,6 +273,121 @@
 
     .btn-enter-site.highlight:hover {
       background: var(--gold-hover);
+    }
+
+    /* Modale Google Maps superposée exactement au cadre vidéo */
+    .map-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      z-index: 20;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+
+    .map-modal-overlay.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .map-modal-dialog {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      border: none;
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .map-modal-header {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .map-modal-close {
+      background: rgba(12, 12, 16, 0.88);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #ccc;
+      cursor: pointer;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: auto;
+      transition: color 0.2s, background 0.2s, transform 0.2s, border-color 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    .map-modal-close:hover {
+      color: #0c0c0f;
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: scale(1.08);
+    }
+
+    .map-modal-body {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+
+    .map-modal-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .map-modal-footer {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      width: auto;
+    }
+
+    .btn-open-gmaps {
+      background: var(--gold);
+      color: #0c0c0f;
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.4rem;
+      border-radius: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      pointer-events: auto;
+      transition: all 0.2s;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 175, 55, 0.35);
+    }
+
+    .btn-open-gmaps:hover {
+      background: var(--gold-hover);
+      transform: scale(1.04);
     }
 
     /* Barre de progression dorée interactive : masquée par défaut, visible au survol */
@@ -437,10 +568,55 @@
       <div class="video-progress-container" id="progress-container" title="Avancer / Reculer">
         <div class="video-progress-bar" id="progress-bar"></div>
       </div>
+
+      <!-- Pop-up Carte Google Maps intégrée directement à l'intérieur du cadre vidéo -->
+      <div class="map-modal-overlay" id="map-modal" aria-hidden="true" role="dialog">
+        <div class="map-modal-dialog">
+          <div class="map-modal-header">
+            <button type="button" class="map-modal-close" id="btn-close-map" aria-label="Retour à la vidéo" title="Retour à la vidéo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <div class="map-modal-body">
+            <iframe
+              src="https://maps.google.com/maps?q=14.705289351961033,-17.471895040087876&t=k&hl=fr&z=18&output=embed"
+              loading="lazy"
+              allowfullscreen=""
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Plan d'accès satellite - Lieu de l'exposition, Dakar">
+            </iframe>
+          </div>
+
+          <div class="map-modal-footer">
+            <a 
+              href="https://www.google.com/maps?q=14.705289351961033,-17.471895040087876&t=k" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn-open-gmaps">
+              <span>Ouvrir sur Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Bouton d'entrée dans le site -->
+    <!-- Boutons d'action : Entrer dans le site & Lieu de l'exposition / Retour à la vidéo -->
     <div class="action-bar">
+      <button type="button" class="btn-map-trigger" id="btn-toggle-map" title="Voir le lieu sur la carte">
+        <svg id="icon-trigger-map" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <svg id="icon-trigger-video" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+          <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
+        </svg>
+        <span id="label-trigger-map">Lieu de l'exposition</span>
+      </button>
+
       <a href="/fr/" class="btn-enter-site" id="btn-enter">
         <span>Entrer dans le site</span>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -451,6 +627,7 @@
     </div>
   </main>
 
+  <!-- Script JS -->
   <script>
     const viewport = document.getElementById('viewport');
     const video = document.getElementById('kersa-video');
@@ -469,6 +646,60 @@
     const iconFsExit = document.getElementById('icon-fs-exit');
     const progressContainer = document.getElementById('progress-container');
     const progressBar = document.getElementById('progress-bar');
+    const btnToggleMap = document.getElementById('btn-toggle-map');
+    const iconTriggerMap = document.getElementById('icon-trigger-map');
+    const iconTriggerVideo = document.getElementById('icon-trigger-video');
+    const labelTriggerMap = document.getElementById('label-trigger-map');
+    const btnCloseMap = document.getElementById('btn-close-map');
+    const mapModal = document.getElementById('map-modal');
+
+    // Gestion de l'affichage de la carte et de la bascule du bouton
+    function openMapModal() {
+      if (video && !video.paused) {
+        video.pause();
+      }
+      if (mapModal) {
+        mapModal.classList.add('is-active');
+        mapModal.setAttribute('aria-hidden', 'false');
+      }
+      if (iconTriggerMap) iconTriggerMap.style.display = 'none';
+      if (iconTriggerVideo) iconTriggerVideo.style.display = 'inline-block';
+      if (labelTriggerMap) labelTriggerMap.textContent = 'Retour à la vidéo';
+      btnToggleMap?.setAttribute('title', 'Revenir à la vidéo');
+    }
+
+    function closeMapModal() {
+      if (mapModal) {
+        mapModal.classList.remove('is-active');
+        mapModal.setAttribute('aria-hidden', 'true');
+      }
+      if (iconTriggerMap) iconTriggerMap.style.display = 'inline-block';
+      if (iconTriggerVideo) iconTriggerVideo.style.display = 'none';
+      if (labelTriggerMap) labelTriggerMap.textContent = "Lieu de l'exposition";
+      btnToggleMap?.setAttribute('title', "Voir le lieu sur la carte");
+    }
+
+    btnToggleMap?.addEventListener('click', () => {
+      if (mapModal?.classList.contains('is-active')) {
+        closeMapModal();
+      } else {
+        openMapModal();
+      }
+    });
+
+    btnCloseMap?.addEventListener('click', closeMapModal);
+
+    // Fermer en cliquant sur le fond flouté
+    mapModal?.addEventListener('click', (e) => {
+      if (e.target === mapModal) closeMapModal();
+    });
+
+    // Fermer avec la touche Échap
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mapModal?.classList.contains('is-active')) {
+        closeMapModal();
+      }
+    });
 
     // Mise à jour de la barre de progression en temps réel
     video?.addEventListener('timeupdate', () => {
